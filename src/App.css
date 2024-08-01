@@ -7,7 +7,7 @@
 }
 
 .Todo, .Doing, .Done {
-  flex-grow: 3;
+  width: 33%;
   border: 1px solid red;
   border-radius: 15px;
 }
