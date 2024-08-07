@@ -1,11 +1,11 @@
-import { Store } from './store/store.js'
+// import { Store } from './store/store.js'
 import {Todo} from './todo/Todo.jsx'
 import {Doing} from './doing/Doing.jsx'
 import {Done} from './done/Done.jsx'
 import './App.css'
 
 export const App = () => {
-  const store = Store()
+  // const store = Store()
   return (
     <div className='App'>
       {/* <h1>App Component</h1>

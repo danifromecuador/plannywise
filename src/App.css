@@ -6,7 +6,9 @@
   column-gap: 1%;
 }
 
-.Todo, .Doing, .Done {
+.Todo,
+.Doing,
+.Done {
   width: 33%;
   border: 1px solid red;
   border-radius: 15px;
@@ -15,6 +17,6 @@
 @media (width <= 720px) {
   .App {
     flex-direction: column;
-    row-gap: 1%;    
+    row-gap: 1%;
   }
 }
