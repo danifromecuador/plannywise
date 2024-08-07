@@ -1,5 +1,22 @@
 .App {
-  border: 1px solid red;
-  width: 95vw;
+  width: 98vw;
   height: 95vh;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 1%;
+}
+
+.Todo,
+.Doing,
+.Done {
+  width: 33%;
+  border: 1px solid red;
+  border-radius: 15px;
+}
+
+@media (width <= 720px) {
+  .App {
+    flex-direction: column;
+    row-gap: 1%;
+  }
 }
