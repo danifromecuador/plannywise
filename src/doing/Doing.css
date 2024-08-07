@@ -1,3 +1,25 @@
 .Doing {
   color: white;
+  padding: 5px;
+}
+
+.pomodoro {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.clock {
+  padding: 5px;
+  border: 1px solid red;
+  border-radius: 5px;
+  font-size: 70px;
+}
+
+.controls {
+  display: flex;
+  column-gap: 10px;
 }
