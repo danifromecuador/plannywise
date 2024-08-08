@@ -1,5 +1,6 @@
-import { useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Countdown, { zeroPad } from 'react-countdown'
+import axios from 'axios'
 import './Doing.css'
 
 export const Doing = () => {
@@ -9,6 +10,9 @@ export const Doing = () => {
   const [viewResetBtn, setViewResetBtn] = useState("hide")
   const [date, setDate] = useState(Date.now() + 900000)
   const countdownRef = useRef(null)
+  const [quote, setQuote] = useState("")
+  const [author, setAuthor] = useState("")
+  const [fetchNewQuote, setFetchNewQoute] = useState("")
 
   const handleStartClick = () => {
     if (countdownRef.current) countdownRef.current.getApi().start()
@@ -34,6 +38,21 @@ export const Doing = () => {
 
   const rendered = ({ minutes, seconds }) => <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
 
+  useEffect(() => {
+    const fetchQuote = async () => {
+      try {
+        const response = await axios('https://api.quotable.io/quotes/random?maxLength=50')
+        const data = response.data[0]
+        setQuote(data.content)
+        setAuthor(data.author)
+      }
+      catch (error) { console.error('Error fetching the quote', error) }
+    }
+    fetchQuote()
+  }, [fetchNewQuote])
+
+  const catchNewQuote = () => fetchNewQuote == "yes" ? setFetchNewQoute("") : setFetchNewQoute("yes")
+
   return (
     <div className='Doing'>
       <h1>Doing</h1>
@@ -52,10 +71,11 @@ export const Doing = () => {
           <button className={`${viewResetBtn} reset`} onClick={handleResetClick}>RESET</button>
         </div>
         <div className="motivational">
-          <p>You only fall when you stop trying!</p>
+          <span>{quote}</span>{` -- `}
+          <span>{author}</span>{` `}
+          <span onClick={catchNewQuote}>🗘</span>
         </div>
       </div>
     </div >
   )
 }
-
