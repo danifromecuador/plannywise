@@ -1,49 +1,29 @@
-import { useState } from 'react'
-import './Doing.css'
+import React, { useState, useRef } from 'react'
+import Countdown from 'react-countdown'
 
 export const Doing = () => {
-  const [viewStartBtn, setViewStartBtn] = useState("")
-  const [viewPauseBtn, setViewPauseBtn] = useState("hide")
+  const [date, setDate] = useState(Date.now() + 61000)
+  const countdownRef = useRef(null)
 
-  const handleClickStartBtn = () => {
-    setViewStartBtn("hide")
-    setViewPauseBtn("")
-  }
-
-  const handleClickPauseBtn = () => {
-    setViewStartBtn("")
-    setViewPauseBtn("hide")
-  }
-
-  const handleClickResetBtn = () => {
-    setViewStartBtn("")
-    setViewPauseBtn("hide")
-  }
+  const handleStartClick = () => { if (countdownRef.current) countdownRef.current.getApi().start() }
+  const handlePauseClick = () => { if (countdownRef.current) countdownRef.current.getApi().pause() }
+  const handleResetClick = () => setDate(Date.now() + 61000)
 
   return (
-    <div className='Doing'>
-      <h1>Doing</h1>      
-      <div className="pomodoro">
-        <div className="clock">15:00</div>
-        <div className="controls">
-          <button
-            className={`${viewStartBtn} start`}
-            onClick={() => handleClickStartBtn()}
-          >START</button>
-          <button
-            className={`${viewPauseBtn} pause`}
-            onClick={() => handleClickPauseBtn()}
-          >PAUSE</button>
-          <button
-            className="reset"
-          onClick={() => handleClickResetBtn()}
-          >RESET</button>
+    <>
+      <h3>Countdown with Start, Pause and Reset Controls</h3>
+      <Countdown
+        key={date}
+        ref={countdownRef}
+        date={date}
+        autoStart={false}
+      />
+      <div>
+        <button type="button" onClick={handleStartClick}>Start</button>
+        <button type="button" onClick={handlePauseClick}>Pause</button>
+        <button type="button" onClick={handleResetClick}>Reset</button>
       </div>
-      <div className="motivational">
-        <p>You only fall when you stop trying!</p>
-      </div>
-    </div>
-
-    </div >
+    </>
   )
 }
+
