@@ -1,26 +1,34 @@
 .Doing {
-  color: white;
   padding: 5px;
+  row-gap: 100px;
 }
 
 .pomodoro {
+  width: 100%;
   padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 10px;
+  row-gap: 50px;
 }
 
 .clock {
-  width: 100%;
+  width: fit-content;
   border: 1px solid red;
-  border-radius: 5px;
-  font-size: 70px;
+  border-radius: 20px;
+  padding: 0 5%;
+  font-size: 8vw;
   text-align: center;
 }
 
 .controls {
+  width: 100%;
+  justify-content: center;
   display: flex;
   column-gap: 10px;
+}
+
+.motivational span:last-of-type {
+  cursor: pointer;
 }

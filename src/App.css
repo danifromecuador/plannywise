@@ -1,5 +1,6 @@
 button {
-  font-size: 22px;
+  padding: 0 2%;
+  font-size: 2vw;
   cursor: pointer;
 }
 
@@ -26,9 +27,19 @@ button {
   align-items: center;
 }
 
-@media (width <=720px) {
+@media (width <= 720px) {
   .App {
     flex-direction: column;
     row-gap: 1%;
+  }
+
+  .Todo,
+  .Doing,
+  .Done {
+    width: 100%;
+  }
+
+  .clock {
+    font-size: 15vw;
   }
 }
