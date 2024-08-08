@@ -8,7 +8,7 @@ export const Doing = () => {
   const [viewStartBtn, setViewStartBtn] = useState("")
   const [viewPauseBtn, setViewPauseBtn] = useState("hide")
   const [viewResetBtn, setViewResetBtn] = useState("hide")
-  const [date, setDate] = useState(Date.now() + 900000)
+  const [date] = useState(Date.now() + 900000)
   const countdownRef = useRef(null)
   const [quote, setQuote] = useState("")
   const [author, setAuthor] = useState("")
@@ -29,7 +29,7 @@ export const Doing = () => {
   }
 
   const handleResetClick = () => {
-    setDate(Date.now() + 900000)
+    if (countdownRef.current) countdownRef.current.getApi().stop()
     setTextStartBtn("START")
     setViewStartBtn("")
     setViewPauseBtn("hide")
