@@ -13,10 +13,11 @@
 }
 
 .clock {
-  padding: 5px;
+  width: 100%;
   border: 1px solid red;
   border-radius: 5px;
   font-size: 70px;
+  text-align: center;
 }
 
 .controls {
