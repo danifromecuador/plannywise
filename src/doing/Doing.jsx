@@ -17,9 +17,12 @@ export const Doing = () => {
   const audioAlarm = new Audio('/clock_alarm.mp3')
 
   const catchNewQuote = () => fetchNewQuote == "yes" ? setFetchNewQoute("") : setFetchNewQoute("yes")
-  
+
   const rendered = ({ minutes, seconds, completed }) => {
-    if (completed) audioAlarm.play()    
+    if (completed) {
+      audioAlarm.play()
+      handleResetClick(false)
+    }
     return <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
   }
 
@@ -39,13 +42,13 @@ export const Doing = () => {
     audioStart.play()
   }
 
-  const handleResetClick = () => {
+  const handleResetClick = (withSound) => {
     if (countdownRef.current) countdownRef.current.getApi().stop()
     setTextStartBtn("START")
     setViewStartBtn("")
     setViewPauseBtn("hide")
     setViewResetBtn("hide")
-    audioStart.play()
+    if (withSound) audioStart.play()
   }
 
   useEffect(() => {
@@ -76,7 +79,7 @@ export const Doing = () => {
         <div className="controls">
           <button className={`${viewStartBtn} start`} onClick={handleStartClick}>{textStartBtn}</button>
           <button className={`${viewPauseBtn} pause`} onClick={handlePauseClick}>PAUSE</button>
-          <button className={`${viewResetBtn} reset`} onClick={handleResetClick}>RESET</button>
+          <button className={`${viewResetBtn} reset`} onClick={() => handleResetClick(true)}>RESET</button>
         </div>
         <div className="motivational">
           <span>{quote}</span>{` -- `}
@@ -84,6 +87,6 @@ export const Doing = () => {
           <span onClick={catchNewQuote}>🗘</span>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
