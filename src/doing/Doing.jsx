@@ -60,9 +60,8 @@ export const Doing = () => {
             maxLength: 70,
           }
         })
-        const data = response.data
-        setQuote(data.content)
-        setAuthor(data.author)
+        setQuote(response.data.content.slice(0, -1)) // Delete the last dot of the quote
+        setAuthor(response.data.author)
       }
       catch (error) { console.error('Error fetching the quote', error) }
     }
@@ -86,10 +85,9 @@ export const Doing = () => {
           <button className={`${viewPauseBtn} pause`} onClick={handlePauseClick}>PAUSE</button>
           <button className={`${viewResetBtn} reset`} onClick={() => handleResetClick(true)}>RESET</button>
         </div>
-        <div className="motivational">
-          <span>{quote}</span>{` -- `}
-          <span>{author}</span>{` `}
-          <span onClick={catchNewQuote}>🗘</span>
+        <div className="motivational" onClick={catchNewQuote}>
+          <p>{quote}</p>
+          <p>{author}</p>
         </div>
       </div>
     </div>
