@@ -13,12 +13,14 @@ export const Doing = () => {
   const [quote, setQuote] = useState("")
   const [author, setAuthor] = useState("")
   const [fetchNewQuote, setFetchNewQoute] = useState("")
+  const audio = new Audio('/start.mp3')
 
   const handleStartClick = () => {
     if (countdownRef.current) countdownRef.current.getApi().start()
     setViewStartBtn("hide")
     setViewPauseBtn("")
     setViewResetBtn("")
+    audio.play()
   }
 
   const handlePauseClick = () => {
@@ -26,6 +28,7 @@ export const Doing = () => {
     setTextStartBtn("CONTINUE")
     setViewStartBtn("")
     setViewPauseBtn("hide")
+    audio.play()
   }
 
   const handleResetClick = () => {
@@ -34,6 +37,7 @@ export const Doing = () => {
     setViewStartBtn("")
     setViewPauseBtn("hide")
     setViewResetBtn("hide")
+    audio.play()
   }
 
   const rendered = ({ minutes, seconds }) => <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
