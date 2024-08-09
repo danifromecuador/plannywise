@@ -3,7 +3,7 @@ import './Done.css'
 export const Done = () => {
   return (
     <div className='Done'>
-      Done Component
+      <h1>Done</h1>
     </div>
   )
 }

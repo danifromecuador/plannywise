@@ -3,7 +3,7 @@ import './Todo.css'
 export const Todo = () => {
   return (
     <div className='Todo'>
-      Todo Component
+      <h1>Todo</h1>
     </div>
   )
 }
