@@ -13,14 +13,22 @@ export const Doing = () => {
   const [quote, setQuote] = useState("")
   const [author, setAuthor] = useState("")
   const [fetchNewQuote, setFetchNewQoute] = useState("")
-  const audio = new Audio('/start.mp3')
+  const audioStart = new Audio('/start.mp3')
+  const audioAlarm = new Audio('/clock_alarm.mp3')
+
+  const catchNewQuote = () => fetchNewQuote == "yes" ? setFetchNewQoute("") : setFetchNewQoute("yes")
+  
+  const rendered = ({ minutes, seconds, completed }) => {
+    if (completed) audioAlarm.play()    
+    return <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
+  }
 
   const handleStartClick = () => {
     if (countdownRef.current) countdownRef.current.getApi().start()
     setViewStartBtn("hide")
     setViewPauseBtn("")
     setViewResetBtn("")
-    audio.play()
+    audioStart.play()
   }
 
   const handlePauseClick = () => {
@@ -28,7 +36,7 @@ export const Doing = () => {
     setTextStartBtn("CONTINUE")
     setViewStartBtn("")
     setViewPauseBtn("hide")
-    audio.play()
+    audioStart.play()
   }
 
   const handleResetClick = () => {
@@ -37,10 +45,8 @@ export const Doing = () => {
     setViewStartBtn("")
     setViewPauseBtn("hide")
     setViewResetBtn("hide")
-    audio.play()
+    audioStart.play()
   }
-
-  const rendered = ({ minutes, seconds }) => <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
 
   useEffect(() => {
     const fetchQuote = async () => {
@@ -54,8 +60,6 @@ export const Doing = () => {
     }
     fetchQuote()
   }, [fetchNewQuote])
-
-  const catchNewQuote = () => fetchNewQuote == "yes" ? setFetchNewQoute("") : setFetchNewQoute("yes")
 
   return (
     <div className='Doing'>
