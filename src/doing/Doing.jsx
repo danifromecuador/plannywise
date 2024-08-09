@@ -54,8 +54,13 @@ export const Doing = () => {
   useEffect(() => {
     const fetchQuote = async () => {
       try {
-        const response = await axios('https://api.quotable.io/quotes/random?maxLength=50')
-        const data = response.data[0]
+        const response = await axios('https://api.quotable.io/random', {
+          params: {
+            tags: 'motivational|success|change|character|future|inspirational',
+            maxLength: 70,
+          }
+        })
+        const data = response.data
         setQuote(data.content)
         setAuthor(data.author)
       }
