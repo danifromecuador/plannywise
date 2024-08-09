@@ -40,6 +40,10 @@ button {
   }
 
   .clock {
-    font-size: 15vw;
+    font-size: 16vw;
+  }
+
+  button {
+    font-size: 4vw;
   }
 }
