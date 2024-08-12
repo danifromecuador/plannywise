@@ -1,26 +1,23 @@
 import './Todos.css'
 
-export const Todos = ({ title, completedText, todos, dones, deleteBtnText, inputText }) => {
-  if (!todos) {
-    todos = []
-  }
-  let todosAndDones = todos.concat(dones)
+export const Todos = ({ store }) => {
+  const todosDones = store.todos.concat(store.dones)
 
 
   return (
     <div className='Todos'>
       <header>
-        <span>{completedText ? completedText : "Completed"}: <span>16{completedText ? "h" : "%"}</span></span>
-        <h1>{title}</h1>
+        <span>{store.achievedText}<span>{store.completed}</span></span>
+        <h1>{store.title}</h1>
       </header>
-      <ul>
-        {todosAndDones.map(item => (
-          <li>{item}</li>
-        ))}
+      <ul>{todosDones.map(item => (
+        <li>{item}</li>
+      ))
+      }
       </ul>
       <footer>
-        <button>{deleteBtnText ? deleteBtnText : "Delete Completed Goals"}</button>
-        <input type="text" defaultValue={inputText ? inputText : "Type a new goal and press Enter"} />
+        <button>{store.deleteBtnText}</button>
+        <input type="text" defaultValue={store.inputText} />
       </footer>
     </div>
   )
