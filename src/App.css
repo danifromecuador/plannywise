@@ -8,6 +8,10 @@ button {
   display: none;
 }
 
+li {
+  list-style: none;
+}
+
 .App {
   width: 98vw;
   height: 95vh;

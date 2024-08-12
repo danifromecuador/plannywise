@@ -1,3 +1,5 @@
 .Todo {
-  color: white;
+  display: flex;
+  row-gap: 22px;
+  overflow-y: auto;
 }
