@@ -1,14 +1,20 @@
-import { Store } from '../store/store.js'
-import { Todos } from './Todos.jsx'
 import './Todo.css'
 
-export const Todo = () => {
-  const store = Store()
+export const Todo = ({ store }) => {
+  const todosDones = store.todos.concat(store.dones)
   return (
-    <div className='Todo'>
-      <h1>Todo</h1>
-      <Todos store={store.daily} />
-      <Todos store={store.tasks} />
+    <div className='Todos'>
+      <header>
+        <span>{store.achievedText}<span>{store.completed}</span></span>
+        <h1>{store.title}</h1>
+      </header>
+      <ul>
+        {todosDones.map(item => (<li>{item}</li>))}
+      </ul>
+      <footer>
+        <button>{store.deleteBtnText}</button>
+        <input type="text" defaultValue={store.inputText} />
+      </footer>
     </div>
   )
 }

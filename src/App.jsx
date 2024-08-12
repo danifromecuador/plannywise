@@ -1,5 +1,4 @@
-// import { Store } from './store/store.js'
-import {Todo} from './todo/Todo.jsx'
+import {Todos} from './todo/Todos.jsx'
 import {Doing} from './doing/Doing.jsx'
 import {Done} from './done/Done.jsx'
 import './App.css'
@@ -12,7 +11,7 @@ export const App = () => {
       <div>Bears: {store.bears.amount}</div>
       <div>Cows: {store.cows.amount}</div>
       <button onClick={()=>store.bears.add()}>Add bear</button> */}
-      <Todo />
+      <Todos />
       <Doing />
       <Done />
     </div>
