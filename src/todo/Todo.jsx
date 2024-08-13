@@ -3,18 +3,14 @@ import './Todo.css'
 
 export const Todo = ({ store }) => {
   const [input, setInput] = useState("")
-
-  const handleInputEnterKey = (k) => {
-    if (k.key === "Enter") {
-      store.add(input)
-      setInput("")
-    }
-  }
+  const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.add(input), setInput(""))
 
   return (
-    <div className='Todos'>
+    <div className='Todo'>
       <header>
-        <span className={store.completed() === "NaN%" ? 'hide' : ''} >Completed: <span>{store.completed()}</span></span>
+        <div>
+          <span className={store.completed() === "NaN%" ? 'hide' : ''}>Completed: <span>{store.completed()}</span></span>
+        </div>
         <h1>{store.title}</h1>
       </header>
       <ul>
