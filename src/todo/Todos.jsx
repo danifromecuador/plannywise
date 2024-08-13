@@ -8,7 +8,6 @@ export const Todos = () => {
     <div className='Todo'>
       <h1>Todo</h1>
       <Todo store={store.daily} />
-      <Todo store={store.tasks} />
     </div>
   )
 }

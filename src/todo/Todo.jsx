@@ -15,18 +15,18 @@ export const Todo = ({ store }) => {
   return (
     <div className='Todos'>
       <header>
-        <span>{store.achievedText}<span>{store.completed}</span></span>
+        <span>Completed: <span>{store.completed}</span></span>
         <h1>{store.title}</h1>
       </header>
       <ul>
         {todosDones.map(item => (<li key={item}>{item}</li>))}
       </ul>
       <footer>
-        <button>{store.deleteBtnText}</button>
+        <button>Delete All Completed</button>
         <input
           type="text"
           value={input}
-          placeholder={store.inputText}
+          placeholder="Type a goal and press Enter"
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(k) => handleInputEnterKey(k)}
         />
