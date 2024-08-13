@@ -10,7 +10,8 @@ export const markAsDone = (set, item) => set((state) => {
   return ({
     daily: {
       ...state.daily,
-      todos: updatedArray
+      todos: updatedArray,
+      dones: [...state.daily.dones, item]
     }
   })
 })

@@ -19,6 +19,7 @@ export const Todo = ({ store }) => {
       </header>
       <ul>
         {store.todos.map(item => (<li key={item.id} onClick={() => store.markAsDone(item)}>{item.content}</li>))}
+        {store.dones.map(item => (<li className='dones' key={item.id}>{item.content}</li>))}
       </ul>
       <footer>
         <button>Delete All Completed</button>
