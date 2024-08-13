@@ -20,8 +20,8 @@ const todoDailySlice = set => ({
   inputText: "Type a new goal and press Enter",
   todos: [1, 2, 3],
   dones: [4, 5, 6],
-  addTodo: () => set(state => ({
-    daily: { ...state.daily, todos: state.todos.push(23) }
+  add: (input) => set(state => ({
+    daily: { ...state.daily, todos: [...state.daily.todos, input] }
   }))
 })
 
@@ -33,14 +33,14 @@ const taskSlice = set => ({
   inputText: "Type a completed task and press Enter",
   todos: [],
   dones: [4, 5, 6],
-  addTodo: () => set(state => ({
-    completed: { ...state.tasks, todos: state.todos.push(23) }
+  add: (input) => set(state => ({
+    tasks: { ...state.tasks, dones: [...state.tasks.dones, input] }
   }))
 })
 
 export const Store = create(devtools(set => ({
   bears: bearSlice(set),
   cows: cowSlice(),
-  daily: todoDailySlice(),
-  tasks: taskSlice()
+  daily: todoDailySlice(set),
+  tasks: taskSlice(set)
 })))
