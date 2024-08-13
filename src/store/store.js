@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { devtools } from "zustand/middleware"
-import { add } from "./todo_logic.js"
+import { add, markAsDone } from "./todo_logic.js"
 
 const todoDailySlice = set => ({
   title: "Daily Goals",
@@ -8,7 +8,7 @@ const todoDailySlice = set => ({
   todos: [],
   dones: [],
   add: (input) => add(set, input),
-  markAsCompleted: (item) => set(state=>({}))
+  markAsDone: (item) => markAsDone(set, item)
 })
 
 export const Store = create(devtools(set => ({

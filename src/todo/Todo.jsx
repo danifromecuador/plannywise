@@ -10,7 +10,7 @@ export const Todo = ({ store }) => {
       setInput("")
     }
   }
-  
+
   return (
     <div className='Todos'>
       <header>
@@ -18,7 +18,7 @@ export const Todo = ({ store }) => {
         <h1>{store.title}</h1>
       </header>
       <ul>
-        {store.todos.map(item => (<li key={item.id} onClick={() => markAsCompleted(item)}>{item.content}</li>))}
+        {store.todos.map(item => (<li key={item.id} onClick={() => store.markAsDone(item)}>{item.content}</li>))}
       </ul>
       <footer>
         <button>Delete All Completed</button>

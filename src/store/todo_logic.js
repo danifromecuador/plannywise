@@ -5,3 +5,14 @@ export const add = (set, input) => set((state) => ({
   }
 }))
 
+export const markAsDone = (set, item) => set((state) => {
+  const updatedArray = state.daily.todos.filter(i => i.id !== item.id)
+  return ({
+    daily: {
+      ...state.daily,
+      todos: updatedArray
+    }
+  })
+})
+
+
