@@ -28,6 +28,10 @@
   font-size: 12px;
 }
 
+.Todo ul li {
+  cursor: pointer;
+}
+
 .Todo ul .dones {
   color: rgb(101, 101, 101);
 }
