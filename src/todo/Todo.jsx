@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './Todo.css'
 
 export const Todo = ({ store }) => {
-  const todosDones = store.todos.concat(store.dones)
   const [input, setInput] = useState("")
 
   const handleInputEnterKey = (k) => {
@@ -11,7 +10,7 @@ export const Todo = ({ store }) => {
       setInput("")
     }
   }
-
+  
   return (
     <div className='Todos'>
       <header>
@@ -19,7 +18,7 @@ export const Todo = ({ store }) => {
         <h1>{store.title}</h1>
       </header>
       <ul>
-        {todosDones.map(item => (<li key={item}>{item}</li>))}
+        {store.todos.map(item => (<li key={item.id} onClick={() => markAsCompleted(item)}>{item.content}</li>))}
       </ul>
       <footer>
         <button>Delete All Completed</button>
