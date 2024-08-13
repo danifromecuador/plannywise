@@ -14,7 +14,7 @@ export const Todo = ({ store }) => {
   return (
     <div className='Todos'>
       <header>
-        <span>Completed: <span>{store.completed}</span></span>
+        <span>Completed: <span>{store.completed()}</span></span>
         <h1>{store.title}</h1>
       </header>
       <ul>

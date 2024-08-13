@@ -20,3 +20,5 @@ export const markAsTodo = (set, item) => set((state) => ({
     dones: state.daily.dones.filter(i => i.id !== item.id)
   }
 }))
+
+export const completed = (get) => `${(Math.floor((get().daily.dones.length / (get().daily.todos.length + get().daily.dones.length)) * 100)).toString()}%`
