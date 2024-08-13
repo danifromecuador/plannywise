@@ -21,4 +21,13 @@ export const markAsTodo = (set, item) => set((state) => ({
   }
 }))
 
-export const completed = (get) => `${(Math.floor((get().daily.dones.length / (get().daily.todos.length + get().daily.dones.length)) * 100)).toString()}%`
+export const completed = (get) => (
+  `${(Math.floor((get().daily.dones.length / (get().daily.todos.length + get().daily.dones.length))*100)).toString()}%`
+)
+
+export const deleteDones = (set) => set((state)=>({
+  daily: {
+    ...state.daily,
+    dones: []
+  }
+}))

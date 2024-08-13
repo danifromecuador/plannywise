@@ -22,7 +22,7 @@ export const Todo = ({ store }) => {
         {store.dones.map(item => (<li className='dones' onClick={() => store.markAsTodo(item)} key={item.id}>{item.content}</li>))}
       </ul>
       <footer>
-        <button>Delete All Completed</button>
+        <button onClick={() => store.deleteDones()} >Delete All Completed</button>
         <input
           type="text"
           value={input}
