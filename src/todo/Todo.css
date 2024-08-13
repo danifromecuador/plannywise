@@ -3,3 +3,7 @@
   row-gap: 22px;
   overflow-y: auto;
 }
+
+.Todo .dones {
+  color: rgb(101, 101, 101);
+}
