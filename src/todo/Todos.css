@@ -1,44 +1,5 @@
 .Todos {
-  width: 100%;
-  border: 1px solid red;
-  border-radius: 10px;
-  padding: 10px;
   display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-}
-
-.Todos header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.Todos header span span {
-  font-size: 24px;
-}
-
-.Todos header h1 {
-  font-size: 22px;
-}
-
-.Todos ul {
-  width: 95%;
-  align-self: flex-end;
-  font-size: 12px;
-}
-
-.Todos footer {
-  display: flex;
-  column-gap: 12px;
-}
-
-.Todos footer button {
-  width: fit-content;
-  font-size: 16px;
-  text-wrap: nowrap;
-}
-
-.Todos footer input {
-  width: 100%;
+  row-gap: 22px;
+  overflow-y: auto;
 }

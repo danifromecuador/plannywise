@@ -5,7 +5,7 @@ import './Todos.css'
 export const Todos = () => {
   const store = Store()
   return (
-    <div className='Todo'>
+    <div className='Todos'>
       <h1>Todo</h1>
       <Todo store={store.daily} />
     </div>
