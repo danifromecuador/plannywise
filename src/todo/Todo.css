@@ -16,6 +16,7 @@
 
 .Todo header span span {
   font-size: 24px;
+  font-weight: 700;
 }
 
 .Todo header h1 {
@@ -30,6 +31,7 @@
 
 .Todo ul li {
   cursor: pointer;
+  padding: 5px 0;
 }
 
 .Todo ul .dones {
@@ -43,10 +45,16 @@
 
 .Todo footer button {
   width: fit-content;
-  font-size: 16px;
+  font-size: 14px;
   text-wrap: nowrap;
 }
 
 .Todo footer input {
   width: 100%;
+  padding: 5px;
+  border: 1px solid red;
+  border-radius: 5px;
+  outline: none;
+  color: white;
+  background-color: black;
 }
