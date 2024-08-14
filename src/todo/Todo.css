@@ -46,7 +46,7 @@
 .Todo footer button {
   width: fit-content;
   font-size: 14px;
-  text-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .Todo footer input {
