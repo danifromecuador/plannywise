@@ -8,9 +8,7 @@ export const Todo = ({ store }) => {
   return (
     <div className='Todo'>
       <header>
-        <div>
-          <span className={store.completed() === "NaN%" ? 'hide' : ''}>Completed: <span>{store.completed()}</span></span>
-        </div>
+        <div><span className={store.completed() === "NaN%" ? 'hide' : ''}>Completed: <span>{store.completed()}</span></span></div>
         <h1>{store.title}</h1>
       </header>
       <ul>
@@ -18,7 +16,7 @@ export const Todo = ({ store }) => {
         {store.dones.map(item => (<li className='dones' onClick={() => store.markAsTodo(item)} key={item.id}>{item.content}</li>))}
       </ul>
       <footer>
-        <button onClick={() => store.deleteDones()} >Delete All Completed</button>
+        <button onClick={() => store.deleteDones()} className={`${store.dones.length === 0 ? 'hide' : ''}`}>Delete All Completed</button>
         <input
           type="text"
           value={input}
