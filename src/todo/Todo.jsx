@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 import './Todo.css'
 
 export const Todo = ({ store }) => {
@@ -28,3 +29,5 @@ export const Todo = ({ store }) => {
     </div>
   )
 }
+
+Todo.propTypes = { store: PropTypes.object }
