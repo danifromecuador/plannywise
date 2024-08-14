@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import './Todo.css'
 
 export const Todo = ({ store }) => {
   const [input, setInput] = useState("")
   const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.add(input), setInput(""))
+
+  useEffect(()=>{
+    localStorage.setItem("dailyTodos", JSON.stringify(store.todos))
+    localStorage.setItem("dailyDones", JSON.stringify(store.dones))
+  },[store.todos, store.dones])
 
   return (
     <div className='Todo'>

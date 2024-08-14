@@ -5,8 +5,8 @@ import { add, completed, markAsDone, markAsTodo, deleteDones } from "./todo_logi
 const todoDailySlice = (set, get) => ({
   title: "Daily Goals",
   completed: () => completed(get),
-  todos: [],
-  dones: [],
+  todos: JSON.parse(localStorage.getItem("dailyTodos")) || [],
+  dones: JSON.parse(localStorage.getItem("dailyDones")) || [],
   add: (input) => add(set, input),
   markAsDone: (item) => markAsDone(set, item),
   markAsTodo: (item) => markAsTodo(set, item),
