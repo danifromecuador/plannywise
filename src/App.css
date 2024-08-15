@@ -37,10 +37,16 @@ li {
     row-gap: 1%;
   }
 
-  .Todo,
+  .Todos,
   .Doing,
   .Done {
     width: 100%;
+  }
+
+  .Todos {
+    overflow-y: visible;
+    flex-direction: column;
+    row-gap: 10px;
   }
 
   .clock {
