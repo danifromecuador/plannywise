@@ -4,35 +4,35 @@ import { add, completed, markAsDone, markAsTodo, deleteDones } from "./todo_logi
 
 const todoDailySlice = (set, get) => ({
   title: "Daily Goals",
-  completed: (sliceID) => completed(get, sliceID),
+  completed: () => completed(get, "daily"),
   todos: JSON.parse(localStorage.getItem("Daily Goals Todos")) || [],
   dones: JSON.parse(localStorage.getItem("Daily Goals Dones")) || [],
-  add: (input, sliceID) => add(set, input, sliceID),
-  markAsDone: (item, sliceID) => markAsDone(set, item, sliceID),
-  markAsTodo: (item, sliceID) => markAsTodo(set, item, sliceID),
-  deleteDones: (sliceID) => deleteDones(set, sliceID)
+  add: (input) => add(set, input, "daily"),
+  markAsDone: (item) => markAsDone(set, item, "daily"),
+  markAsTodo: (item) => markAsTodo(set, item, "daily"),
+  deleteDones: () => deleteDones(set, "daily")
 })
 
 const todoWeeklySlice = (set, get) => ({
   title: "Weekly Goals",
-  completed: (sliceID) => completed(get, sliceID),
+  completed: () => completed(get, "weekly"),
   todos: JSON.parse(localStorage.getItem("Weekly Goals Todos")) || [],
   dones: JSON.parse(localStorage.getItem("Weekly Goals Todos")) || [],
-  add: (input, sliceID) => add(set, input, sliceID),
-  markAsDone: (item, sliceID) => markAsDone(set, item, sliceID),
-  markAsTodo: (item, sliceID) => markAsTodo(set, item, sliceID),
-  deleteDones: (sliceID) => deleteDones(set, sliceID)
+  add: (input) => add(set, input, "weekly"),
+  markAsDone: (item) => markAsDone(set, item, "weekly"),
+  markAsTodo: (item) => markAsTodo(set, item, "weekly"),
+  deleteDones: () => deleteDones(set, "weekly")
 })
 
 const todoMonthlySlice = (set, get) => ({
   title: "Monthly Goals",
-  completed: (sliceID) => completed(get, sliceID),
+  completed: () => completed(get, "monthly"),
   todos: JSON.parse(localStorage.getItem("Monthly Goals Todos")) || [],
   dones: JSON.parse(localStorage.getItem("Monthly Goals Todos")) || [],
-  add: (input, sliceID) => add(set, input, sliceID),
-  markAsDone: (item, sliceID) => markAsDone(set, item, sliceID),
-  markAsTodo: (item, sliceID) => markAsTodo(set, item, sliceID),
-  deleteDones: (sliceID) => deleteDones(set, sliceID)
+  add: (input) => add(set, input, "monthly"),
+  markAsDone: (item) => markAsDone(set, item, "monthly"),
+  markAsTodo: (item) => markAsTodo(set, item, "monthly"),
+  deleteDones: () => deleteDones(set, "monthly")
 })
 
 export const Store = create(devtools((set, get) => ({
