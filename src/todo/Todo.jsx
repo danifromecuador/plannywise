@@ -10,7 +10,7 @@ export const Todo = ({ store }) => {
   useEffect(() => {
     localStorage.setItem(`${store.title} Todos`, JSON.stringify(store.todos))
     localStorage.setItem(`${store.title} Dones`, JSON.stringify(store.dones))
-  }, [store.todos, store.dones])
+  }, [store.todos, store.dones, store.title])
 
   return (
     <div className='Todo'>
