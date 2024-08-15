@@ -4,7 +4,6 @@ import './Todo.css'
 
 export const Todo = ({ store }) => {
   const [input, setInput] = useState("")
-
   const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.add(input), setInput(""))
 
   useEffect(() => {
@@ -20,7 +19,7 @@ export const Todo = ({ store }) => {
       </header>
       <ul>
         {store.todos.map(item => (<li key={item.id} onClick={() => store.markAsDone(item)}>{item.content}</li>))}
-        {store.dones.map(item => (<li className='dones' onClick={() => store.markAsTodo(item)} key={item.id}>{item.content}</li>))}
+        {store.dones.map(item => (<li key={item.id} className='dones' onClick={() => store.markAsTodo(item)}>{item.content}</li>))}
       </ul>
       <footer>
         <button onClick={() => store.deleteDones()} className={`${store.dones.length === 0 ? 'hide' : ''}`}>Delete All Completed</button>

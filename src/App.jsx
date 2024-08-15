@@ -1,14 +1,12 @@
-import {Todos} from './todo/Todos.jsx'
-import {Doing} from './doing/Doing.jsx'
-import {Done} from './done/Done.jsx'
+import { Todos } from './todo/Todos.jsx'
+import { Doing } from './doing/Doing.jsx'
+import { Done } from './done/Done.jsx'
 import './App.css'
 
-export const App = () => {
-  return (
-    <div className='App'>
-      <Todos />
-      <Doing />
-      <Done />
-    </div>
-  )
-}
+export const App = () => (
+  <div className='App'>
+    <Todos />
+    <Doing />
+    <Done />
+  </div>
+)
