@@ -7,9 +7,9 @@ export const Todos = () => {
   return (
     <div className='Todos'>
       <h1>Todo</h1>
-      <Todo store={store.daily} sliceID="daily" />
-      <Todo store={store.weekly} sliceID="weekly" />
-      <Todo store={store.monthly} sliceID="monthly" />
+      <Todo store={store.daily} />
+      <Todo store={store.weekly} />
+      <Todo store={store.monthly} />
     </div>
   )
 }
