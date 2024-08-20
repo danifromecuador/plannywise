@@ -36,13 +36,13 @@ const todoMonthlySlice = (set, get) => ({
 })
 
 const tasksSlice = (set, get) => ({
-  todos: [],
-  add: (input)=> add(set, input, "tasks") 
+  todos: JSON.parse(localStorage.getItem("Completed Tasks")) || [],
+  add: (input) => add(set, input, "tasks")
 })
 
 export const Store = create(devtools((set, get) => ({
   daily: todoDailySlice(set, get),
   weekly: todoWeeklySlice(set, get),
   monthly: todoMonthlySlice(set, get),
-  tasks: tasksSlice(set, get) 
+  tasks: tasksSlice(set, get)
 })))

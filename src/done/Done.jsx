@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Store } from '../store/store'
 import './Done.css'
 
@@ -6,6 +6,7 @@ export const Done = () => {
   const store = Store()
   const [input, setInput] = useState("")
   const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.tasks.add(input), setInput(""))
+  useEffect(() => localStorage.setItem("Completed Tasks", JSON.stringify(store.tasks.todos)), [store.tasks.todos])
 
   return (
     <div className='Done'>
