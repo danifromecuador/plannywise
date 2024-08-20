@@ -12,18 +12,19 @@ export const Done = () => {
         <div className="this-day">This Day: 23</div>
       </div>
       <div className="completed-tasks-container">
-        <ul>
-          <li>reading</li>
-          <li>reading</li>
-          <li>reading</li>
+        <ul className='ul'>
+          <li className='li'>reading</li>
+          <li className='li'>reading</li>
+          <li className='li'>reading</li>
         </ul>
         <footer>
-          <button>Delete All Completed</button>
+          <button className='midBtn'>Delete All Completed</button>
         </footer>
         <input
-         type="text"
+          type="text"
+          className='input'
           placeholder='Type a completed task and press Enter'
-         />
+        />
       </div>
     </div>
   )
