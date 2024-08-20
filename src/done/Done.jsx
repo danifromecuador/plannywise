@@ -5,13 +5,7 @@ import './Done.css'
 export const Done = () => {
   const store = Store()
   const [input, setInput] = useState("")
-  const handleEnter = (k) => {
-
-    if (k.key === "Enter") {
-      store.tasks.add(input)
-      setInput("")
-    }
-  }
+  const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.tasks.add(input), setInput(""))
 
   return (
     <div className='Done'>
@@ -37,7 +31,7 @@ export const Done = () => {
             value={input}
             placeholder='Type a completed task and press Enter'
             onChange={e => setInput(e.target.value)}
-            onKeyDown={k => handleEnter(k)}
+            onKeyDown={k => handleInputEnterKey(k)}
           />
         </footer>
       </div>
