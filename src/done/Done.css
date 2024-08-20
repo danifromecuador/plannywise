@@ -1,3 +1,27 @@
-.Done {
-  color: white;
+.Done h2 {
+  text-align: right;
+}
+
+.Done .worked-hours .this {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Done .worked-hours .this .this-month,
+.Done .worked-hours .this .this-week,
+.Done .worked-hours .this .this-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Done .completed-tasks.sub-container ul li.dones {
+  color: gray;
+}
+
+.Done footer {
+  width: 100%;
+  display: flex;
+  column-gap: 12px;
 }
