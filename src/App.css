@@ -88,6 +88,7 @@ li {
   .Doing,
   .Done {
     width: 100%;
+    overflow-y:visible;
   }
 
   .Todos {
