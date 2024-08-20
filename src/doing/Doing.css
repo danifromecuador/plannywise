@@ -27,11 +27,9 @@
   row-gap: 10px;
 }
 
-
 .Doing .motivational p:first-of-type {
   font-style: italic;
 }
-
 
 .Doing .motivational p:last-of-type {
   font-size: 0.7rem;
