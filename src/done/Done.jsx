@@ -6,7 +6,7 @@ export const Done = () => {
   const store = Store()
   const [input, setInput] = useState("")
   const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.tasks.add(input), setInput(""))
-  useEffect(() => localStorage.setItem("Completed Tasks", JSON.stringify(store.tasks.todos)), [store.tasks.todos])
+  useEffect(() => localStorage.setItem("Completed Tasks", JSON.stringify(store.tasks.completed)), [store.tasks.completed])
 
   return (
     <div className='Done'>
@@ -22,10 +22,10 @@ export const Done = () => {
       <div className="completed-tasks sub-container">
         <h2>Completed Tasks</h2>
         <ul className='ul'>
-          {store.tasks.todos.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}
+          {store.tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}
         </ul>
         <footer>
-          <button className='midBtn'>Delete All Completed</button>
+          <button className={`${store.tasks.completed.length === 0 ? 'hide' : 'midBtn'}`} onClick={() => store.tasks.deleteCompleted()}>Delete All</button>
           <input
             type="text"
             className='input'

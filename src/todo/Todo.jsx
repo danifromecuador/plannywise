@@ -28,8 +28,8 @@ export const Todo = ({ store }) => {
           className='input'
           value={input}
           placeholder="Type a goal and press Enter"
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(k) => handleInputEnterKey(k)}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={k => handleInputEnterKey(k)}
         />
       </footer>
     </div>
