@@ -1,7 +1,18 @@
-import './Done.css'
+import { useState } from 'react'
 import { Store } from '../store/store'
+import './Done.css'
+
 export const Done = () => {
   const store = Store()
+  const [input, setInput] = useState("")
+  const handleEnter = (k) => {
+
+    if (k.key === "Enter") {
+      store.tasks.add(input)
+      setInput("")
+    }
+  }
+
   return (
     <div className='Done'>
       <h1>Done</h1>
@@ -16,17 +27,17 @@ export const Done = () => {
       <div className="completed-tasks sub-container">
         <h2>Completed Tasks</h2>
         <ul className='ul'>
-          <li className='li dones'>eat</li>
-          <li className='li dones'>code</li>
-          <li className='li dones'>sleep</li>
-          <li className='li dones'>repeat</li>
+          {store.tasks.todos.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}
         </ul>
         <footer>
           <button className='midBtn'>Delete All Completed</button>
           <input
             type="text"
             className='input'
+            value={input}
             placeholder='Type a completed task and press Enter'
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={k => handleEnter(k)}
           />
         </footer>
       </div>
