@@ -1,7 +1,33 @@
-button {
+.bigBtn {
   padding: 0 2%;
   font-size: 2vw;
   cursor: pointer;
+}
+
+.midBtn {
+  width: fit-content;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid red;
+  border-radius: 5px;
+  outline: none;
+  color: white;
+  background-color: black;
+}
+
+.ul {
+  width: 95%;
+  align-self: flex-end;
+}
+
+.li {
+  padding: 5px 0;
+  font-size: 12px;
 }
 
 .hide {

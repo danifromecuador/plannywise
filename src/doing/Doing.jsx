@@ -81,9 +81,9 @@ export const Doing = () => {
           />
         </div>
         <div className="controls">
-          <button className={`${viewStartBtn} start`} onClick={handleStartClick}>{textStartBtn}</button>
-          <button className={`${viewPauseBtn} pause`} onClick={handlePauseClick}>PAUSE</button>
-          <button className={`${viewResetBtn} reset`} onClick={() => handleResetClick(true)}>RESET</button>
+          <button className={`${viewStartBtn} start bigBtn`} onClick={handleStartClick}>{textStartBtn}</button>
+          <button className={`${viewPauseBtn} pause bigBtn`} onClick={handlePauseClick}>PAUSE</button>
+          <button className={`${viewResetBtn} reset bigBtn`} onClick={() => handleResetClick(true)}>RESET</button>
         </div>
         <div className="motivational" onClick={catchNewQuote}>
           <p>{quote}</p>
