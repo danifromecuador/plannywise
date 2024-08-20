@@ -12,9 +12,9 @@ export const Todo = ({ store }) => {
   }, [store.todos, store.dones, store.title])
 
   return (
-    <div className='Todo'>
+    <div className='Todo sub-container'>
       <header>
-        <div><span className={store.completed() === "NaN%" ? 'hide' : ''}>Completed: <span>{store.completed()}</span></span></div>
+        <div><span className={store.completed() === "NaN%" ? 'hide' : ''}>Completed: <span className='counter-stats'>{store.completed()}</span></span></div>
         <h1>{store.title}</h1>
       </header>
       <ul className='ul'>
