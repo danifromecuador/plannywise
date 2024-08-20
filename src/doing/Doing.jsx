@@ -71,7 +71,7 @@ export const Doing = () => {
   return (
     <div className='Doing'>
       <h1>Doing</h1>
-      <div className="pomodoro">
+      <div className="pomodoro sub-container">
         <div className="clock">
           <Countdown
             ref={countdownRef}
