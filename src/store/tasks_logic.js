@@ -11,3 +11,8 @@ export const deleteAllCompletedTasks = set => set(state => ({
     completed: []
   }
 }), false, 'tasks/deleteAllCompleted')
+
+export const workedHours = get => {
+  const day = get().tasks.completed.length*15/60
+  return ({ "day": day, "week": 123, "month": 400 })
+}
