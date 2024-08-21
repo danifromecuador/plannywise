@@ -40,7 +40,7 @@ const tasksSlice = (set, get) => ({
   completed: JSON.parse(localStorage.getItem("Completed Tasks")) || [],
   workedHoursHistory: [],
   add: input => addCompletedTask(set, input),
-  deleteCompleted: () => deleteAllCompletedTasks(set),
+  deleteCompleted: () => deleteAllCompletedTasks(set, get),
   workedHours: () => workedHours(get),
 })
 
