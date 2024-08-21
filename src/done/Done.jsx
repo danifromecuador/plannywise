@@ -14,9 +14,9 @@ export const Done = () => {
       <div className="worked-hours sub-container">
         <h2>Worked Hours</h2>
         <div className="this">
-          <div className="this-month"><span className='counter-stats'>12</span><span>This Month</span></div>
-          <div className="this-week"><span className='counter-stats'>23</span><span>This Week</span></div>
-          <div className="this-day"><span className='counter-stats'>2.25</span><span>This Day</span></div>
+          <div className="this-month"><span className='counter-stats'>{store.tasks.workedHours().month}</span><span>Last Month</span></div>
+          <div className="this-week"><span className='counter-stats'>{store.tasks.workedHours().week}</span><span>Last Week</span></div>
+          <div className="this-day"><span className='counter-stats'>{store.tasks.workedHours().day}</span><span>Today</span></div>
         </div>
       </div>
       <div className="completed-tasks sub-container">
