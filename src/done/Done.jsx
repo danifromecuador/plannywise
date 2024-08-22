@@ -25,7 +25,12 @@ export const Done = () => {
           {store.tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}
         </ul>
         <footer>
-          <button className={`${store.tasks.completed.length === 0 ? 'hide' : 'midBtn'}`} onClick={() => store.tasks.deleteCompleted()}>Delete All</button>
+          <button
+            className={`${store.tasks.completed.length === 0 ? 'hide' : 'midBtn'}`}
+            onClick={() => store.tasks.deleteCompleted()}
+          >
+            Delete All
+          </button>
           <input
             type="text"
             className='input'
