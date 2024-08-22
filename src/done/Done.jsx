@@ -5,6 +5,8 @@ import './Done.css'
 export const Done = () => {
   const store = Store()
   const [input, setInput] = useState("")
+  const [showModal, setShowModal] = useState("hide")
+  const [showFooter, setShowFooter] = useState("")
   const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.tasks.add(input), setInput(""))
   useEffect(() => localStorage.setItem("Completed Tasks", JSON.stringify(store.tasks.completed)), [store.tasks.completed])
   useEffect(() => localStorage.setItem("Worked Hours History", JSON.stringify(store.tasks.workedHoursHistory)), [store.tasks.workedHoursHistory])
@@ -25,13 +27,15 @@ export const Done = () => {
         <ul className='ul'>
           {store.tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}
         </ul>
-        <footer>
-          <button
-            className={`${store.tasks.completed.length === 0 ? 'hide' : 'midBtn'}`}
-            onClick={() => store.tasks.deleteCompleted()}
-          >
-            Delete All
-          </button>
+        <div className={`${showModal} modal`}>
+          <p>Deleting all completed tasks will log today's work and start a new day. Are you sure?</p>
+          <div className="options">
+            <button className='midBtn' onClick={() => (setShowModal("hide"), setShowFooter(""))}>Cancel</button>
+            <button className='midBtn' onClick={() => (store.tasks.deleteCompleted(), setShowModal("hide"), setShowFooter(""))}>Yes, I want to start a new day</button>
+          </div>
+        </div>
+        <footer className={showFooter}>
+          <button className={`${store.tasks.completed.length === 0 ? 'hide' : 'midBtn'}`} onClick={() => (setShowFooter("hide"), setShowModal(""))}>Delete All</button>
           <input
             type="text"
             className='input'

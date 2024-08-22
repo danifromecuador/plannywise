@@ -27,7 +27,22 @@
   color: gray;
 }
 
-.Done footer {
+.Done .completed-tasks.sub-container .modal {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.Done .completed-tasks.sub-container .modal p {
+  color: red;
+}
+
+.Done .completed-tasks.sub-container .options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Done .completed-tasks.sub-container footer {
   width: 100%;
   display: flex;
   column-gap: 12px;
