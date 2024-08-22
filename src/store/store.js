@@ -38,7 +38,7 @@ const todoMonthlySlice = (set, get) => ({
 
 const tasksSlice = (set, get) => ({
   completed: JSON.parse(localStorage.getItem("Completed Tasks")) || [],
-  workedHoursHistory: [],
+  workedHoursHistory: JSON.parse(localStorage.getItem("Worked Hours History")) || [],
   add: input => addCompletedTask(set, input),
   deleteCompleted: () => deleteAllCompletedTasks(set, get),
   workedHours: () => workedHours(get),
