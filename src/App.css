@@ -8,6 +8,10 @@ button {
   display: none;
 }
 
+li {
+  list-style: none;
+}
+
 .App {
   width: 98vw;
   height: 95vh;
@@ -16,7 +20,7 @@ button {
   column-gap: 1%;
 }
 
-.Todo,
+.Todos,
 .Doing,
 .Done {
   width: 33%;
@@ -33,10 +37,16 @@ button {
     row-gap: 1%;
   }
 
-  .Todo,
+  .Todos,
   .Doing,
   .Done {
     width: 100%;
+  }
+
+  .Todos {
+    overflow-y: visible;
+    flex-direction: column;
+    row-gap: 10px;
   }
 
   .clock {
