@@ -12,23 +12,24 @@ export const Todo = ({ store }) => {
   }, [store.todos, store.dones, store.title])
 
   return (
-    <div className='Todo'>
+    <div className='Todo sub-container'>
       <header>
-        <div><span className={store.completed() === "NaN%" ? 'hide' : ''}>Completed: <span>{store.completed()}</span></span></div>
+        <div><span className={store.completed() === "NaN%" ? 'hide' : ''}>Completed: <span className='counter-stats'>{store.completed()}</span></span></div>
         <h1>{store.title}</h1>
       </header>
-      <ul>
-        {store.todos.map(item => (<li key={item.id} onClick={() => store.markAsDone(item)}>{item.content}</li>))}
-        {store.dones.map(item => (<li key={item.id} className='dones' onClick={() => store.markAsTodo(item)}>{item.content}</li>))}
+      <ul className='ul'>
+        {store.todos.map(item => (<li key={item.id} className='li' onClick={() => store.markAsDone(item)}>{item.content}</li>))}
+        {store.dones.map(item => (<li key={item.id} className='li dones' onClick={() => store.markAsTodo(item)}>{item.content}</li>))}
       </ul>
       <footer>
-        <button onClick={() => store.deleteDones()} className={`${store.dones.length === 0 ? 'hide' : ''}`}>Delete All Completed</button>
+        <button className={`${store.dones.length === 0 ? 'hide' : 'midBtn'}`} onClick={() => store.deleteDones()} >Delete All Completed</button>
         <input
           type="text"
+          className='input'
           value={input}
           placeholder="Type a goal and press Enter"
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(k) => handleInputEnterKey(k)}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={k => handleInputEnterKey(k)}
         />
       </footer>
     </div>

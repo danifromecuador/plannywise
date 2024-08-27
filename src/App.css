@@ -1,11 +1,56 @@
 button {
-  padding: 0 2%;
-  font-size: 2vw;
+  border: 1px solid rgb(79, 79, 79);
+  border-radius: 5px;
+  padding: 1%;
+  white-space: nowrap;
   cursor: pointer;
 }
 
+.bigBtn {
+  font-size: 2vw;
+}
+
+.midBtn {
+  font-size: 1.2vw;
+}
+
+.input {
+  width: 100%;
+  padding: 1%;
+  border: 1px solid red;
+  border-radius: 5px;
+  outline: none;
+  color: white;
+  background-color: black;
+}
+
+.sub-container {
+  width: 100%;
+  border: 1px solid red;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.counter-stats {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.ul {
+  width: 95%;
+  align-self: flex-end;
+}
+
+.li {
+  padding: 5px 0;
+  font-size: 0.8rem;
+}
+
 .hide {
-  display: none;
+  display: none !important;
 }
 
 li {
@@ -23,12 +68,15 @@ li {
 .Todos,
 .Doing,
 .Done {
-  width: 33%;
+  width: 100%;
   border: 1px solid red;
-  border-radius: 15px;
+  border-radius: 20px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
+  row-gap: 1%;
   align-items: center;
+  overflow-y: auto;
 }
 
 @media (width <= 720px) {
@@ -41,6 +89,7 @@ li {
   .Doing,
   .Done {
     width: 100%;
+    overflow-y: visible;
   }
 
   .Todos {

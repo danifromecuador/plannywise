@@ -1,3 +1,49 @@
-.Done {
-  color: white;
+.Done h2 {
+  text-align: right;
+}
+
+.Done .worked-hours .this {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Done .worked-hours .this .this-month,
+.Done .worked-hours .this .this-week,
+.Done .worked-hours .this .this-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Done .worked-hours .this .this-month span:last-of-type,
+.Done .worked-hours .this .this-week span:last-of-type,
+.Done .worked-hours .this .this-day span:last-of-type {
+  white-space: nowrap;
+  font-size: 0.8rem;
+}
+
+.Done .completed-tasks.sub-container ul li.dones {
+  color: gray;
+}
+
+.Done .completed-tasks.sub-container .modal {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.Done .completed-tasks.sub-container .modal p {
+  color: red;
+}
+
+.Done .completed-tasks.sub-container .options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Done .completed-tasks.sub-container footer {
+  width: 100%;
+  display: flex;
+  column-gap: 12px;
 }

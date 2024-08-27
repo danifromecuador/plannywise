@@ -1,19 +1,9 @@
-.Doing {
-  padding: 5px;
-  row-gap: 100px;
-}
-
-.pomodoro {
-  width: 100%;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.Doing .pomodoro {
   align-items: center;
   row-gap: 50px;
 }
 
-.clock {
+.Doing .clock {
   width: fit-content;
   border: 1px solid red;
   border-radius: 20px;
@@ -23,24 +13,24 @@
   font-family: 'CustomFont', monospace;
 }
 
-.controls {
+.Doing .controls {
   width: 100%;
   justify-content: center;
   display: flex;
   column-gap: 10px;
 }
 
-.motivational {
+.Doing .motivational {
   cursor: pointer;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
 }
 
-.motivational p:first-of-type {
+.Doing .motivational p:first-of-type {
   font-style: italic;
 }
 
-.motivational p:last-of-type {
+.Doing .motivational p:last-of-type {
   font-size: 0.7rem;
 }
