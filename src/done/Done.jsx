@@ -28,7 +28,7 @@ export const Done = () => {
           {store.tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}
         </ul>
         <div className={`${showModal} modal`}>
-          <p>Deleting all completed tasks will log today's work and start a new day. Are you sure?</p>
+          <p>Deleting all completed tasks will log today&apos;s work and start a new day. Are you sure?</p>
           <div className="options">
             <button className='midBtn' onClick={() => (setShowModal("hide"), setShowFooter(""))}>Cancel</button>
             <button className='midBtn' onClick={() => (store.tasks.deleteCompleted(), setShowModal("hide"), setShowFooter(""))}>Yes, I want to start a new day</button>
