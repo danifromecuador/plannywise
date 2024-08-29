@@ -11,8 +11,6 @@ export const App = () => (
       <Doing />
       <Done />
     </div >
-    <div className="main-footer">
       <Footer />
-    </div>
   </div>
 )

@@ -66,14 +66,9 @@ li {
 }
 
 .main-section {
-  height: 92%;
+  height: 100%;
   display: flex;
   gap: 1%;
-}
-
-.main-footer {
-  height: 8%;
-  display: flex;
 }
 
 .Todos,
@@ -93,6 +88,7 @@ li {
 }
 
 .Footer {
+  height: 6%;
   flex-direction: row;
   justify-content: space-between;
   font-size: 12px;
