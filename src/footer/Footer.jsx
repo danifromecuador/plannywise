@@ -5,10 +5,10 @@ export const Footer = () => {
   const [showFooter, setShowFooter] = useState("")
   return (
     <div className={`${showFooter} Footer`}>
-      <span>Created by Dani Dev</span>
-      <span>If you enjoy this app, please <a href="http://" target='blank'>give it a ⭐</a></span>
-      <span>If you're not hearing the alarm sound, please check out <a href="http://" target='blank'>this issue</a></span>
-      <span>If you'd like to provide feedback, report issues, or suggest improvements, <a href="http://" target='blank'>click here</a></span>
+      <span>Created by  <a href="https://www.linkedin.com/in/danifromec/" target="_blank" rel="noopener noreferrer"> Dani Dev</a></span>
+      <span>If you enjoy this app, please <a href="https://github.com/danifromecuador/plannywise" target='blank'>give it a ⭐</a></span>
+      <span>If you're not hearing the alarm sound, please check out <a href="https://github.com/danifromecuador/plannywise/issues/6" target='blank'>this issue</a></span>
+      <span>If you'd like to provide feedback, report issues, or suggest improvements, <a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>click here</a></span>
       <button onClick={()=> setShowFooter("hide")}>X</button>
     </div>
   )
