@@ -95,7 +95,11 @@ li {
   color: bisque;
 }
 
-@media (width <=720px) {
+@media (width <= 720px) {
+  button {
+    font-size: 4vw;
+  }
+
   .main-section {
     flex-direction: column;
     overflow-y: auto;
@@ -105,7 +109,6 @@ li {
   .Doing,
   .Done,
   .Footer {
-    height: fit-content;
     overflow-y: visible;
     gap: 10px;
   }
@@ -116,15 +119,11 @@ li {
   }
 
   .Footer button {
-    position:fixed;
+    position: fixed;
     align-self: flex-end;
   }
 
   .clock {
     font-size: 16vw;
-  }
-
-  button {
-    font-size: 4vw;
   }
 }
