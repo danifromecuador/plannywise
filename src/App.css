@@ -92,12 +92,18 @@ li {
   overflow-y: auto;
 }
 
+.Footer {
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 12px;
+  color: bisque;
+}
+
 @media (width <=720px) {
   .main-section {
     flex-direction: column;
     overflow-y: auto;
   }
-
 
   .Todos,
   .Doing,
