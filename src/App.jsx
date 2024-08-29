@@ -6,9 +6,13 @@ import './App.css'
 
 export const App = () => (
   <div className='App'>
-    <Todos />
-    <Doing />
-    <Done />
-    <Footer />
+    <div className='main-section'>
+      <Todos />
+      <Doing />
+      <Done />
+    </div >
+    <div className="main-footer">
+      <Footer />
+    </div>
   </div>
 )

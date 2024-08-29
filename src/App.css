@@ -59,56 +59,53 @@ li {
 
 .App {
   width: 98vw;
-  height: 95vh;
+  height: 98vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  column-gap: 1%;
+  gap: 1%;
+}
+
+.main-section {
+  height: 92%;
+  display: flex;
+  gap: 1%;
+}
+
+.main-footer {
+  height: 8%;
+  display: flex;
 }
 
 .Todos,
 .Doing,
-.Done {
-  /* width: 100%; */
-  /* border: 1px solid red; */
-  /* border-radius: 20px; */
-  /* padding: 5px; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* row-gap: 1%; */
-  /* align-items: center; */
-  /* overflow-y: auto; */
-  flex: 1;
-}
-
-
-
-
+.Done,
 .Footer {
-  margin-top: auto;
   width: 100%;
+  height: 100%;
   border: 1px solid red;
+  border-radius: 20px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+  align-items: center;
+  overflow-y: auto;
 }
 
-
-
-@media (width <= 720px) {
-  .App {
+@media (width <=720px) {
+  .main-section {
     flex-direction: column;
-    row-gap: 1%;
+    overflow-y: auto;
   }
+
 
   .Todos,
   .Doing,
-  .Done {
-    width: 100%;
+  .Done,
+  .Footer {
+    height: fit-content;
     overflow-y: visible;
-  }
-
-  .Todos {
-    overflow-y: visible;
-    flex-direction: column;
-    row-gap: 10px;
+    gap: 10px;
   }
 
   .clock {
