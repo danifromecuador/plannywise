@@ -61,6 +61,7 @@ li {
   width: 98vw;
   height: 95vh;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   column-gap: 1%;
 }
@@ -68,16 +69,28 @@ li {
 .Todos,
 .Doing,
 .Done {
+  /* width: 100%; */
+  /* border: 1px solid red; */
+  /* border-radius: 20px; */
+  /* padding: 5px; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* row-gap: 1%; */
+  /* align-items: center; */
+  /* overflow-y: auto; */
+  flex: 1;
+}
+
+
+
+
+.Footer {
+  margin-top: auto;
   width: 100%;
   border: 1px solid red;
-  border-radius: 20px;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 1%;
-  align-items: center;
-  overflow-y: auto;
 }
+
+
 
 @media (width <= 720px) {
   .App {
