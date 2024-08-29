@@ -110,6 +110,16 @@ li {
     gap: 10px;
   }
 
+  .Footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .Footer button {
+    position:fixed;
+    align-self: flex-end;
+  }
+
   .clock {
     font-size: 16vw;
   }
