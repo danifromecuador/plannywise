@@ -2,7 +2,7 @@ import { create } from "zustand"
 import { devtools } from "zustand/middleware"
 import { add, completed, markAsDone, markAsTodo, deleteDones } from "./todo_logic.js"
 import { addCompletedTask, deleteAllCompletedTasks, workedHours } from './tasks_logic.js'
-
+import { setHeight } from "./footer_logic.js"
 const todoDailySlice = (set, get) => ({
   title: "Daily Goals",
   todos: JSON.parse(localStorage.getItem("Daily Goals Todos")) || [],
@@ -44,9 +44,15 @@ const tasksSlice = (set, get) => ({
   workedHours: () => workedHours(get),
 })
 
+const footerSlice = (set) => ({
+  mainSectionHeight: "",
+  setHeight: () => setHeight(set)
+})
+
 export const Store = create(devtools((set, get) => ({
   daily: todoDailySlice(set, get),
   weekly: todoWeeklySlice(set, get),
   monthly: todoMonthlySlice(set, get),
-  tasks: tasksSlice(set, get)
+  tasks: tasksSlice(set, get),
+  footer: footerSlice(set)
 })))
