@@ -44,9 +44,20 @@ const tasksSlice = (set, get) => ({
   workedHours: () => workedHours(get),
 })
 
+const footerSlice = (set) => ({
+  mainSectionHeight: 92,
+  setHeight: () => set(state => ({
+    footer: {
+      ...state.footer,
+      mainSectionHeight: 100
+    }
+  }))
+})
+
 export const Store = create(devtools((set, get) => ({
   daily: todoDailySlice(set, get),
   weekly: todoWeeklySlice(set, get),
   monthly: todoMonthlySlice(set, get),
-  tasks: tasksSlice(set, get)
+  tasks: tasksSlice(set, get),
+  footer: footerSlice(set)
 })))
