@@ -45,11 +45,11 @@ const tasksSlice = (set, get) => ({
 })
 
 const footerSlice = (set) => ({
-  mainSectionHeight: 92,
+  mainSectionHeight: "",
   setHeight: () => set(state => ({
     footer: {
       ...state.footer,
-      mainSectionHeight: 100
+      mainSectionHeight: "Full"
     }
   }))
 })
