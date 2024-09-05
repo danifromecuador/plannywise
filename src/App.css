@@ -124,6 +124,7 @@ a {
   .Footer {
     align-items: flex-start;
     flex-direction: column;
+    height: 15%;
   }
 
   .Footer button {
