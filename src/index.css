@@ -3,15 +3,15 @@
   margin: 0;
   box-sizing: border-box;
   user-select: none;
+  color: #f6f2d9;
 }
 
 body {
   height: 100vh;
-  background-color: black;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #231e02;
 }
 
 @font-face {

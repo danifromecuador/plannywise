@@ -5,12 +5,12 @@
 
 .Doing .clock {
   width: fit-content;
-  border: 1px solid red;
   border-radius: 20px;
   padding: 0 5%;
   font-size: 8vw;
   text-align: center;
   font-family: 'CustomFont', monospace;
+  background-color: #000;
 }
 
 .Doing .controls {
