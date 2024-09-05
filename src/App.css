@@ -53,6 +53,11 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
 .hide {
   display: none !important;
 }
@@ -98,7 +103,7 @@ li {
   font-size: 12px;
 }
 
-@media (width <= 720px) {
+@media (width <=720px) {
   button {
     font-size: 4vw;
   }
