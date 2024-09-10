@@ -6,6 +6,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+- [💻 Live Link](#live-link)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Usage](#usage)
@@ -48,6 +49,9 @@ After 15 minutes of intense focus on your current activity and when the alarm so
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+## Live Link <a name="live-link"></a>
+<a href="https://plannywise.onrender.com/">plannywise.onrender.com</a>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## 💻 Getting Started <a name="getting-started"></a>
