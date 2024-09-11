@@ -6,6 +6,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+    - [Resources](#resources)
 - [💻 Live Link](#live-link)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
@@ -45,6 +46,14 @@ After 15 minutes of intense focus on your current activity and when the alarm so
 - **Using the Pomodoro method you can be productive without burning**
 - **You can see the real time that you spend working daily**
 
+### Resources <a name="resources"></a>
+<ul>
+<li><a href="https://pixabay.com/sound-effects/">Sounds</a></li>
+<li><a href="https://www.npmjs.com/package/react-countdown">Countdown package</a></li>
+<li><a href="https://api.quotable.io/">Quote API</a></li>
+<li><a href="https://font.download/font/arial-mt">Clock font family</a></li>
+<li><a href="https://paletadecolores.com.mx/paleta/484a09/3c3b07/2f2d05/231e02/160f00/">Colors</a></li>
+</ul>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
