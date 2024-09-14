@@ -21,7 +21,7 @@ button {
   border: 1px solid black;
   border-radius: 5px;
   outline: none;
-  background-color: #484a09;
+  /* background-color: #484a09; */
 }
 
 .sub-container {
