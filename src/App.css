@@ -4,7 +4,11 @@ button {
   padding: 1%;
   white-space: nowrap;
   cursor: pointer;
-  background-color: #656565;
+  background-color: #484a09;
+}
+
+button:hover {
+  background-color: olive;
 }
 
 .bigBtn {
