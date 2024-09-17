@@ -18,10 +18,10 @@ button {
 .input {
   width: 100%;
   padding: 1%;
-  border: 1px solid black;
+  border: 2px solid #231e02;
   border-radius: 5px;
   outline: none;
-  /* background-color: #484a09; */
+  background-color: black;
 }
 
 .sub-container {
