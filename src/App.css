@@ -4,7 +4,11 @@ button {
   padding: 1%;
   white-space: nowrap;
   cursor: pointer;
-  background-color: #656565;
+  background-color: #484a09;
+}
+
+button:hover {
+  background-color: olive;
 }
 
 .bigBtn {
@@ -18,10 +22,14 @@ button {
 .input {
   width: 100%;
   padding: 1%;
-  border: 1px solid black;
+  border: 2px solid #231e02;
   border-radius: 5px;
   outline: none;
-  background-color: #484a09;
+  background-color: black;
+}
+
+.input:focus {
+  border: 2px solid #484a09;
 }
 
 .sub-container {
