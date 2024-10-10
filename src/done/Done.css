@@ -23,6 +23,11 @@
   font-size: 0.8rem;
 }
 
+.Done .completed-tasks.sub-container .common-tasks {
+  display: flex;
+  justify-content: space-around;
+}
+
 .Done .completed-tasks.sub-container ul li.dones {
   color: gray;
 }
