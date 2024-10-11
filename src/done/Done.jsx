@@ -8,6 +8,7 @@ export const Done = () => {
   const [showModal, setShowModal] = useState("hide")
   const [showFooter, setShowFooter] = useState("")
   const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.tasks.add(input), setInput(""))
+  const addCommonTask = (task) => store.tasks.addCommonTask(task)
   useEffect(() => localStorage.setItem("Completed Tasks", JSON.stringify(store.tasks.completed)), [store.tasks.completed])
   useEffect(() => localStorage.setItem("Worked Hours History", JSON.stringify(store.tasks.workedHoursHistory)), [store.tasks.workedHoursHistory])
 
@@ -25,9 +26,9 @@ export const Done = () => {
       <div className="completed-tasks sub-container">
         <h2>Completed Tasks</h2>
         <div className="common-tasks this">
-          <div className="this-month"><span className='counter-stats'>{store.tasks.commonTasks.learn}</span><span>LEARN</span></div>
-          <div className="this-week"><span className='counter-stats'>{store.tasks.commonTasks.code}</span><span>CODE</span></div>
-          <div className="this-day"><span className='counter-stats'>{store.tasks.commonTasks.apply}</span><span>APPLY</span></div>
+          <button className="this-month" onClick={() => addCommonTask("learn")}><span className='counter-stats'>{store.tasks.commonTasks.learn}</span><span>LEARN</span></button>
+          <button className="this-week" onClick={() => addCommonTask("code")}><span className='counter-stats'>{store.tasks.commonTasks.code}</span><span>CODE</span></button>
+          <button className="this-day" onClick={() => addCommonTask("apply")}><span className='counter-stats'>{store.tasks.commonTasks.apply}</span><span>APPLY</span></button>
         </div>
         <ul className='ul'>{store.tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}</ul>
         <div className={`${showModal} modal`}>

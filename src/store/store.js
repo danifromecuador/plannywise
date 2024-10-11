@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import { devtools } from "zustand/middleware"
 import { add, completed, markAsDone, markAsTodo, deleteDones } from "./todo_logic.js"
-import { addCompletedTask, deleteAllCompletedTasks, workedHours, commonTasks, addCommonTask } from './tasks_logic.js'
+import { addCompletedTask, deleteAllCompletedTasks, workedHours, addCommonTask } from './tasks_logic.js'
 import { setHeight } from "./footer_logic.js"
 
 const todoDailySlice = (set, get) => ({
@@ -40,11 +40,11 @@ const todoMonthlySlice = (set, get) => ({
 const tasksSlice = (set, get) => ({
   completed: JSON.parse(localStorage.getItem("Completed Tasks")) || [],
   workedHoursHistory: JSON.parse(localStorage.getItem("Worked Hours History")) || [],
-  commonTasks: {"learn": 25, "code": 3, "apply":0},
+  commonTasks: {"learn": 0, "code": 0, "apply":0},
   add: input => addCompletedTask(set, input),
   deleteCompleted: () => deleteAllCompletedTasks(set, get),
   workedHours: () => workedHours(get),
-  addCommonTask: () => addCommonTask()
+  addCommonTask: (task) => addCommonTask(get, set, task)
 })
 
 const footerSlice = (set) => ({

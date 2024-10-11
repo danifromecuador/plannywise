@@ -23,3 +23,19 @@ export const workedHours = get => {
   const month = get().tasks.workedHoursHistory.reduce((a, b) => a + b, 0)
   return ({ "day": day, "week": week, "month": month })
 }
+
+export const addCommonTask = (get, set, task) => set(state => {
+  let learn = get().tasks.commonTasks.learn
+  let code = get().tasks.commonTasks.code
+  let apply = get().tasks.commonTasks.apply
+  if (task === "learn") learn++
+  if (task === "code") code++
+  if (task === "apply") apply++
+  console.log(learn, code, apply)
+  return ({
+    tasks: {
+      ...state.tasks,
+      commonTasks: { "learn": learn, "code": code, "apply": apply }
+    }
+  })
+})
