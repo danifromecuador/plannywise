@@ -24,10 +24,10 @@ export const Done = () => {
       </div>
       <div className="completed-tasks sub-container">
         <h2>Completed Tasks</h2>
-        <div className="common-tasks">
-          <button>LEARN 5</button>
-          <button>CODE .25</button>
-          <button>APPLY 0</button>
+        <div className="common-tasks this">
+          <div className="this-month"><span className='counter-stats'>{store.tasks.commonTasks.learn}</span><span>LEARN</span></div>
+          <div className="this-week"><span className='counter-stats'>{store.tasks.commonTasks.code}</span><span>CODE</span></div>
+          <div className="this-day"><span className='counter-stats'>{store.tasks.commonTasks.apply}</span><span>APPLY</span></div>
         </div>
         <ul className='ul'>{store.tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}</ul>
         <div className={`${showModal} modal`}>
