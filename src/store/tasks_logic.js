@@ -25,17 +25,12 @@ export const workedHours = get => {
 }
 
 export const addCommonTask = (get, set, task) => set(state => {
-  let learn = get().tasks.commonTasks.learn
-  let code = get().tasks.commonTasks.code
-  let apply = get().tasks.commonTasks.apply
-  if (task === "learn") learn++
-  if (task === "code") code++
-  if (task === "apply") apply++
-  console.log(learn, code, apply)
+  let commonTasks = { "learn": get().tasks.commonTasks.learn, "code": get().tasks.commonTasks.code, "apply": get().tasks.commonTasks.apply }
+  task === "learn" ? commonTasks.learn++ : task === "code" ? commonTasks.code++ : commonTasks.apply++
   return ({
     tasks: {
       ...state.tasks,
-      commonTasks: { "learn": learn, "code": code, "apply": apply }
+      commonTasks: commonTasks
     }
   })
-})
+}, false, `tasks/addCommonTask/add_${task}`)
