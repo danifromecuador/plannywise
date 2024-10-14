@@ -8,7 +8,6 @@
   justify-content: space-evenly;
 }
 
-
 .Done .worked-hours .this .this-month,
 .Done .worked-hours .this .this-week,
 .Done .worked-hours .this .this-day {
@@ -16,7 +15,6 @@
   flex-direction: column;
   align-items: center;
 }
-
 
 .Done .worked-hours .this .this-month span:last-of-type,
 .Done .worked-hours .this .this-week span:last-of-type,
@@ -45,7 +43,6 @@
   white-space: nowrap;
   font-size: 0.6rem;
 }
-
 
 .Done .completed-tasks.sub-container ul li.dones {
   color: gray;
