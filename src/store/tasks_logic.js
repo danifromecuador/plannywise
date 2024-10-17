@@ -11,8 +11,9 @@ export const deleteAllCompletedTasks = (set, get) => set(state => {
   return ({
     tasks: {
       ...state.tasks,
+      completed: [],
       workedHoursHistory: workedHoursHistoryArray,
-      completed: []
+      commonTasks: {"learn": 0, "code": 0, "apply":0}
     }
   })
 }, false, 'tasks/deleteAllCompleted')
