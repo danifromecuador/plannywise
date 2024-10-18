@@ -19,7 +19,7 @@ export const deleteAllCompletedTasks = (set, get) => set(state => {
 }, false, 'tasks/deleteAllCompleted')
 
 export const workedHours = get => {
-  const day = get().tasks.completed.length * 15 / 60
+  const day = (get().tasks.completed.length * 15 / 60)+ get().tasks.commonTasks.learn + get().tasks.commonTasks.code + get().tasks.commonTasks.apply
   const week = get().tasks.workedHoursHistory.slice(0, 7).reduce((a, b) => a + b, 0)
   const month = get().tasks.workedHoursHistory.reduce((a, b) => a + b, 0)
   return ({ "day": day, "week": week, "month": month })
