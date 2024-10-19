@@ -11,7 +11,7 @@ export const Done = () => {
   const addCommonTask = (task) => store.tasks.addCommonTask(task)
   useEffect(() => localStorage.setItem("Completed Tasks", JSON.stringify(store.tasks.completed)), [store.tasks.completed])
   useEffect(() => localStorage.setItem("Worked Hours History", JSON.stringify(store.tasks.workedHoursHistory)), [store.tasks.workedHoursHistory])
-
+  useEffect(() => localStorage.setItem("Common Tasks", JSON.stringify(store.tasks.commonTasks)), [store.tasks.commonTasks])
 
   return (
     <div className='Done'>
