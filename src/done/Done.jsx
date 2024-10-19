@@ -18,17 +18,17 @@ export const Done = () => {
       <div className="worked-hours sub-container">
         <h2>Worked Hours</h2>
         <div className="this">
-          <div className="this-month"><span className='counter-stats'>{store.tasks.workedHours().month}</span><span>Last Month</span></div>
-          <div className="this-week"><span className='counter-stats'>{store.tasks.workedHours().week}</span><span>Last Week</span></div>
-          <div className="this-day"><span className='counter-stats'>{store.tasks.workedHours().day}</span><span>Today</span></div>
+          <div className="this-month"><span className='counter-stats'>{store.tasks.workedHours().month} h</span><span>last 30 days</span></div>
+          <div className="this-week"><span className='counter-stats'>{store.tasks.workedHours().week} h</span><span>last 7 days</span></div>
+          <div className="this-day"><span className='counter-stats'>{store.tasks.workedHours().day} h</span><span>today</span></div>
         </div>
       </div>
       <div className="completed-tasks sub-container">
         <h2>Completed Tasks</h2>
         <div className="common-tasks this">
-          <button className="this-month" onClick={() => addCommonTask("learn")}><span className='counter-stats'>{store.tasks.commonTasks.learn}</span><span>LEARN</span></button>
-          <button className="this-week" onClick={() => addCommonTask("code")}><span className='counter-stats'>{store.tasks.commonTasks.code}</span><span>CODE</span></button>
-          <button className="this-day" onClick={() => addCommonTask("apply")}><span className='counter-stats'>{store.tasks.commonTasks.apply}</span><span>APPLY</span></button>
+          <button className="this-month" onClick={() => addCommonTask("learn")}><span className='counter-stats'>{store.tasks.commonTasks.learn} h</span><span>LEARN</span></button>
+          <button className="this-week" onClick={() => addCommonTask("code")}><span className='counter-stats'>{store.tasks.commonTasks.code} h</span><span>CODE</span></button>
+          <button className="this-day" onClick={() => addCommonTask("apply")}><span className='counter-stats'>{store.tasks.commonTasks.apply} h</span><span>APPLY</span></button>
         </div>
         <ul className='ul'>{store.tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}</ul>
         <div className={`${showModal} modal`}>
