@@ -5,12 +5,13 @@
 .Done .worked-hours .this {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .Done .worked-hours .this .this-month,
 .Done .worked-hours .this .this-week,
 .Done .worked-hours .this .this-day {
+  width: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +22,28 @@
 .Done .worked-hours .this .this-day span:last-of-type {
   white-space: nowrap;
   font-size: 0.8rem;
+}
+
+.Done .completed-tasks .this {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Done .completed-tasks .this .this-month,
+.Done .completed-tasks .this .this-week,
+.Done .completed-tasks .this .this-day {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Done .completed-tasks .this .this-month span:last-of-type,
+.Done .completed-tasks .this .this-week span:last-of-type,
+.Done .completed-tasks .this .this-day span:last-of-type {
+  white-space: nowrap;
+  font-size: 0.6rem;
 }
 
 .Done .completed-tasks.sub-container ul li.dones {
