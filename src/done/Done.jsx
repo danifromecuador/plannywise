@@ -12,6 +12,7 @@ export const Done = () => {
   useEffect(() => localStorage.setItem("Completed Tasks", JSON.stringify(store.tasks.completed)), [store.tasks.completed])
   useEffect(() => localStorage.setItem("Worked Hours History", JSON.stringify(store.tasks.workedHoursHistory)), [store.tasks.workedHoursHistory])
 
+
   return (
     <div className='Done'>
       <h1>Done</h1>
@@ -39,7 +40,7 @@ export const Done = () => {
           </div>
         </div>
         <footer className={showFooter}>
-          <button className={`${store.tasks.completed.length === 0 ? 'hide' : 'midBtn'}`} onClick={() => (setShowFooter("hide"), setShowModal(""))}>Delete All</button>
+          <button className={`${store.tasks.completed.length + store.tasks.commonTasksCounter() === 0 ? 'hide' : 'midBtn'}`} onClick={() => (setShowFooter("hide"), setShowModal(""))}>Delete All</button>
           <input
             type="text"
             className='input'
