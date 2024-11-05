@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import Countdown, { zeroPad } from 'react-countdown'
 import axios from 'axios'
+import {Footer} from './Footer.jsx'
 import './Doing.css'
 
 export const Doing = () => {
@@ -89,6 +90,9 @@ export const Doing = () => {
           <p>{quote}</p>
           <p>{author}</p>
         </div>
+      </div>
+      <div className="footer sub-container">
+        <Footer />
       </div>
     </div>
   )
