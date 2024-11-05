@@ -1,0 +1,9 @@
+.Footer .Settings {
+  border: 1px solid red;
+  position:absolute;
+  margin: -700px -1000px;
+  width: 400px;
+  height: 300px;
+  background-color: rgba(1, 0, 0, .8);
+  back
+}
