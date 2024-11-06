@@ -7,4 +7,5 @@
   justify-content: center;
   align-items: center;
   font-size: 20px;
+  align-self: flex-end;
 }
