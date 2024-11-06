@@ -28,6 +28,7 @@
 }
 
 .Doing .motivational p:first-of-type {
+  font-size: 1rem;
   font-style: italic;
 }
 
