@@ -28,12 +28,11 @@ export const Footer = () => {
         <span>If you&apos;d like to provide feedback, report issues, or suggest improvements, <a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>click here</a></span>
       </div>
       <div className={`settings-content ${settingsVisibility} sub-container`}>
-        <p>create option for changing theme</p>
-        <p>hide learn code apply tasks</p>
-        <p>hide learn code apply tasks</p>
-        <p>change pomodoro time to 5 to 55 minutes</p>
-        <p>delete all worked hours history</p>
-        <p>change language</p>
+        <p>change language: ESPAÑOL ENGLISH</p>
+        <p>change theme: DARK WHITE</p>
+        <p>common tasks: SHOW HIDE</p>
+        <p>set timer: 5 10 15 20 30 60</p>
+        <p>delete all Done tasks history</p>
       </div>
     </div >
   )

@@ -3,3 +3,8 @@
   display: flex;
   justify-content: space-around;
 }
+
+.Footer .info-content,
+.Footer .settings-content {
+  font-size: 0.8rem;
+}
