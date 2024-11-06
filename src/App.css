@@ -72,26 +72,14 @@ a {
 
 .App {
   width: 98vw;
-  height: 98vh;
-  display: flex;
-  flex-direction: column;
-  gap: 1%;
-}
-
-.main-section {
-  height: 92%;
+  height: 97vh;
   display: flex;
   gap: 1%;
-}
-
-.main-section.full-height {
-  height: 100%;
 }
 
 .Todos,
 .Doing,
-.Done,
-.Footer {
+.Done {
   width: 100%;
   height: 100%;
   border-radius: 20px;
@@ -104,43 +92,6 @@ a {
   overflow-y: auto;
 }
 
-.Footer {
-  height: 8%;
-  flex-direction: row;
-  justify-content: space-between;
-  font-size: 12px;
-}
-
-@media (width <= 720px) {
-  button {
-    font-size: 4vw;
-  }
-
-  .main-section {
-    flex-direction: column;
-    overflow-y: auto;
-  }
-
-  .Todos,
-  .Doing,
-  .Done,
-  .Footer {
-    overflow-y: visible;
-    gap: 10px;
-  }
-
-  .Footer {
-    align-items: flex-start;
-    flex-direction: column;
-    height: 15%;
-  }
-
-  .Footer button {
-    position: fixed;
-    align-self: flex-end;
-  }
-
-  .clock {
-    font-size: 16vw;
-  }
+.Doing {
+  font-size: 0.7vw;
 }
