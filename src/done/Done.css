@@ -56,7 +56,8 @@
   row-gap: 10px;
 }
 
-.Done .completed-tasks.sub-container .modal p {
+.Done .completed-tasks.sub-container .modal p,
+.Done .completed-tasks.sub-container .modal b {
   color: red;
 }
 

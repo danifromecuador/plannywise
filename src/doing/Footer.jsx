@@ -35,7 +35,7 @@ export const Footer = () => {
         <p>change theme: DARK WHITE</p>
         <p>common tasks: LEARN x_____CODE x_____APPLY x_____ADD NEW</p>
         <p>set timer: 5 10 15 20 30 60</p>
-        <p>delete all Done tasks history</p>
+        <p>reset <b>Total Worked Hours</b> counters</p>
       </div>
     </div >
   )
