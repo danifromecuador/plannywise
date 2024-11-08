@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Footer.css'
 
 export const Footer = () => {
-  const [infoVisibility, setInfoVisibility] = useState("")
-  const [settingsVisibility, setSettingsVisibility] = useState("hide")
+  const [infoVisibility, setInfoVisibility] = useState(localStorage.getItem("infoVisibility" || "hide"))
+  const [settingsVisibility, setSettingsVisibility] = useState(localStorage.getItem("settingsVisibility" || "hide"))
 
   const infoContentVisibility = () => {
     infoVisibility === "" ? setInfoVisibility("hide") : setInfoVisibility("")
@@ -11,9 +11,12 @@ export const Footer = () => {
   }
 
   const settingsContentVisibility = () => {
-    settingsVisibility === "hide" ? setSettingsVisibility("") : setSettingsVisibility("hide")
+    settingsVisibility === "" ? setSettingsVisibility("hide") : setSettingsVisibility("")
     setInfoVisibility("hide")
   }
+
+  useEffect(() => localStorage.setItem("infoVisibility", infoVisibility), [infoVisibility])
+  useEffect(() => localStorage.setItem("settingsVisibility", settingsVisibility), [settingsVisibility])
 
   return (
     <div className="Footer sub-container">
@@ -30,7 +33,7 @@ export const Footer = () => {
       <div className={`settings-content ${settingsVisibility} sub-container`}>
         <p>change language: ESPAÑOL ENGLISH</p>
         <p>change theme: DARK WHITE</p>
-        <p>common tasks: SHOW HIDE</p>
+        <p>common tasks: LEARN x_____CODE x_____APPLY x_____ADD NEW</p>
         <p>set timer: 5 10 15 20 30 60</p>
         <p>delete all Done tasks history</p>
       </div>
