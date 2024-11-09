@@ -41,3 +41,10 @@ export const addCommonTask = (get, set, task) => set(state => {
 }, false, `tasks/addCommonTask/add_${task}`)
 
 export const commonTasksCounter = get => get().tasks.commonTasks.learn + get().tasks.commonTasks.code + get().tasks.commonTasks.apply
+
+export const resetWorkedHoursHistory = set => set(state => ({
+  tasks: {
+    ...state.tasks,
+    workedHoursHistory: []
+  }
+}))

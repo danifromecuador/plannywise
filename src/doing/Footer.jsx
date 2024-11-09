@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import { Store } from '../store/store'
 import './Footer.css'
 
 export const Footer = () => {
+  const store = Store()
   const [infoVisibility, setInfoVisibility] = useState(localStorage.getItem("infoVisibility" || "hide"))
   const [settingsVisibility, setSettingsVisibility] = useState(localStorage.getItem("settingsVisibility" || "hide"))
 
@@ -31,11 +33,11 @@ export const Footer = () => {
         <span>If you&apos;d like to provide feedback, report issues, or suggest improvements, <a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>click here</a></span>
       </div>
       <div className={`settings-content ${settingsVisibility} sub-container`}>
+        <button onClick={()=>store.tasks.resetWorkedHoursHistory()}>reset <b>Total Worked Hours</b> counters</button>
         <p>change language: ESPAÑOL ENGLISH</p>
         <p>change theme: DARK WHITE</p>
         <p>common tasks: LEARN x_____CODE x_____APPLY x_____ADD NEW</p>
         <p>set timer: 5 10 15 20 30 60</p>
-        <p>reset <b>Total Worked Hours</b> counters</p>
       </div>
     </div >
   )

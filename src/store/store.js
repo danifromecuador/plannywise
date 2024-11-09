@@ -1,7 +1,14 @@
 import { create } from "zustand"
 import { devtools } from "zustand/middleware"
 import { add, completed, markAsDone, markAsTodo, deleteDones } from "./todo_logic.js"
-import { addCompletedTask, deleteAllCompletedTasks, workedHours, addCommonTask, commonTasksCounter } from './tasks_logic.js'
+import {
+  addCompletedTask,
+  deleteAllCompletedTasks,
+  workedHours,
+  addCommonTask,
+  commonTasksCounter,
+  resetWorkedHoursHistory
+} from './tasks_logic.js'
 
 const todoDailySlice = (set, get) => ({
   title: "Daily Goals",
@@ -44,7 +51,8 @@ const tasksSlice = (set, get) => ({
   add: input => addCompletedTask(set, input),
   deleteCompleted: () => deleteAllCompletedTasks(set, get),
   workedHours: () => workedHours(get),
-  addCommonTask: (task) => addCommonTask(get, set, task)
+  addCommonTask: task => addCommonTask(get, set, task),
+  resetWorkedHoursHistory: () => resetWorkedHoursHistory(set)
 })
 
 export const Store = create(devtools((set, get) => ({
