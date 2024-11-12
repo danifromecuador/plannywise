@@ -4,36 +4,16 @@ import './Footer.css'
 
 export const Footer = () => {
   const store = Store()
-  const [hide1, setHide1] = useState(localStorage.getItem("infoVisibility" || "hide"))
-  const [hide2, setHide2] = useState(localStorage.getItem("settingsVisibility" || "hide"))
-  const [hide3, setHide3] = useState("hide")
-  const [hide4, setHide4] = useState("")
-  const infoContentVisibility = () => {
-    hide1 === "" ? setHide1("hide") : setHide1("")
-    setHide2("hide")
-  }
+  const [hide1, setHide1] = useState(localStorage.getItem("infoVisibility" || "hide")) // INFO
+  const [hide2, setHide2] = useState(localStorage.getItem("settingsVisibility" || "hide")) // SETTINGS
+  const [hide3, setHide3] = useState("hide") // "CONFIRM OR CANCEL" RESETING DIALOG
+  const [hide4, setHide4] = useState("") // "RESET TOTAL WORKED HOURS" BUTTON
 
-  const settingsContentVisibility = () => {
-    hide2 === "" ? setHide2("hide") : setHide2("")
-    setHide1("hide")
-  }
-
-  const resetBtn = () => {
-    setHide3("")
-    setHide4("hide")
-  }
-
-  const cancelBtn = () => {
-    setResetVisibility("")
-    setCancelDeleteVisibility("")
-  }
-
-  const confirmBtn = () => {
-    // call the delete all store function
-    console.log("all was deleted")
-    setResetVisibility("")
-    setCancelDeleteVisibility("hide")
-  }
+  const infoContentVisibility = () => (hide1 === "" ? setHide1("hide") : setHide1(""), setHide2("hide"))
+  const settingsContentVisibility = () => (hide2 === "" ? setHide2("hide") : setHide2(""), setHide1("hide"))
+  const resetBtn = () => (setHide3(""), setHide4("hide"))
+  const cancelBtn = () => (setHide3("hide"), setHide4(""))
+  const confirmBtn = () => (store.tasks.resetWorkedHoursHistory(), setHide3("hide"), setHide4(""))
 
   useEffect(() => localStorage.setItem("infoVisibility", hide1), [hide1])
   useEffect(() => localStorage.setItem("settingsVisibility", hide2), [hide2])
@@ -53,9 +33,9 @@ export const Footer = () => {
       <div className={`settings-content ${hide2} sub-container`}>
         <div className={`${hide3}`}>
           <p>This action will reset all your stats, are you sure?</p>
-          <div>
+          <div className='header'>
             <button onClick={() => cancelBtn()}>CANCEL</button>
-            <button onClick={() => store.tasks.resetWorkedHoursHistory()}>DELETE ALL!</button>
+            <button onClick={() => confirmBtn()}>DELETE ALL!</button>
           </div>
         </div>
         <button className={`${hide4}`} onClick={() => resetBtn()}>reset <b>Total Worked Hours</b> counters</button>
