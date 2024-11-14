@@ -9,8 +9,8 @@ export const Footer = () => {
   const [show3, setShow3] = useState(false) // "CONFIRM OR CANCEL" RESETING DIALOG (show or hide)
   const [show4, setShow4] = useState(true) // "RESET TOTAL WORKED HOURS" BUTTON (show or hide)
 
-  const infoContentVisibility = () => (setShow1(!show1), setShow2(false), setShow3(false), setShow4(true))
-  const settingsContentVisibility = () => (setShow2(!show2), setShow1(false), setShow3(false), setShow4(true))
+  const infoBtn = () => (setShow1(!show1), setShow2(false), setShow3(false), setShow4(true))
+  const settingsBtn = () => (setShow2(!show2), setShow1(false), setShow3(false), setShow4(true))
   const resetBtn = () => (setShow3(true), setShow4(false))
   const cancelBtn = () => (setShow3(false), setShow4(true))
   const confirmBtn = () => (store.tasks.deleteCompleted(), store.tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
@@ -21,8 +21,8 @@ export const Footer = () => {
   return (
     <div className="Footer sub-container">
       <div className='header'>
-        <button className='midBtn' onClick={() => infoContentVisibility()}>INFO</button>
-        < button className='midBtn' onClick={() => settingsContentVisibility()}> SETTINGS</button >
+        <button className='midBtn' onClick={() => infoBtn()}>INFO</button>
+        < button className='midBtn' onClick={() => settingsBtn()}> SETTINGS</button >
       </div >
       <div className={` ${!show1 && "hide"} info-content sub-container`}>
         <span>Created by  <a href="https://www.linkedin.com/in/danifromec/" target="_blank" rel="noopener noreferrer">Dani From Ecuador</a></span>
