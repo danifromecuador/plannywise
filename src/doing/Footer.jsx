@@ -39,8 +39,10 @@ export const Footer = () => {
               <button className='midBtn' onClick={() => confirmBtn()}>Yes, Delete All!</button>
             </div>
           </div>
-          <span className={`${!show4 && "hide"}`}>reset <b>Total Worked Hours</b> counters: </span>
-          <button className={`${!show4 && "hide"} midBtn`} onClick={() => resetBtn()}>Reset</button>
+          <div className="foot">
+            <span className={`${!show4 && "hide"}`}>reset <b>Total Worked Hours</b> counters: </span>
+            <button className={`${!show4 && "hide"} midBtn`} onClick={() => resetBtn()}>Reset</button>
+          </div>
         </p>
         <p>change language: ESPAÑOL ENGLISH</p>
         <p>change theme: DARK WHITE</p>

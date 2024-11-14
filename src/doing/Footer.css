@@ -12,3 +12,9 @@
 .Footer .settings-content .confirm-dialog p {
   color: red;
 }
+
+.Footer .settings-content p .foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
