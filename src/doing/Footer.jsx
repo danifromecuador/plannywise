@@ -4,8 +4,8 @@ import './Footer.css'
 
 export const Footer = () => {
   const store = Store()
-  const [hide1, setHide1] = useState(localStorage.getItem("infoVisibility" || "hide")) // INFO
-  const [hide2, setHide2] = useState(localStorage.getItem("settingsVisibility" || "hide")) // SETTINGS
+  const [hide1, setHide1] = useState(localStorage.getItem("infoVisibility") || "hide") // INFO
+  const [hide2, setHide2] = useState(localStorage.getItem("settingsVisibility") || "hide") // SETTINGS
   const [hide3, setHide3] = useState("hide") // "CONFIRM OR CANCEL" RESETING DIALOG
   const [hide4, setHide4] = useState("") // "RESET TOTAL WORKED HOURS" BUTTON
 
