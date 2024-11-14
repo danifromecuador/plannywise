@@ -4,19 +4,19 @@ import './Footer.css'
 
 export const Footer = () => {
   const store = Store()
-  const [hide1, setHide1] = useState(localStorage.getItem("infoVisibility") || "hide") // INFO
-  const [hide2, setHide2] = useState(localStorage.getItem("settingsVisibility") || "hide") // SETTINGS
-  const [hide3, setHide3] = useState("hide") // "CONFIRM OR CANCEL" RESETING DIALOG
-  const [hide4, setHide4] = useState("") // "RESET TOTAL WORKED HOURS" BUTTON
+  const [show1, setShow1] = useState(localStorage.getItem("infoVisibility") || "hide") // INFO
+  const [show2, setShow2] = useState(localStorage.getItem("settingsVisibility") || "hide") // SETTINGS
+  const [show3, setShow3] = useState("hide") // "CONFIRM OR CANCEL" RESETING DIALOG
+  const [show4, setShow4] = useState("") // "RESET TOTAL WORKED HOURS" BUTTON
 
-  const infoContentVisibility = () => (hide1 === "show" ? setHide1("hide") : setHide1("show"), setHide2("hide"))
-  const settingsContentVisibility = () => (hide2 === "show" ? setHide2("hide") : setHide2("show"), setHide1("hide"))
-  const resetBtn = () => (setHide3("show"), setHide4("hide"))
-  const cancelBtn = () => (setHide3("hide"), setHide4("show"))
-  const confirmBtn = () => (store.tasks.resetWorkedHoursHistory(), setHide3("hide"), setHide4(""))
+  const infoContentVisibility = () => (show1 === "show" ? setShow1("hide") : setShow1("show"), setShow2("hide"))
+  const settingsContentVisibility = () => (show2 === "show" ? setShow2("hide") : setShow2("show"), setShow1("hide"))
+  const resetBtn = () => (setShow3("show"), setShow4("hide"))
+  const cancelBtn = () => (setShow3("hide"), setShow4("show"))
+  const confirmBtn = () => (store.tasks.resetWorkedHoursHistory(), setShow3("hide"), setShow4(""))
 
-  useEffect(() => localStorage.setItem("infoVisibility", hide1), [hide1])
-  useEffect(() => localStorage.setItem("settingsVisibility", hide2), [hide2])
+  useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
+  useEffect(() => localStorage.setItem("settingsVisibility", show2), [show2])
 
   return (
     <div className="Footer sub-container">
@@ -24,21 +24,21 @@ export const Footer = () => {
         <button className='midBtn' onClick={() => infoContentVisibility()}>INFO</button>
         < button className='midBtn' onClick={() => settingsContentVisibility()}> SETTINGS</button >
       </div >
-      <div className={` ${hide1} info-content sub-container`}>
+      <div className={` ${show1} info-content sub-container`}>
         <span>Created by  <a href="https://www.linkedin.com/in/danifromec/" target="_blank" rel="noopener noreferrer">Dani From Ecuador</a></span>
         <span>If you enjoy this app, please <a href="https://github.com/danifromecuador/plannywise" target='blank'>give it a ⭐</a></span>
         <span>If you&apos;re not hearing the alarm sound, check out <a href="https://github.com/danifromecuador/plannywise/issues/6" target='blank'>this issue</a></span>
         <span>If you&apos;d like to provide feedback, report issues, or suggest improvements, <a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>click here</a></span>
       </div>
-      <div className={`${hide2} settings-content sub-container`}>
-        <div className={`${hide3} confirm-dialog sub-container`}>
+      <div className={`${show2} settings-content sub-container`}>
+        <div className={`${show3} confirm-dialog sub-container`}>
           <p>This action will reset all your stats, are you sure?</p>
           <div className='header'>
             <button className='midBtn' onClick={() => cancelBtn()}>Cancel</button>
             <button className='midBtn' onClick={() => confirmBtn()}>Yes, Delete All!</button>
           </div>
         </div>
-        <button className={`${hide4} midBtn`} onClick={() => resetBtn()}>reset <b>Total Worked Hours</b> counters</button>
+        <button className={`${show4} midBtn`} onClick={() => resetBtn()}>reset <b>Total Worked Hours</b> counters</button>
         <p>change language: ESPAÑOL ENGLISH</p>
         <p>change theme: DARK WHITE</p>
         <p>common tasks: LEARN x_____CODE x_____APPLY x_____ADD NEW</p>
