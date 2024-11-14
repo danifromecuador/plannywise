@@ -31,14 +31,17 @@ export const Footer = () => {
         <span>If you&apos;d like to provide feedback, report issues, or suggest improvements, <a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>click here</a></span>
       </div>
       <div className={`${!show2 && "hide"} settings-content sub-container`}>
-        <div className={`${!show3 && "hide"} confirm-dialog sub-container`}>
-          <p>This action will reset all your stats, are you sure?</p>
-          <div className='header'>
-            <button className='midBtn' onClick={() => cancelBtn()}>Cancel</button>
-            <button className='midBtn' onClick={() => confirmBtn()}>Yes, Delete All!</button>
+        <p>
+          <div className={`${!show3 && "hide"} confirm-dialog sub-container`}>
+            <p>This action will reset all your stats, are you sure?</p>
+            <div className='header'>
+              <button className='midBtn' onClick={() => cancelBtn()}>Cancel</button>
+              <button className='midBtn' onClick={() => confirmBtn()}>Yes, Delete All!</button>
+            </div>
           </div>
-        </div>
-        <button className={`${!show4 && "hide"} midBtn`} onClick={() => resetBtn()}>reset <b>Total Worked Hours</b> counters</button>
+          <span className={`${!show4 && "hide"}`}>reset <b>Total Worked Hours</b> counters: </span>
+          <button className={`${!show4 && "hide"} midBtn`} onClick={() => resetBtn()}>Reset</button>
+        </p>
         <p>change language: ESPAÑOL ENGLISH</p>
         <p>change theme: DARK WHITE</p>
         <p>common tasks: LEARN x_____CODE x_____APPLY x_____ADD NEW</p>
