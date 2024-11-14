@@ -9,10 +9,10 @@ export const Footer = () => {
   const [hide3, setHide3] = useState("hide") // "CONFIRM OR CANCEL" RESETING DIALOG
   const [hide4, setHide4] = useState("") // "RESET TOTAL WORKED HOURS" BUTTON
 
-  const infoContentVisibility = () => (hide1 === "" ? setHide1("hide") : setHide1(""), setHide2("hide"))
-  const settingsContentVisibility = () => (hide2 === "" ? setHide2("hide") : setHide2(""), setHide1("hide"))
-  const resetBtn = () => (setHide3(""), setHide4("hide"))
-  const cancelBtn = () => (setHide3("hide"), setHide4(""))
+  const infoContentVisibility = () => (hide1 === "show" ? setHide1("hide") : setHide1("show"), setHide2("hide"))
+  const settingsContentVisibility = () => (hide2 === "show" ? setHide2("hide") : setHide2("show"), setHide1("hide"))
+  const resetBtn = () => (setHide3("show"), setHide4("hide"))
+  const cancelBtn = () => (setHide3("hide"), setHide4("show"))
   const confirmBtn = () => (store.tasks.resetWorkedHoursHistory(), setHide3("hide"), setHide4(""))
 
   useEffect(() => localStorage.setItem("infoVisibility", hide1), [hide1])
