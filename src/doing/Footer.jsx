@@ -21,24 +21,24 @@ export const Footer = () => {
   return (
     <div className="Footer sub-container">
       <div className='header'>
-        <button onClick={() => infoContentVisibility()}>INFO</button>
-        < button onClick={() => settingsContentVisibility()}> SETTINGS</button >
+        <button className='midBtn' onClick={() => infoContentVisibility()}>INFO</button>
+        < button className='midBtn' onClick={() => settingsContentVisibility()}> SETTINGS</button >
       </div >
-      <div className={`info-content ${hide1} sub-container`}>
+      <div className={` ${hide1} info-content sub-container`}>
         <span>Created by  <a href="https://www.linkedin.com/in/danifromec/" target="_blank" rel="noopener noreferrer">Dani From Ecuador</a></span>
         <span>If you enjoy this app, please <a href="https://github.com/danifromecuador/plannywise" target='blank'>give it a ⭐</a></span>
         <span>If you&apos;re not hearing the alarm sound, check out <a href="https://github.com/danifromecuador/plannywise/issues/6" target='blank'>this issue</a></span>
         <span>If you&apos;d like to provide feedback, report issues, or suggest improvements, <a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>click here</a></span>
       </div>
-      <div className={`settings-content ${hide2} sub-container`}>
-        <div className={`${hide3}`}>
+      <div className={`${hide2} settings-content sub-container`}>
+        <div className={`${hide3} confirm-dialog sub-container`}>
           <p>This action will reset all your stats, are you sure?</p>
           <div className='header'>
-            <button onClick={() => cancelBtn()}>CANCEL</button>
-            <button onClick={() => confirmBtn()}>DELETE ALL!</button>
+            <button className='midBtn' onClick={() => cancelBtn()}>Cancel</button>
+            <button className='midBtn' onClick={() => confirmBtn()}>Yes, Delete All!</button>
           </div>
         </div>
-        <button className={`${hide4}`} onClick={() => resetBtn()}>reset <b>Total Worked Hours</b> counters</button>
+        <button className={`${hide4} midBtn`} onClick={() => resetBtn()}>reset <b>Total Worked Hours</b> counters</button>
         <p>change language: ESPAÑOL ENGLISH</p>
         <p>change theme: DARK WHITE</p>
         <p>common tasks: LEARN x_____CODE x_____APPLY x_____ADD NEW</p>

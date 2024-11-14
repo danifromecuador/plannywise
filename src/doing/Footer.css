@@ -8,3 +8,7 @@
 .Footer .settings-content {
   font-size: 0.8rem;
 }
+
+.Footer .settings-content .confirm-dialog p {
+  color: red;
+}
