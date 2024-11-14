@@ -13,7 +13,7 @@ export const Footer = () => {
   const settingsContentVisibility = () => (setShow2(!show2), setShow1(false), setShow3(false), setShow4(true))
   const resetBtn = () => (setShow3(true), setShow4(false))
   const cancelBtn = () => (setShow3(false), setShow4(true))
-  const confirmBtn = () => (store.tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
+  const confirmBtn = () => (store.tasks.deleteCompleted(), store.tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
 
   useEffect(() => localStorage.setItem("infoVisibility", JSON.stringify(show1)), [show1])
   useEffect(() => localStorage.setItem("settingsVisibility", show2), [show2])
