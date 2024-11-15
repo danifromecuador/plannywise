@@ -21,8 +21,8 @@ export const Footer = () => {
   return (
     <div className="Footer sub-container">
       <div className='header'>
-        <button className='midBtn' onClick={() => infoBtn()}>INFO</button>
-        < button className='midBtn' onClick={() => settingsBtn()}> SETTINGS</button >
+        <button className='midBtn' onClick={infoBtn}>INFO</button>
+        <button className='midBtn' onClick={settingsBtn}> SETTINGS</button >
       </div >
       <div className={` ${!show1 && "hide"} info-content sub-container`}>
         <span>Created by  <a href="https://www.linkedin.com/in/danifromec/" target="_blank" rel="noopener noreferrer">Dani From Ecuador</a></span>
@@ -31,23 +31,23 @@ export const Footer = () => {
         <span>If you&apos;d like to provide feedback, report issues, or suggest improvements, <a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>click here</a></span>
       </div>
       <div className={`${!show2 && "hide"} settings-content sub-container`}>
-        <p>
+        <div className='sub-container'>
           <div className={`${!show3 && "hide"} confirm-dialog sub-container`}>
             <p>This action will reset all your stats, are you sure?</p>
             <div className='header'>
-              <button className='midBtn' onClick={() => cancelBtn()}>Cancel</button>
-              <button className='midBtn' onClick={() => confirmBtn()}>Yes, Delete All!</button>
+              <button className='midBtn' onClick={cancelBtn}>Cancel</button>
+              <button className='midBtn' onClick={confirmBtn}>Yes, Reset All!</button>
             </div>
           </div>
-          <div className="foot">
+          <div className="setting-option">
             <span className={`${!show4 && "hide"}`}>reset <b>Total Worked Hours</b> counters: </span>
-            <button className={`${!show4 && "hide"} midBtn`} onClick={() => resetBtn()}>Reset</button>
+            <button className={`${!show4 && "hide"} midBtn`} onClick={resetBtn}>Reset</button>
           </div>
-        </p>
-        <p>change language: ESPAÑOL ENGLISH</p>
-        <p>change theme: DARK WHITE</p>
-        <p>common tasks: LEARN x_____CODE x_____APPLY x_____ADD NEW</p>
-        <p>set timer: 5 10 15 20 30 60</p>
+        </div>
+        <div className='sub-container'>change language: ESPAÑOL ENGLISH</div>
+        <div className='sub-container'>change theme: DARK WHITE</div>
+        <div className='sub-container'>common tasks: LEARN x_____CODE x_____AdivLY x_____ADD NEW</div>
+        <div className='sub-container'>set timer: 5 10 15 20 30 60</div>
       </div>
     </div >
   )
