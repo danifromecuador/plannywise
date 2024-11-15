@@ -31,8 +31,8 @@ export const Footer = () => {
         <span>If you&apos;d like to provide feedback, report issues, or suggest improvements, <a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>click here</a></span>
       </div>
       <div className={`${!show2 && "hide"} settings-content sub-container`}>
-        <div className='sub-container'>
-          <div className={`${!show3 && "hide"} confirm-dialog sub-container`}>
+        <div>
+          <div className={`${!show3 && "hide"} confirm-dialog`}>
             <p>This action will reset all your stats, are you sure?</p>
             <div className='header'>
               <button className='midBtn' onClick={cancelBtn}>Cancel</button>
@@ -44,10 +44,10 @@ export const Footer = () => {
             <button className={`${!show4 && "hide"} midBtn`} onClick={resetBtn}>Reset</button>
           </div>
         </div>
-        <div className='sub-container'>change language: ESPAÑOL ENGLISH</div>
-        <div className='sub-container'>change theme: DARK WHITE</div>
-        <div className='sub-container'>common tasks: LEARN x_____CODE x_____AdivLY x_____ADD NEW</div>
-        <div className='sub-container'>set timer: 5 10 15 20 30 60</div>
+        <div>change language: ESPAÑOL ENGLISH</div>
+        <div>change theme: DARK WHITE</div>
+        <div>common tasks: LEARN x_____CODE x_____AdivLY x_____ADD NEW</div>
+        <div>set timer: 5 10 15 20 30 60</div>
       </div>
     </div >
   )

@@ -10,12 +10,20 @@
   font-size: 0.8rem;
 }
 
+.Footer .settings-content .confirm-dialog {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .Footer .settings-content .confirm-dialog p {
   color: red;
+  font-size: 1rem;
 }
 
 .Footer .settings-content .setting-option {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items:end;
 }
