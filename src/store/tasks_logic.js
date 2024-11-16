@@ -9,8 +9,6 @@ export const deleteAllCompletedTasks = (set, get) => set(state => {
   const commonTasksCounter = get().tasks.commonTasks.learn + get().tasks.commonTasks.code + get().tasks.commonTasks.apply
   const workedHoursHistoryArray = [(get().tasks.completed.length * 15 / 60) + commonTasksCounter, ...state.tasks.workedHoursHistory]
   workedHoursHistoryArray.length > 30 && workedHoursHistoryArray.pop()
-  console.log(workedHoursHistoryArray)
-  console.log(workedHours(get))
   return ({
     tasks: {
       ...state.tasks,
@@ -41,3 +39,10 @@ export const addCommonTask = (get, set, task) => set(state => {
 }, false, `tasks/addCommonTask/add_${task}`)
 
 export const commonTasksCounter = get => get().tasks.commonTasks.learn + get().tasks.commonTasks.code + get().tasks.commonTasks.apply
+
+export const resetWorkedHoursHistory = set => set(state => ({
+  tasks: {
+    ...state.tasks,
+    workedHoursHistory: []
+  }
+}))
