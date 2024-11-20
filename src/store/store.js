@@ -57,7 +57,7 @@ const tasksSlice = (set, get) => ({
 })
 
 const languageSlice = (set) => ({
-  current: "english",
+  current: localStorage.getItem("currentLanguage") || "english",
   setCurrent: (language) => setCurrent(set, language),
   text: () => text
 })
