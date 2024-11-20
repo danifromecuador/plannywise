@@ -8,6 +8,8 @@ export const Footer = () => {
   const [show2, setShow2] = useState(JSON.parse(localStorage.getItem("settingsVisibility")) || false) // SETTINGS (show or hide)
   const [show3, setShow3] = useState(false) // "CONFIRM OR CANCEL" RESETING DIALOG (show or hide)
   const [show4, setShow4] = useState(true) // "RESET TOTAL WORKED HOURS" BUTTON (show or hide)
+  // catch english or spanish json texts, this change when the user clicks on change language buttons
+  const text = store.language.current === "english" ? store.language.text().english : store.language.text().spanish
 
   const infoBtn = () => (setShow1(!show1), setShow2(false), setShow3(false), setShow4(true))
   const settingsBtn = () => (setShow2(!show2), setShow1(false), setShow3(false), setShow4(true))
@@ -22,7 +24,7 @@ export const Footer = () => {
     <div className="Footer sub-container">
       <div className='header'>
         <button className='midBtn' onClick={infoBtn}>INFO</button>
-        <button className='midBtn' onClick={settingsBtn}> SETTINGS</button >
+        <button className='midBtn' onClick={settingsBtn}>{text.doing.footer.settings.btnTitle}</button >
       </div >
       <div className={` ${!show1 && "hide"} info-content sub-container`}>
         <span>Created by  <a href="https://www.linkedin.com/in/danifromec/" target="_blank" rel="noopener noreferrer">Dani From Ecuador</a></span>
@@ -44,9 +46,9 @@ export const Footer = () => {
             <button className={`${!show4 && "hide"} midBtn`} onClick={resetBtn}>Reset</button>
           </div>
         </div>
-        <div>change language: 
-          <button onClick={()=>store.language.setCurrent("spanish")}>SPANISH</button>
-          <button onClick={()=>store.language.setCurrent("english")}>ENGLISH</button>
+        <div>change language:
+          <button onClick={() => store.language.setCurrent("spanish")}>SPANISH</button>
+          <button onClick={() => store.language.setCurrent("english")}>ENGLISH</button>
         </div>
         <div>change theme: DARK WHITE</div>
         <div>common tasks: LEARN x_____CODE x_____AdivLY x_____ADD NEW</div>

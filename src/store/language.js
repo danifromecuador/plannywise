@@ -1,19 +1,36 @@
-const spanish = {
-  todo: {},
-  doing: {
-    title: "Haciendo",
-    startBtn: "INICIAR"
+export const text = {
+  spanish: {
+    todo: {},
+    doing: {
+      title: "Haciendo",
+      pomodoro: {
+        button: "INICIAR"
+      },
+      footer: {
+        info: {},
+        settings: {
+          btnTitle: "CONFIGURACIÓN",
+        }
+      }
+    },
+    done: {}
   },
-  done: {}
-}
-
-const english = {
-  todo: {},
-  doing: {
-    title: "Doing",
-    startBtn: "START"
-  },
-  done: {}
+  english: {
+    todo: {},
+    doing: {
+      title: "Doing",
+      pomodoro: {
+        button: "START"
+      },
+      footer: {
+        info: {},
+        settings: {
+          btnTitle: "SETTINGS",
+        }
+      }
+    },
+    done: {}
+  }
 }
 
 export const setCurrent = (set, language) => set(state => ({
@@ -22,3 +39,4 @@ export const setCurrent = (set, language) => set(state => ({
     current: language
   }
 }), false, 'language/setCurrent')
+

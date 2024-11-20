@@ -9,7 +9,7 @@ import {
   commonTasksCounter,
   resetWorkedHoursHistory
 } from './tasks_logic.js'
-import { setCurrent } from "./language.js"
+import { text, setCurrent } from "./language.js"
 
 const todoDailySlice = (set, get) => ({
   title: "Daily Goals",
@@ -56,11 +56,11 @@ const tasksSlice = (set, get) => ({
   resetWorkedHoursHistory: () => resetWorkedHoursHistory(set)
 })
 
-const languageSlice = (set) => ({  
+const languageSlice = (set) => ({
   current: "english",
-  setCurrent: (language) => setCurrent(set, language)
-  
-}) 
+  setCurrent: (language) => setCurrent(set, language),
+  text: () => text
+})
 
 export const Store = create(devtools((set, get) => ({
   daily: todoDailySlice(set, get),
