@@ -44,7 +44,10 @@ export const Footer = () => {
             <button className={`${!show4 && "hide"} midBtn`} onClick={resetBtn}>Reset</button>
           </div>
         </div>
-        <div>change language: ESPAÑOL ENGLISH</div>
+        <div>change language: 
+          <button onClick={()=>store.language.setCurrent("spanish")}>SPANISH</button>
+          <button onClick={()=>store.language.setCurrent("english")}>ENGLISH</button>
+        </div>
         <div>change theme: DARK WHITE</div>
         <div>common tasks: LEARN x_____CODE x_____AdivLY x_____ADD NEW</div>
         <div>set timer: 5 10 15 20 30 60</div>
