@@ -1,6 +1,12 @@
 export const text = {
   spanish: {
-    todo: {},
+    todo: {
+      title: "Por Hacer",
+      completed: "Completado",
+      deleteAll: "Borrar todos los completados",
+      placeHolder: "Escribe un objetivo y presiona Enter"
+
+    },
     doing: {
       title: "Haciendo",
       pomodoro: {
@@ -16,7 +22,13 @@ export const text = {
     done: {}
   },
   english: {
-    todo: {},
+    todo: {
+      title: "Todo",
+      completed: "Completed",
+      deleteAll: "Delete All Completed",
+      placeHolder: "Type a goal and press Enter"
+
+    },
     doing: {
       title: "Doing",
       pomodoro: {

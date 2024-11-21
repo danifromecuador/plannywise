@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import './Todo.css'
 
 export const Todo = ({ store }) => {
+
   const [input, setInput] = useState("")
   const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.add(input), setInput(""))
 
