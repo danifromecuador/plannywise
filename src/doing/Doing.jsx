@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react'
 import Countdown, { zeroPad } from 'react-countdown'
 import axios from 'axios'
 import { Footer } from './Footer.jsx'
-import { Store } from '../store/store.js'
 import './Doing.css'
 
 export const Doing = () => {
@@ -17,10 +16,6 @@ export const Doing = () => {
   const [fetchNewQuote, setFetchNewQoute] = useState("")
   const audioStart = new Audio('/start.mp3')
   const audioAlarm = new Audio('/clock_alarm.mp3')
-  const store = Store()
-
-  // console.log(store.language.spanish())
-  
 
   const catchNewQuote = () => fetchNewQuote == "yes" ? setFetchNewQoute("") : setFetchNewQoute("yes")
 
