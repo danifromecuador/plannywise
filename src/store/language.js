@@ -3,7 +3,7 @@ export const text = {
     todo: {
       title: "Por Hacer",
       completed: "Completado",
-      deleteAll: "Borrar todos los completados",
+      deleteAll: "Borrar los completados",
       placeHolder: "Escribe un objetivo y presiona Enter"
 
     },
