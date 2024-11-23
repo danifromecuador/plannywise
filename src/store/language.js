@@ -10,7 +10,13 @@ export const text = {
     doing: {
       title: "Haciendo",
       pomodoro: {
-        button: "INICIAR"
+        start: "INICIAR",
+        pause: "PAUSAR",
+        continue: "CONTINUAR",
+        reset: "RESETEAR"
+      },
+      cuote: {
+        error: "Error al obtener la frase"
       },
       footer: {
         info: {},
@@ -32,7 +38,13 @@ export const text = {
     doing: {
       title: "Doing",
       pomodoro: {
-        button: "START"
+        start: "START",
+        pause: "PAUSE",
+        continue: "CONTINUE",
+        reset: "RESET"
+      },
+      cuote: {
+        error: "Error fetching the quote"
       },
       footer: {
         info: {},
