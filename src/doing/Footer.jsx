@@ -19,7 +19,7 @@ export const Footer = () => {
 
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
   useEffect(() => localStorage.setItem("settingsVisibility", show2), [show2])
-  useEffect(()=>  localStorage.setItem("currentLanguage", store.language.current) ,[store.language])
+  useEffect(() => localStorage.setItem("currentLanguage", store.language.current), [store.language])
 
   return (
     <div className="Footer sub-container">
@@ -36,24 +36,40 @@ export const Footer = () => {
       <div className={`${!show2 && "hide"} settings-content sub-container`}>
         <div>
           <div className={`${!show3 && "hide"} confirm-dialog`}>
-            <p>This action will reset all your stats, are you sure?</p>
+            <p>{text.doing.footer.info.reset.warning}</p>
             <div className='header'>
-              <button className='midBtn' onClick={cancelBtn}>Cancel</button>
-              <button className='midBtn' onClick={confirmBtn}>Yes, Reset All!</button>
+              <button className='midBtn' onClick={cancelBtn}>{text.doing.footer.info.reset.cancel}</button>
+              <button className='midBtn' onClick={confirmBtn}>{text.doing.footer.info.reset.confirm}</button>
             </div>
           </div>
           <div className="setting-option">
-            <span className={`${!show4 && "hide"}`}>reset <b>Total Worked Hours</b> counters: </span>
-            <button className={`${!show4 && "hide"} midBtn`} onClick={resetBtn}>Reset</button>
+            <span className={`${!show4 && "hide"}`}>{text.doing.footer.info.reset.message}</span>
+            <button className={`${!show4 && "hide"} midBtn`} onClick={resetBtn}>{text.doing.footer.info.reset.button}</button>
           </div>
         </div>
-        <div>change language:
-          <button onClick={() => store.language.setCurrent("spanish")}>SPANISH</button>
+        <div>{text.doing.footer.info.language.message}
+          <button onClick={() => store.language.setCurrent("spanish")}>ESPAÑOL</button>
           <button onClick={() => store.language.setCurrent("english")}>ENGLISH</button>
         </div>
-        <div>change theme: DARK WHITE</div>
-        <div>common tasks: LEARN x_____CODE x_____AdivLY x_____ADD NEW</div>
-        <div>set timer: 5 10 15 20 30 60</div>
+        <div>
+          <span>{text.doing.footer.info.theme.message}</span>
+          <button>{text.doing.footer.info.theme.dark}</button>
+          <button>{text.doing.footer.info.theme.light}</button>
+        </div>
+        <div>
+          <span>{text.doing.footer.info.commonTasks.message}</span>
+          LEARN x_____CODE x_____AdivLY x
+          <button>{text.doing.footer.info.commonTasks.addNew}</button>
+        </div>
+        <div>
+          <span>{text.doing.footer.info.timer.message}</span>
+          <button>5</button>
+          <button>10</button>
+          <button>15</button>
+          <button>20</button>
+          <button>30</button>
+          <button>60</button>
+        </div>
       </div>
     </div >
   )

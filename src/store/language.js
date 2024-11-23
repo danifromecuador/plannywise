@@ -19,7 +19,30 @@ export const text = {
         error: "Error al obtener la frase"
       },
       footer: {
-        info: {},
+        info: {
+          reset: {
+            message: "resetear todos los contadores: ",
+            button: "Resetear",
+            warning: "Esta acción borrará el historial de todos los contadores, está seguro?",
+            cancel: "Cancelar",
+            confirm: "Sí, resetear todo"
+          },
+          language: {
+            message: "cambiar idioma: ",
+          },
+          theme: {
+            message: "cambiar tema: ",
+            dark: "OSCURO",
+            light: "CLARO"
+          },
+          commonTasks: {
+            message: "tareas comunes: ",
+            addNew: "NUEVA TAREA"
+          },
+          timer: {
+            message: "elegir temporizador: "
+          }
+        },
         settings: {
           btnTitle: "CONFIGURACIÓN",
         }
@@ -47,9 +70,32 @@ export const text = {
         error: "Error fetching the quote"
       },
       footer: {
-        info: {},
+        info: {
+          reset: {
+            message: "reset Total Worked Hours counters: ",
+            button: "Reset",
+            warning: "This action will reset all your stats, are you sure?",
+            cancel: "Cancel",
+            confirm: "Yes, Reset All"
+          },
+          language: {
+            message: "change language: ",
+          },
+          theme: {
+            message: "change theme: ",
+            dark: "DARK",
+            light: "LIGHT"
+          },
+          commonTasks: {
+            message: "common tasks: ",
+            addNew: "ADD NEW"
+          },
+          timer: {
+            message: "set timer: "
+          }
+        },
         settings: {
-          btnTitle: "SETTINGS",
+          btnTitle: "CONFIGURACIÓN",
         }
       }
     },
