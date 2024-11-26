@@ -20,6 +20,9 @@ export const text = {
       },
       footer: {
         info: {
+        },
+        settings: {
+          btnTitle: "CONFIGURACIÓN",
           reset: {
             message: "resetear todos los contadores: ",
             button: "Resetear",
@@ -42,9 +45,6 @@ export const text = {
           timer: {
             message: "elegir temporizador: "
           }
-        },
-        settings: {
-          btnTitle: "CONFIGURACIÓN",
         }
       }
     },
@@ -71,6 +71,9 @@ export const text = {
       },
       footer: {
         info: {
+        },
+        settings: {
+          btnTitle: "CONFIGURACIÓN",
           reset: {
             message: "reset Total Worked Hours counters: ",
             button: "Reset",
@@ -93,9 +96,6 @@ export const text = {
           timer: {
             message: "set timer: "
           }
-        },
-        settings: {
-          btnTitle: "CONFIGURACIÓN",
         }
       }
     },

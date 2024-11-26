@@ -36,33 +36,33 @@ export const Footer = () => {
       <div className={`${!show2 && "hide"} settings-content sub-container`}>
         <div>
           <div className={`${!show3 && "hide"} confirm-dialog`}>
-            <p>{text.doing.footer.info.reset.warning}</p>
+            <p>{text.doing.footer.settings.reset.warning}</p>
             <div className='header'>
-              <button className='midBtn' onClick={cancelBtn}>{text.doing.footer.info.reset.cancel}</button>
-              <button className='midBtn' onClick={confirmBtn}>{text.doing.footer.info.reset.confirm}</button>
+              <button className='midBtn' onClick={cancelBtn}>{text.doing.footer.settings.reset.cancel}</button>
+              <button className='midBtn' onClick={confirmBtn}>{text.doing.footer.settings.reset.confirm}</button>
             </div>
           </div>
           <div className="setting-option">
-            <span className={`${!show4 && "hide"}`}>{text.doing.footer.info.reset.message}</span>
-            <button className={`${!show4 && "hide"} midBtn`} onClick={resetBtn}>{text.doing.footer.info.reset.button}</button>
+            <span className={`${!show4 && "hide"}`}>{text.doing.footer.settings.reset.message}</span>
+            <button className={`${!show4 && "hide"} midBtn`} onClick={resetBtn}>{text.doing.footer.settings.reset.button}</button>
           </div>
         </div>
-        <div>{text.doing.footer.info.language.message}
+        <div>{text.doing.footer.settings.language.message}
           <button onClick={() => store.language.setCurrent("spanish")}>ESPAÑOL</button>
           <button onClick={() => store.language.setCurrent("english")}>ENGLISH</button>
         </div>
         <div>
-          <span>{text.doing.footer.info.theme.message}</span>
-          <button>{text.doing.footer.info.theme.dark}</button>
-          <button>{text.doing.footer.info.theme.light}</button>
+          <span>{text.doing.footer.settings.theme.message}</span>
+          <button>{text.doing.footer.settings.theme.dark}</button>
+          <button>{text.doing.footer.settings.theme.light}</button>
         </div>
         <div>
-          <span>{text.doing.footer.info.commonTasks.message}</span>
+          <span>{text.doing.footer.settings.commonTasks.message}</span>
           LEARN x_____CODE x_____AdivLY x
-          <button>{text.doing.footer.info.commonTasks.addNew}</button>
+          <button>{text.doing.footer.settings.commonTasks.addNew}</button>
         </div>
         <div>
-          <span>{text.doing.footer.info.timer.message}</span>
+          <span>{text.doing.footer.settings.timer.message}</span>
           <button>5</button>
           <button>10</button>
           <button>15</button>
