@@ -38,6 +38,6 @@ export const Todo = ({ store, text, title }) => {
 
 Todo.propTypes = {
   store: PropTypes.object,
-  text: PropTypes.string,
+  text: PropTypes.object,
   title: PropTypes.string
 }
