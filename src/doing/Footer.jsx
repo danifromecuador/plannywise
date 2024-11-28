@@ -24,14 +24,14 @@ export const Footer = () => {
   return (
     <div className="Footer sub-container">
       <div className='header'>
-        <button className='midBtn' onClick={infoBtn}>INFO</button>
+        <button className='midBtn' onClick={infoBtn}>{text.doing.footer.info.btnTitle}</button>
         <button className='midBtn' onClick={settingsBtn}>{text.doing.footer.settings.btnTitle}</button >
       </div >
       <div className={` ${!show1 && "hide"} info-content sub-container`}>
-        <span>Created by  <a href="https://www.linkedin.com/in/danifromec/" target="_blank" rel="noopener noreferrer">Dani From Ecuador</a></span>
-        <span>If you enjoy this app, please <a href="https://github.com/danifromecuador/plannywise" target='blank'>give it a ⭐</a></span>
-        <span>If you&apos;re not hearing the alarm sound, check out <a href="https://github.com/danifromecuador/plannywise/issues/6" target='blank'>this issue</a></span>
-        <span>If you&apos;d like to provide feedback, report issues, or suggest improvements, <a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>click here</a></span>
+        <span>{text.doing.footer.info.created}<a href="https://www.linkedin.com/in/danifromec/" target="_blank"> Dani From Ecuador</a></span>
+        <span>{text.doing.footer.info.star}<a href="https://github.com/danifromecuador/plannywise" target='blank'>{text.doing.footer.info.starLink}</a></span>
+        <span>{text.doing.footer.info.issue}<a href="https://github.com/danifromecuador/plannywise/issues/6" target='blank'>{text.doing.footer.info.issueLink}</a></span>
+        <span>{text.doing.footer.info.suggest}<a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>{text.doing.footer.info.suggestLink}</a></span>
       </div>
       <div className={`${!show2 && "hide"} settings-content sub-container`}>
         <div>

@@ -20,6 +20,14 @@ export const text = {
       },
       footer: {
         info: {
+          btnTitle: "INFO",
+          created: "Creado por",
+          star: "Si te gustó esta app,",
+          starLink: " dame una ⭐",
+          issue: "Si no escuchas el sonido de la alarma, revisa",
+          issueLink: " este issue",
+          suggest: "Si te gustaría dar feedback, reportar issues o sugerir mejoras,",
+          suggestLink: " clic aquí"
         },
         settings: {
           btnTitle: "CONFIGURACIÓN",
@@ -71,9 +79,17 @@ export const text = {
       },
       footer: {
         info: {
+          btnTitle: "INFO",
+          created: "Created by",
+          star: "If you enjoy this app, please",
+          starLink: " give it a ⭐",
+          issue: "If you're not hearing the alarm sound, check out",
+          issueLink: " this issue",
+          suggest: "If you'd like to provide feedback, report issues, or suggest improvements,",
+          suggestLink: " click here"
         },
         settings: {
-          btnTitle: "CONFIGURACIÓN",
+          btnTitle: "CONFIGURATION",
           reset: {
             message: "reset Total Worked Hours counters: ",
             button: "Reset",
