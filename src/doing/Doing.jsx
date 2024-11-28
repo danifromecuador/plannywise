@@ -66,7 +66,7 @@ export const Doing = () => {
         setQuote(response.data.content.slice(0, -1)) // Delete the last dot of the quote
         setAuthor(response.data.author)
       }
-      catch (error) { console.error(text.doing.coute.error, error) }
+      catch (error) { console.error("Error fetching the quote: ", error.message) }
     }
     fetchQuote()
   }, [fetchNewQuote])

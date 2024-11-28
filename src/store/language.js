@@ -15,9 +15,6 @@ export const text = {
         continue: "CONTINUAR",
         reset: "RESETEAR"
       },
-      cuote: {
-        error: "Error al obtener la frase"
-      },
       footer: {
         info: {
           btnTitle: "INFO",
@@ -73,9 +70,6 @@ export const text = {
         pause: "PAUSE",
         continue: "CONTINUE",
         reset: "RESET"
-      },
-      cuote: {
-        error: "Error fetching the quote"
       },
       footer: {
         info: {
