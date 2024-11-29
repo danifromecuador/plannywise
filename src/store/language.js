@@ -109,7 +109,23 @@ export const text = {
         }
       }
     },
-    done: {}
+    done: {
+      title: "Done",
+      totalWorkedHours: {
+        title: "Total Worked Hours",
+        last30: "last 30 days",
+        last7: "last 7 days",
+        today: "today"
+      },
+      todayCompletedTasks: {
+        title: "Today's Completed Tasks",
+        warning: "Deleting today's completed tasks will log today's worked hours in the Total Worked Hours counters and will start a new day. Are you sure?",
+        cancel: "Cancel",
+        confirm: "Yes, I want to start a new day",
+        delete: "Delete All",
+        input: "Type a completed task and press Enter"
+      }
+    }
   }
 }
 
