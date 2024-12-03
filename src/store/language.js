@@ -31,7 +31,7 @@ export const text = {
           reset: {
             message: "resetear todos los contadores: ",
             button: "Resetear",
-            warning: "Esta acción borrará el historial de todos los contadores, está seguro?",
+            warning: "Esta acción borrará el historial de todos los contadores. Estás seguro?",
             cancel: "Cancelar",
             confirm: "Sí, resetear todo"
           },
@@ -53,7 +53,23 @@ export const text = {
         }
       }
     },
-    done: {}
+    done: {
+      title: "Hecho",
+      totalWorkedHours: {
+        title: "Total de Horas Trabajadas",
+        last30: "últimos 30 días",
+        last7: "últimos 7 días",
+        today: "hoy día"
+      },
+      todayCompletedTasks: {
+        title: "Tareas Completadas Hoy Día",
+        warning: "Borrar las tareas completadas de hoy día guardará las horas trabajadas hoy día en los contadores de Total de Horas Trabajadas y empezará un nuevo día. Estás seguro?",
+        cancel: "Cancelar",
+        confirm: "Sí, empezar un nuevo día",
+        delete: "Borrar Todo",
+        input: "Escribe una tarea completada y presiona Enter"
+      }
+    }
   },
   english: {
     todo: {
