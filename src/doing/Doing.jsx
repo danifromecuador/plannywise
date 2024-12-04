@@ -2,10 +2,13 @@ import { useEffect, useState, useRef } from 'react'
 import Countdown, { zeroPad } from 'react-countdown'
 import axios from 'axios'
 import { Footer } from './Footer.jsx'
+import { Store } from '../store/store.js'
 import './Doing.css'
 
 export const Doing = () => {
-  const [textStartBtn, setTextStartBtn] = useState("START")
+  const store = Store()
+  const text = store.language.current === "english" ? store.language.text().english : store.language.text().spanish
+  const [textStartBtn, setTextStartBtn] = useState(text.doing.pomodoro.start)
   const [viewStartBtn, setViewStartBtn] = useState("")
   const [viewPauseBtn, setViewPauseBtn] = useState("hide")
   const [viewResetBtn, setViewResetBtn] = useState("hide")
@@ -16,7 +19,6 @@ export const Doing = () => {
   const [fetchNewQuote, setFetchNewQoute] = useState("")
   const audioStart = new Audio('/start.mp3')
   const audioAlarm = new Audio('/clock_alarm.mp3')
-
   const catchNewQuote = () => fetchNewQuote == "yes" ? setFetchNewQoute("") : setFetchNewQoute("yes")
 
   const rendered = ({ minutes, seconds, completed }) => {
@@ -37,7 +39,7 @@ export const Doing = () => {
 
   const handlePauseClick = () => {
     if (countdownRef.current) countdownRef.current.getApi().pause()
-    setTextStartBtn("CONTINUE")
+    setTextStartBtn(text.doing.pomodoro.continue)
     setViewStartBtn("")
     setViewPauseBtn("hide")
     audioStart.play()
@@ -45,7 +47,7 @@ export const Doing = () => {
 
   const handleResetClick = (withSound) => {
     if (countdownRef.current) countdownRef.current.getApi().stop()
-    setTextStartBtn("START")
+    setTextStartBtn(text.doing.pomodoro.start)
     setViewStartBtn("")
     setViewPauseBtn("hide")
     setViewResetBtn("hide")
@@ -64,14 +66,14 @@ export const Doing = () => {
         setQuote(response.data.content.slice(0, -1)) // Delete the last dot of the quote
         setAuthor(response.data.author)
       }
-      catch (error) { console.error('Error fetching the quote', error) }
+      catch (error) { console.error("Error fetching the quote: ", error.message) }
     }
     fetchQuote()
   }, [fetchNewQuote])
 
   return (
     <div className='Doing'>
-      <h1>Doing</h1>
+      <h1>{text.doing.title}</h1>
       <div className="pomodoro sub-container">
         <div className="clock">
           <Countdown
@@ -83,8 +85,8 @@ export const Doing = () => {
         </div>
         <div className="controls">
           <button className={`${viewStartBtn} start bigBtn`} onClick={handleStartClick}>{textStartBtn}</button>
-          <button className={`${viewPauseBtn} pause bigBtn`} onClick={handlePauseClick}>PAUSE</button>
-          <button className={`${viewResetBtn} reset bigBtn`} onClick={() => handleResetClick(true)}>RESET</button>
+          <button className={`${viewPauseBtn} pause bigBtn`} onClick={handlePauseClick}>{text.doing.pomodoro.pause}</button>
+          <button className={`${viewResetBtn} reset bigBtn`} onClick={() => handleResetClick(true)}>{text.doing.pomodoro.reset}</button>
         </div>
         <div className="motivational" onClick={catchNewQuote}>
           <p>{quote}</p>

@@ -4,6 +4,7 @@ import './Done.css'
 
 export const Done = () => {
   const store = Store()
+  const text = store.language.current === "english" ? store.language.text().english : store.language.text().spanish
   const [input, setInput] = useState("")
   const [showModal, setShowModal] = useState("hide")
   const [showFooter, setShowFooter] = useState("")
@@ -15,17 +16,17 @@ export const Done = () => {
 
   return (
     <div className='Done'>
-      <h1>Done</h1>
+      <h1>{text.done.title}</h1>
       <div className="worked-hours sub-container">
-        <h2>Total Worked Hours</h2>
+        <h2>{text.done.totalWorkedHours.title}</h2>
         <div className="this">
-          <div className="this-month"><span className='counter-stats'>{store.tasks.workedHours().month} h</span><span>last 30 days</span></div>
-          <div className="this-week"><span className='counter-stats'>{store.tasks.workedHours().week} h</span><span>last 7 days</span></div>
-          <div className="this-day"><span className='counter-stats'>{store.tasks.workedHours().day} h</span><span>today</span></div>
+          <div className="this-month"><span className='counter-stats'>{store.tasks.workedHours().month} h</span><span>{text.done.totalWorkedHours.last30}</span></div>
+          <div className="this-week"><span className='counter-stats'>{store.tasks.workedHours().week} h</span><span>{text.done.totalWorkedHours.last7}</span></div>
+          <div className="this-day"><span className='counter-stats'>{store.tasks.workedHours().day} h</span><span>{text.done.totalWorkedHours.today}</span></div>
         </div>
       </div>
       <div className="completed-tasks sub-container">
-        <h2>Today&apos;s Completed Tasks</h2>
+        <h2>{text.done.todayCompletedTasks.title}</h2>
         <div className="common-tasks this">
           <button className="this-month" onClick={() => addCommonTask("learn")}><span className='counter-stats'>{store.tasks.commonTasks.learn} h</span><span>LEARN</span></button>
           <button className="this-week" onClick={() => addCommonTask("code")}><span className='counter-stats'>{store.tasks.commonTasks.code} h</span><span>CODE</span></button>
@@ -33,19 +34,19 @@ export const Done = () => {
         </div>
         <ul className='ul'>{store.tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}</ul>
         <div className={`${showModal} modal`}>
-          <p>Deleting today&apos;s completed tasks will log today&apos;s worked hours in the <b>Total Worked Hours</b> counters and will start a new day. Are you sure?</p>
+          <p>{text.done.todayCompletedTasks.warning}</p>
           <div className="options">
-            <button className='midBtn' onClick={() => (setShowModal("hide"), setShowFooter(""))}>Cancel</button>
-            <button className='midBtn' onClick={() => (store.tasks.deleteCompleted(), setShowModal("hide"), setShowFooter(""))}>Yes, I want to start a new day</button>
+            <button className='midBtn' onClick={() => (setShowModal("hide"), setShowFooter(""))}>{text.done.todayCompletedTasks.cancel}</button>
+            <button className='midBtn' onClick={() => (store.tasks.deleteCompleted(), setShowModal("hide"), setShowFooter(""))}>{text.done.todayCompletedTasks.confirm}</button>
           </div>
         </div>
         <footer className={showFooter}>
-          <button className={`${store.tasks.completed.length + store.tasks.commonTasksCounter() === 0 ? 'hide' : 'midBtn'}`} onClick={() => (setShowFooter("hide"), setShowModal(""))}>Delete All</button>
+          <button className={`${store.tasks.completed.length + store.tasks.commonTasksCounter() === 0 ? 'hide' : 'midBtn'}`} onClick={() => (setShowFooter("hide"), setShowModal(""))}>{text.done.todayCompletedTasks.delete}</button>
           <input
             type="text"
             className='input'
             value={input}
-            placeholder='Type a completed task and press Enter'
+            placeholder={text.done.todayCompletedTasks.input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={k => handleInputEnterKey(k)}
           />
