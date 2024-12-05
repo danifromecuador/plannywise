@@ -64,6 +64,11 @@ export const Doing = () => {
           }
         })
         setQuote(response.data.content.slice(0, -1)) // Delete the last dot of the quote
+        // translate quote to spanish
+        if (store.language.current === "spanish") {
+          let quoteTranslated = await axios(`https://api.mymemory.translated.net/get?q=${quote}&langpair=en|es`)
+          setQuote(quoteTranslated.data.responseData.translatedText)
+        }
         setAuthor(response.data.author)
       }
       catch (error) { console.error("Error fetching the quote: ", error.message) }
