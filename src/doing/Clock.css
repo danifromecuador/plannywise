@@ -1,0 +1,21 @@
+.Doing .pomodoro {
+  align-items: center;
+  row-gap: 50px;
+}
+
+.Doing .pomodoro .clock {
+  width: fit-content;
+  border-radius: 20px;
+  padding: 0 5%;
+  font-size: 8vw;
+  text-align: center;
+  font-family: 'CustomFont', monospace;
+  background-color: #000;
+}
+
+.Doing .pomodoro .controls {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  column-gap: 10px;
+}

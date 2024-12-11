@@ -49,21 +49,19 @@ export const Clock = () => {
   }
 
   return (
-    <div className='Clock'>
-      <div className="pomodoro sub-container">
-        <div className="clock">
-          <Countdown
-            ref={countdownRef}
-            date={date}
-            autoStart={false}
-            renderer={rendered}
-          />
-        </div>
-        <div className="controls">
-          <button className={`${viewStartBtn} start bigBtn`} onClick={handleStartClick}>{textStartBtn}</button>
-          <button className={`${viewPauseBtn} pause bigBtn`} onClick={handlePauseClick}>{text.doing.pomodoro.pause}</button>
-          <button className={`${viewResetBtn} reset bigBtn`} onClick={() => handleResetClick(true)}>{text.doing.pomodoro.reset}</button>
-        </div>
+    <div className="pomodoro sub-container">
+      <div className="clock">
+        <Countdown
+          ref={countdownRef}
+          date={date}
+          autoStart={false}
+          renderer={rendered}
+        />
+      </div>
+      <div className="controls">
+        <button className={`${viewStartBtn} start bigBtn`} onClick={handleStartClick}>{textStartBtn}</button>
+        <button className={`${viewPauseBtn} pause bigBtn`} onClick={handlePauseClick}>{text.doing.pomodoro.pause}</button>
+        <button className={`${viewResetBtn} reset bigBtn`} onClick={() => handleResetClick(true)}>{text.doing.pomodoro.reset}</button>
       </div>
     </div>
   )

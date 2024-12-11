@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Store } from '../store/store.js'
 import axios from 'axios'
-
-
 import './Quote.css'
 
 export const Quote = () => {
   const store = Store()
-  const text = store.language.current === "english" ? store.language.text().english : store.language.text().spanish
   const [quote, setQuote] = useState("")
   const [author, setAuthor] = useState("")
   const [fetchNewQuote, setFetchNewQoute] = useState("")
@@ -38,6 +35,7 @@ export const Quote = () => {
   useEffect(() => {
     if (store.language.current === "spanish") translateQuote()
   }, [author])
+
   return (
     <div className="motivational" onClick={catchNewQuote}>
       <p>{quote}</p>

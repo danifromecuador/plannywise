@@ -11,8 +11,8 @@ export const Doing = () => {
   return (
     <div className='Doing'>
       <h1>{text.doing.title}</h1>
-      <Quote />
       <Clock />
+      <Quote />
       <Footer />
     </div>
   )
