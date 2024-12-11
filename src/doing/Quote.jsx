@@ -5,8 +5,8 @@ import './Quote.css'
 
 export const Quote = () => {
   const store = Store()
-  const [quote, setQuote] = useState("")
-  const [author, setAuthor] = useState("")
+  const [quote, setQuote] = useState("One day, in retrospect, the years of struggle will strike you as the most beautiful")
+  const [author, setAuthor] = useState("Sigmund Freud")
   const [fetchNewQuote, setFetchNewQoute] = useState("")
   const catchNewQuote = () => fetchNewQuote == "yes" ? setFetchNewQoute("") : setFetchNewQoute("yes")
 
@@ -19,22 +19,23 @@ export const Quote = () => {
             maxLength: 70,
           }
         })
-        setQuote(response.data.content.slice(0, -1)) // Delete the last dot of the quote
+        if (store.language.current === "spanish") await translateQuote(response.data.content)
+        else setQuote(response.data.content)
         setAuthor(response.data.author)
       }
-      catch (error) { console.error("Error fetching the quote: ", error.message) }
+      catch (error) {
+        setQuote(quote)
+        setAuthor(author)
+        console.error("Error fetching the quote: ", error.message)
+      }
     }
     fetchQuote()
   }, [fetchNewQuote])
 
-  const translateQuote = async () => {
-    let quoteTranslated = await axios(`https://api.mymemory.translated.net/get?q=${quote}&langpair=en|es`)
+  const translateQuote = async (quote) => {
+    const quoteTranslated = await axios(`https://api.mymemory.translated.net/get?q=${quote}&langpair=en|es`)
     setQuote(quoteTranslated.data.responseData.translatedText)
   }
-
-  useEffect(() => {
-    if (store.language.current === "spanish") translateQuote()
-  }, [author])
 
   return (
     <div className="motivational" onClick={catchNewQuote}>
