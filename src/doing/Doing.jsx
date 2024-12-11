@@ -2,7 +2,6 @@ import { Store } from '../store/store.js'
 import { Clock } from './Clock.jsx'
 import { Quote } from './Quote.jsx'
 import { Footer } from './Footer.jsx'
-import './Doing.css'
 
 export const Doing = () => {
   const store = Store()
