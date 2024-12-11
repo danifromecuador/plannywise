@@ -71,6 +71,15 @@ export const Doing = () => {
     fetchQuote()
   }, [fetchNewQuote])
 
+  const translateQuote = async () => {
+    let quoteTranslated = await axios(`https://api.mymemory.translated.net/get?q=${quote}&langpair=en|es`)
+    setQuote(quoteTranslated.data.responseData.translatedText)
+  }
+
+  useEffect(() => {
+    if (store.language.current === "spanish") translateQuote()
+  }, [author])
+
   return (
     <div className='Doing'>
       <h1>{text.doing.title}</h1>
