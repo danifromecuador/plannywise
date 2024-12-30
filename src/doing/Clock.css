@@ -3,7 +3,7 @@
   row-gap: 50px;
 }
 
-.Doing .clock {
+.Doing .pomodoro .clock {
   width: fit-content;
   border-radius: 20px;
   padding: 0 5%;
@@ -13,25 +13,9 @@
   background-color: #000;
 }
 
-.Doing .controls {
+.Doing .pomodoro .controls {
   width: 100%;
   justify-content: center;
   display: flex;
   column-gap: 10px;
-}
-
-.Doing .motivational {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-}
-
-.Doing .motivational p:first-of-type {
-  font-size: 1rem;
-  font-style: italic;
-}
-
-.Doing .motivational p:last-of-type {
-  font-size: 0.7rem;
 }
