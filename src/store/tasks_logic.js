@@ -27,7 +27,7 @@ export const workedHours = get => {
   return ({ "day": day, "week": week, "month": month })
 }
 
-export const addCommonTask = (get, set, task) => set(state => {
+export const addCommonTaskCompleted = (get, set, task) => set(state => {
   let commonTasks = { "learn": get().tasks.commonTasks.learn, "code": get().tasks.commonTasks.code, "apply": get().tasks.commonTasks.apply }
   task === "learn" ? commonTasks.learn += 0.25 : task === "code" ? commonTasks.code += 0.25 : commonTasks.apply += 0.25
   return ({
@@ -46,3 +46,9 @@ export const resetWorkedHoursHistory = set => set(state => ({
     workedHoursHistory: []
   }
 }))
+
+export const addCommonTaskNew = (set, task) => set(state=> {
+  console.log(42);
+  
+  return ({})
+})

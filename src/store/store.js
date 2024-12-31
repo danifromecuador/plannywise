@@ -5,9 +5,10 @@ import {
   addCompletedTask,
   deleteAllCompletedTasks,
   workedHours,
-  addCommonTask,
+  addCommonTaskCompleted,
   commonTasksCounter,
-  resetWorkedHoursHistory
+  resetWorkedHoursHistory,
+  addCommonTaskNew
 } from './tasks_logic.js'
 import { text, setCurrent } from "./language.js"
 
@@ -52,8 +53,9 @@ const tasksSlice = (set, get) => ({
   add: input => addCompletedTask(set, input),
   deleteCompleted: () => deleteAllCompletedTasks(set, get),
   workedHours: () => workedHours(get),
-  addCommonTask: task => addCommonTask(get, set, task),
-  resetWorkedHoursHistory: () => resetWorkedHoursHistory(set)
+  addCommonTask: task => addCommonTaskCompleted(get, set, task),
+  resetWorkedHoursHistory: () => resetWorkedHoursHistory(set),
+  addCommonTasks: task => addCommonTaskNew(task)
 })
 
 const languageSlice = (set) => ({
