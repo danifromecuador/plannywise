@@ -5,7 +5,7 @@ import './Clock.css'
 
 export const Clock = () => {
   const store = Store()
-  const text = store.language.current === "english" ? store.language.text().english : store.language.text().spanish
+  const text = store.configs.language().current === "english" ? store.configs.language().text().english : store.configs.language().text().spanish
   const countdownRef = useRef(null)
   const audioStart = new Audio('/start.mp3')
   const audioAlarm = new Audio('/clock_alarm.mp3')
