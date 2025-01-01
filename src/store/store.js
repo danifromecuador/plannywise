@@ -10,6 +10,7 @@ import {
   resetWorkedHoursHistory
 } from './tasks_logic.js'
 import { text, setCurrent } from "./language.js"
+import { addCT } from "./common_tasks_logic.js"
 
 const todoDailySlice = (set, get) => ({
   title: "Daily Goals",
@@ -63,8 +64,8 @@ const configurationOptionsSlice = (set) => ({
     text: () => text
   },
   commonTasks: {
-    // currents: [],
-    // add: ()=>(),
+    currents: [],
+    add: input => addCT(set, input),
     // remove: ()=>() 
   }
 })

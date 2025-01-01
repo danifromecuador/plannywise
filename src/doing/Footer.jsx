@@ -59,7 +59,7 @@ export const Footer = () => {
         <div>
           <span>{text.doing.footer.settings.commonTasks.message}</span>
           LEARN x_____CODE x_____APPLY x
-          <button>{text.doing.footer.settings.commonTasks.addNew}</button>
+          <button onClick={()=>store.configs.commonTasks.add("daniel")}>{text.doing.footer.settings.commonTasks.addNew}</button>
         </div>
         <div>
           <span>{text.doing.footer.settings.timer.message}</span>
