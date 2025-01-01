@@ -3,10 +3,10 @@ import { Todo } from './Todo.jsx'
 
 export const Todos = () => {
   const store = Store()
-  const title = store.language.current === "english"
+  const title = store.configs.language.current === "english"
     ? ["Daily Goals", "Weekly Goals", "Monthly Goals"]
     : ["Objetivos Diarios", "Objetivos Semanales", "Objetivos Mensuales"]
-  const text = store.language.current === "english" ? store.language.text().english : store.language.text().spanish
+  const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
   return (
     <div className='Todos'>
       <h1>{text.todo.title}</h1>

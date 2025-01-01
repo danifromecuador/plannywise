@@ -56,10 +56,17 @@ const tasksSlice = (set, get) => ({
   resetWorkedHoursHistory: () => resetWorkedHoursHistory(set)
 })
 
-const languageSlice = (set) => ({
-  current: localStorage.getItem("currentLanguage") || "english",
-  setCurrent: (language) => setCurrent(set, language),
-  text: () => text
+const configurationOptionsSlice = (set) => ({
+  language: {
+    current: localStorage.getItem("currentLanguage") || "english",
+    setCurrent: (language) => setCurrent(set, language),
+    text: () => text
+  },
+  commonTasks: {
+    // currents: [],
+    // add: ()=>(),
+    // remove: ()=>() 
+  }
 })
 
 export const Store = create(devtools((set, get) => ({
@@ -67,5 +74,5 @@ export const Store = create(devtools((set, get) => ({
   weekly: todoWeeklySlice(set, get),
   monthly: todoMonthlySlice(set, get),
   tasks: tasksSlice(set, get),
-  language: languageSlice(set)
+  configs: configurationOptionsSlice(set)
 })))

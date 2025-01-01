@@ -5,7 +5,7 @@ import { Footer } from './Footer.jsx'
 
 export const Doing = () => {
   const store = Store()
-  const text = store.language.current === "english" ? store.language.text().english : store.language.text().spanish
+  const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
 
   return (
     <div className='Doing'>
