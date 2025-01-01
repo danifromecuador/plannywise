@@ -58,7 +58,7 @@ export const Footer = () => {
         </div>
         <div>
           <span>{text.doing.footer.settings.commonTasks.message}</span>
-          LEARN x_____CODE x_____AdivLY x
+          LEARN x_____CODE x_____APPLY x
           <button>{text.doing.footer.settings.commonTasks.addNew}</button>
         </div>
         <div>
