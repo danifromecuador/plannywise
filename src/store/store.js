@@ -57,11 +57,11 @@ const tasksSlice = (set, get) => ({
 })
 
 const configurationOptionsSlice = (set) => ({
-  language: (set) => ({
+  language: {
     current: localStorage.getItem("currentLanguage") || "english",
     setCurrent: (language) => setCurrent(set, language),
     text: () => text
-  })
+  }
 })
 
 export const Store = create(devtools((set, get) => ({
