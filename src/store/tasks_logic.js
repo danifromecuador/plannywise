@@ -46,9 +46,3 @@ export const resetWorkedHoursHistory = set => set(state => ({
     workedHoursHistory: []
   }
 }))
-
-export const addCommonTaskNew = (set, task) => set(state=> {
-  console.log(42);
-  
-  return ({})
-})

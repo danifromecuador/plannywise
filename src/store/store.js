@@ -7,8 +7,7 @@ import {
   workedHours,
   addCommonTaskCompleted,
   commonTasksCounter,
-  resetWorkedHoursHistory,
-  addCommonTaskNew
+  resetWorkedHoursHistory
 } from './tasks_logic.js'
 import { text, setCurrent } from "./language.js"
 
@@ -54,8 +53,7 @@ const tasksSlice = (set, get) => ({
   deleteCompleted: () => deleteAllCompletedTasks(set, get),
   workedHours: () => workedHours(get),
   addCommonTask: task => addCommonTaskCompleted(get, set, task),
-  resetWorkedHoursHistory: () => resetWorkedHoursHistory(set),
-  addCommonTasks: task => addCommonTaskNew(task)
+  resetWorkedHoursHistory: () => resetWorkedHoursHistory(set)
 })
 
 const configurationOptionsSlice = (set) => ({
