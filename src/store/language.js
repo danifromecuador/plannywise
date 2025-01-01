@@ -146,9 +146,12 @@ export const text = {
 }
 
 export const setCurrent = (set, language) => set(state => ({
-  language: {
-    ...state.language,
-    current: language
+  configs: {
+    ...state.configs,
+    language: {
+      ...state.configs.language,
+      current: language
+    }
   }
-}), false, 'language/setCurrent')
+}), false, 'configs/language/setCurrent')
 

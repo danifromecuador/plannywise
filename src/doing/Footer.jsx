@@ -9,7 +9,7 @@ export const Footer = () => {
   const [show3, setShow3] = useState(false) // "CONFIRM OR CANCEL" RESETING DIALOG (show or hide)
   const [show4, setShow4] = useState(true) // "RESET TOTAL WORKED HOURS" BUTTON (show or hide)
   // catch english or spanish json texts, this change when the user clicks on change language buttons
-  const text = store.language.current === "english" ? store.language.text().english : store.language.text().spanish
+  const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
 
   const infoBtn = () => (setShow1(!show1), setShow2(false), setShow3(false), setShow4(true))
   const settingsBtn = () => (setShow2(!show2), setShow1(false), setShow3(false), setShow4(true))
@@ -19,7 +19,7 @@ export const Footer = () => {
 
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
   useEffect(() => localStorage.setItem("settingsVisibility", show2), [show2])
-  useEffect(() => localStorage.setItem("currentLanguage", store.language.current), [store.language])
+  useEffect(() => localStorage.setItem("currentLanguage", store.configs.language.current), [store.configs.language])
 
   return (
     <div className="Footer sub-container">
@@ -48,8 +48,8 @@ export const Footer = () => {
           </div>
         </div>
         <div>{text.doing.footer.settings.language.message}
-          <button onClick={() => store.language.setCurrent("spanish")}>ESPAÑOL</button>
-          <button onClick={() => store.language.setCurrent("english")}>ENGLISH</button>
+          <button onClick={() => store.configs.language.setCurrent("spanish")}>ESPAÑOL</button>
+          <button onClick={() => store.configs.language.setCurrent("english")}>ENGLISH</button>
         </div>
         <div>
           <span>{text.doing.footer.settings.theme.message}</span>
@@ -58,7 +58,7 @@ export const Footer = () => {
         </div>
         <div>
           <span>{text.doing.footer.settings.commonTasks.message}</span>
-          LEARN x_____CODE x_____AdivLY x
+          LEARN x_____CODE x_____APPLY x
           <button>{text.doing.footer.settings.commonTasks.addNew}</button>
         </div>
         <div>
