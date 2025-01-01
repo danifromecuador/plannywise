@@ -153,5 +153,5 @@ export const setCurrent = (set, language) => set(state => ({
       current: language
     }
   }
-}), false, 'language/setCurrent')
+}), false, 'configs/language/setCurrent')
 
