@@ -61,6 +61,11 @@ const configurationOptionsSlice = (set) => ({
     current: localStorage.getItem("currentLanguage") || "english",
     setCurrent: (language) => setCurrent(set, language),
     text: () => text
+  },
+  commonTasks: {
+    // currents: [],
+    // add: ()=>(),
+    // remove: ()=>() 
   }
 })
 
