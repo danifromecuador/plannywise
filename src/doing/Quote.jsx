@@ -19,7 +19,7 @@ export const Quote = () => {
             maxLength: 70,
           }
         })
-        if (store.configs.language().current === "spanish") await translateQuote(response.data.content)
+        if (store.configs.language.current === "spanish") await translateQuote(response.data.content)
         else setQuote(response.data.content)
         setAuthor(response.data.author)
       }
