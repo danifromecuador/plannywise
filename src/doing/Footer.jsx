@@ -8,6 +8,8 @@ export const Footer = () => {
   const [show2, setShow2] = useState(JSON.parse(localStorage.getItem("settingsVisibility")) || false) // SETTINGS (show or hide)
   const [show3, setShow3] = useState(false) // "CONFIRM OR CANCEL" RESETING DIALOG (show or hide)
   const [show4, setShow4] = useState(true) // "RESET TOTAL WORKED HOURS" BUTTON (show or hide)
+  const [show5, setShow5] = useState(false) // "Input for adding a new common task" (show or hide)
+  const [show6, setShow6] = useState(true) // "Button for adding a new common task" (show or hide)
   // catch english or spanish json texts, this change when the user clicks on change language buttons
   const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
 
@@ -16,6 +18,8 @@ export const Footer = () => {
   const resetBtn = () => (setShow3(true), setShow4(false))
   const cancelBtn = () => (setShow3(false), setShow4(true))
   const confirmBtn = () => (store.tasks.deleteCompleted(), store.tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
+  const addCTBtn = () => (setShow5(true), setShow6(false))
+  const addCTInput = () => (store.configs)
 
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
   useEffect(() => localStorage.setItem("settingsVisibility", show2), [show2])
@@ -59,7 +63,13 @@ export const Footer = () => {
         <div>
           <span>{text.doing.footer.settings.commonTasks.message}</span>
           LEARN x_____CODE x_____APPLY x
-          <button onClick={()=>store.configs.commonTasks.add("daniel")}>{text.doing.footer.settings.commonTasks.addNew}</button>
+          <input
+            type="text"
+            className={`input ${!show5 && "hide"}`}
+            placeholder='Type and press Enter'
+          />
+          <button onClick={() => store.configs.commonTasks.add("daniel")}>{text.doing.footer.settings.commonTasks.addNew}</button>
+          <button onClick={() => addCTBtn()}>+</button>
         </div>
         <div>
           <span>{text.doing.footer.settings.timer.message}</span>
