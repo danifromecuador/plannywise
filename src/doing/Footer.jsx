@@ -19,7 +19,11 @@ export const Footer = () => {
   const cancelBtn = () => (setShow3(false), setShow4(true))
   const confirmBtn = () => (store.tasks.deleteCompleted(), store.tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
   const addCTBtn = () => (setShow5(true), setShow6(false))
-  const addCTInput = () => (store.configs)
+  const handleCTInputKey = (k) => {
+    k.key === "Escape" && (setShow5(false), setShow6(true))
+
+
+  }
 
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
   useEffect(() => localStorage.setItem("settingsVisibility", show2), [show2])
@@ -67,9 +71,10 @@ export const Footer = () => {
             type="text"
             className={`input ${!show5 && "hide"}`}
             placeholder='Type and press Enter'
+            onKeyDown={k => handleCTInputKey(k)}
           />
           <button onClick={() => store.configs.commonTasks.add("daniel")}>{text.doing.footer.settings.commonTasks.addNew}</button>
-          <button onClick={() => addCTBtn()}>+</button>
+          <button className={`${!show6 && "hide"}`} onClick={() => addCTBtn()}>+</button>
         </div>
         <div>
           <span>{text.doing.footer.settings.timer.message}</span>
