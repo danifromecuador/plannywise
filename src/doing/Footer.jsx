@@ -4,6 +4,7 @@ import './Footer.css'
 
 export const Footer = () => {
   const store = Store()
+  const [input, setInput] = useState("")
   const [show1, setShow1] = useState(JSON.parse(localStorage.getItem("infoVisibility")) || false) // INFO (show or hide)
   const [show2, setShow2] = useState(JSON.parse(localStorage.getItem("settingsVisibility")) || false) // SETTINGS (show or hide)
   const [show3, setShow3] = useState(false) // "CONFIRM OR CANCEL" RESETING DIALOG (show or hide)
@@ -21,8 +22,7 @@ export const Footer = () => {
   const addCTBtn = () => (setShow5(true), setShow6(false))
   const handleCTInputKey = (k) => {
     k.key === "Escape" && (setShow5(false), setShow6(true))
-
-
+    k.key === "Enter" && (store.configs.commonTasks.add(input), handleCTInputKey("Escape"))
   }
 
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
@@ -72,6 +72,7 @@ export const Footer = () => {
             className={`input ${!show5 && "hide"}`}
             placeholder='Type and press Enter'
             onKeyDown={k => handleCTInputKey(k)}
+            onChange={e => setInput(e.target.value)}
           />
           <button onClick={() => store.configs.commonTasks.add("daniel")}>{text.doing.footer.settings.commonTasks.addNew}</button>
           <button className={`${!show6 && "hide"}`} onClick={() => addCTBtn()}>+</button>
