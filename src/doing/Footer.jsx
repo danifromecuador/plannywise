@@ -22,7 +22,7 @@ export const Footer = () => {
   const addCTBtn = () => (setShow5(true), setShow6(false))
   const handleCTInputKey = (k) => {
     k === "Escape" && (setShow5(false), setShow6(true), setInput(""))
-    k === "Enter" && input !=="" && (store.configs.commonTasks.add(input), handleCTInputKey("Escape"))
+    k === "Enter" && input !== "" && (store.configs.commonTasks.add(input), handleCTInputKey("Escape"))
   }
 
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
@@ -67,7 +67,12 @@ export const Footer = () => {
         <div>
           <span>{text.doing.footer.settings.commonTasks.message}</span>
           <span>
-            {store.configs.commonTasks.currents.map(e=><li>{e}</li>)}
+            {store.configs.commonTasks.currents.map(e =>
+              <span>
+                <span>{e}</span>
+                <button>X</button>
+              </span>
+            )}
           </span>
           <input
             type="text"
