@@ -64,7 +64,7 @@ const configurationOptionsSlice = (set) => ({
     text: () => text
   },
   commonTasks: {
-    currents: [],
+    currents: JSON.parse(localStorage.getItem("commonTasksNames")) || ["LEARN", "CODE", "APPLY"],
     add: input => addCT(set, input),
     remove: index => removeCT(set, index)
   }

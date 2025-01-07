@@ -29,6 +29,7 @@ export const Footer = () => {
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
   useEffect(() => localStorage.setItem("settingsVisibility", show2), [show2])
   useEffect(() => localStorage.setItem("currentLanguage", store.configs.language.current), [store.configs.language])
+  useEffect(()=>{localStorage.setItem("commonTasksNames", JSON.stringify(store.configs.commonTasks.currents))},[store.configs.commonTasks.currents])
 
   return (
     <div className="Footer sub-container">
