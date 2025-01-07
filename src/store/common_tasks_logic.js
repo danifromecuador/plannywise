@@ -7,7 +7,7 @@ export const addCT = (set, input) => set(state => ({
       currents: [...state.configs.commonTasks.currents, input]
     }
   }
-}))
+}), false, 'configs/commonTasks/add')
 
 export const removeCT = (set, index) => set(state => {
   const CTArray = state.configs.commonTasks.currents
@@ -21,4 +21,4 @@ export const removeCT = (set, index) => set(state => {
       }
     }
   })
-})
+}, false, 'configs/commonTasks/remove')
