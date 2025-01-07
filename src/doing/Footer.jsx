@@ -22,7 +22,7 @@ export const Footer = () => {
   const addCTBtn = () => (setShow5(true), setShow6(false))
   const handleCTInputKey = (k) => {
     k === "Escape" && (setShow5(false), setShow6(true), setInput(""))
-    k === "Enter" && (store.configs.commonTasks.add(input), handleCTInputKey("Escape"))
+    k === "Enter" && input !=="" && (store.configs.commonTasks.add(input), handleCTInputKey("Escape"))
   }
 
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
