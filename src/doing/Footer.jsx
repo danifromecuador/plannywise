@@ -21,8 +21,8 @@ export const Footer = () => {
   const confirmBtn = () => (store.tasks.deleteCompleted(), store.tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
   const addCTBtn = () => (setShow5(true), setShow6(false))
   const handleCTInputKey = (k) => {
-    k.key === "Escape" && (setShow5(false), setShow6(true))
-    k.key === "Enter" && (store.configs.commonTasks.add(input), handleCTInputKey("Escape"))
+    k === "Escape" && (setShow5(false), setShow6(true), setInput(""))
+    k === "Enter" && (store.configs.commonTasks.add(input), handleCTInputKey("Escape"))
   }
 
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
@@ -66,15 +66,17 @@ export const Footer = () => {
         </div>
         <div>
           <span>{text.doing.footer.settings.commonTasks.message}</span>
-          LEARN x_____CODE x_____APPLY x
+          <span>
+            {store.configs.commonTasks.currents.map(e=><li>{e}</li>)}
+          </span>
           <input
             type="text"
             className={`input ${!show5 && "hide"}`}
             placeholder='Type and press Enter'
-            onKeyDown={k => handleCTInputKey(k)}
+            value={input}
+            onKeyDown={k => handleCTInputKey(k.key)}
             onChange={e => setInput(e.target.value)}
           />
-          <button onClick={() => store.configs.commonTasks.add("daniel")}>{text.doing.footer.settings.commonTasks.addNew}</button>
           <button className={`${!show6 && "hide"}`} onClick={() => addCTBtn()}>+</button>
         </div>
         <div>
