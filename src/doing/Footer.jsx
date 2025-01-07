@@ -68,17 +68,17 @@ export const Footer = () => {
         <div>
           <span>{text.doing.footer.settings.commonTasks.message}</span>
           <span>
-            {store.configs.commonTasks.currents.map((e,i) =>
+            {store.configs.commonTasks.currents.map((e, i) =>
               <span key={i}>
                 <span>{e}</span>
-                <button onClick={()=>handleRemoveCTBtn(i)}>x</button>
+                <button onClick={() => handleRemoveCTBtn(i)}>x</button>
               </span>
             )}
           </span>
           <input
             type="text"
             className={`input ${!show5 && "hide"}`}
-            placeholder='Type and press Enter'
+            placeholder={text.doing.footer.settings.commonTasks.inputPlaceHolder}
             value={input}
             onKeyDown={k => handleCTInputKey(k.key)}
             onChange={e => setInput(e.target.value)}

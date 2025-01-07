@@ -45,7 +45,7 @@ export const text = {
           },
           commonTasks: {
             message: "tareas comunes: ",
-            addNew: "NUEVA TAREA"
+            inputPlaceHolder: "Escribe una tarea común y presiona Enter"
           },
           timer: {
             message: "elegir temporizador: "
@@ -117,7 +117,7 @@ export const text = {
           },
           commonTasks: {
             message: "common tasks: ",
-            addNew: "ADD NEW"
+            inputPlaceHolder: "Type a common task and press Enter"
           },
           timer: {
             message: "set timer: "
