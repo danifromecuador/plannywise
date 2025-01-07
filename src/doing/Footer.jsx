@@ -20,10 +20,11 @@ export const Footer = () => {
   const cancelBtn = () => (setShow3(false), setShow4(true))
   const confirmBtn = () => (store.tasks.deleteCompleted(), store.tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
   const addCTBtn = () => (setShow5(true), setShow6(false))
-  const handleCTInputKey = (k) => {
+  const handleCTInputKey = k => {
     k === "Escape" && (setShow5(false), setShow6(true), setInput(""))
     k === "Enter" && input !== "" && (store.configs.commonTasks.add(input), handleCTInputKey("Escape"))
   }
+  const handleRemoveCTBtn = i => store.configs.commonTasks.remove(i)
 
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
   useEffect(() => localStorage.setItem("settingsVisibility", show2), [show2])
@@ -67,10 +68,10 @@ export const Footer = () => {
         <div>
           <span>{text.doing.footer.settings.commonTasks.message}</span>
           <span>
-            {store.configs.commonTasks.currents.map(e =>
-              <span>
+            {store.configs.commonTasks.currents.map((e,i) =>
+              <span key={i}>
                 <span>{e}</span>
-                <button>X</button>
+                <button onClick={()=>handleRemoveCTBtn(i)}>x</button>
               </span>
             )}
           </span>
