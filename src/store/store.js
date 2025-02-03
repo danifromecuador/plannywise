@@ -5,11 +5,12 @@ import {
   addCompletedTask,
   deleteAllCompletedTasks,
   workedHours,
-  addCommonTask,
+  addCommonTaskCompleted,
   commonTasksCounter,
   resetWorkedHoursHistory
 } from './tasks_logic.js'
 import { text, setCurrent } from "./language.js"
+import { addCT, removeCT } from "./common_tasks_logic.js"
 
 const todoDailySlice = (set, get) => ({
   title: "Daily Goals",
@@ -52,20 +53,20 @@ const tasksSlice = (set, get) => ({
   add: input => addCompletedTask(set, input),
   deleteCompleted: () => deleteAllCompletedTasks(set, get),
   workedHours: () => workedHours(get),
-  addCommonTask: task => addCommonTask(get, set, task),
+  addCommonTask: task => addCommonTaskCompleted(get, set, task),
   resetWorkedHoursHistory: () => resetWorkedHoursHistory(set)
 })
 
 const configurationOptionsSlice = (set) => ({
   language: {
     current: localStorage.getItem("currentLanguage") || "english",
-    setCurrent: (language) => setCurrent(set, language),
+    setCurrent: language => setCurrent(set, language),
     text: () => text
   },
   commonTasks: {
-    // currents: [],
-    // add: ()=>(),
-    // remove: ()=>() 
+    currents: JSON.parse(localStorage.getItem("commonTasksNames")) || ["LEARN", "CODE", "APPLY"],
+    add: input => addCT(set, input),
+    remove: index => removeCT(set, index)
   }
 })
 
