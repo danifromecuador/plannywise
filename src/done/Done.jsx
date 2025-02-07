@@ -4,6 +4,9 @@ import './Done.css'
 
 export const Done = () => {
   const store = Store()
+  const commonTasks = store.configs.commonTasks.currents
+  console.log(commonTasks);
+  
   const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
   const [input, setInput] = useState("")
   const [showModal, setShowModal] = useState("hide")
