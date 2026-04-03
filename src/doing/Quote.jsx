@@ -13,28 +13,25 @@ export const Quote = () => {
   useEffect(() => {
     const fetchQuote = async () => {
       try {
-        const response = await axios('https://api.quotable.io/random', {
-          params: {
-            tags: 'motivational|success|change|character|future|inspirational',
-            maxLength: 70,
-          }
-        })
-        if (store.configs.language.current === "spanish") await translateQuote(response.data.content)
-        else setQuote(response.data.content)
-        setAuthor(response.data.author)
-      }
-      catch (error) {
-        setQuote(quote)
-        setAuthor(author)
+        const { data } = await axios.get('https://dummyjson.com/quotes/random')
+        let content = (data.quote ?? '').trim()
+        const authorName = (data.author ?? '').trim()
+        if (content.length > 70) content = `${content.slice(0, 67)}...`
+        if (store.configs.language.current === "spanish") await translateQuote(content)
+        else setQuote(content)
+        setAuthor(authorName || 'Unknown')
+      } catch (error) {
         console.error("Error fetching the quote: ", error.message)
       }
     }
     fetchQuote()
-  }, [fetchNewQuote])
+  }, [fetchNewQuote, store.configs.language.current])
 
-  const translateQuote = async (quote) => {
-    const quoteTranslated = await axios(`https://api.mymemory.translated.net/get?q=${quote}&langpair=en|es`)
-    setQuote(quoteTranslated.data.responseData.translatedText)
+  const translateQuote = async (text) => {
+    const { data } = await axios.get('https://api.mymemory.translated.net/get', {
+      params: { q: text, langpair: 'en|es' },
+    })
+    setQuote(data.responseData.translatedText)
   }
 
   return (
