@@ -27,3 +27,38 @@
   justify-content: space-between;
   align-items: end;
 }
+
+.Footer .common-tasks-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.Footer .common-tasks-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.Footer .common-task-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.Footer .common-task-label {
+  flex: 1;
+  min-width: 120px;
+}
+
+.Footer .common-task-edit-input {
+  flex: 1;
+  min-width: 140px;
+}
+
+.Footer .common-task-edit-btn,
+.Footer .common-task-remove-btn {
+  padding: 2px 8px;
+  font-size: 0.75rem;
+}

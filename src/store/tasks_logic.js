@@ -1,3 +1,6 @@
+const sumCommonTaskHours = (commonTasks) =>
+  Object.values(commonTasks || {}).reduce((a, n) => a + (typeof n === 'number' ? n : 0), 0)
+
 export const addCompletedTask = (set, input) => set(state => ({
   tasks: {
     ...state.tasks,
@@ -6,39 +9,43 @@ export const addCompletedTask = (set, input) => set(state => ({
 }), false, 'tasks/add')
 
 export const deleteAllCompletedTasks = (set, get) => set(state => {
-  const commonTasksCounter = get().tasks.commonTasks.learn + get().tasks.commonTasks.code + get().tasks.commonTasks.apply
+  const commonTasksCounter = sumCommonTaskHours(get().tasks.commonTasks)
   const workedHoursHistoryArray = [(get().tasks.completed.length * 15 / 60) + commonTasksCounter, ...state.tasks.workedHoursHistory]
   workedHoursHistoryArray.length > 30 && workedHoursHistoryArray.pop()
+  const currents = get().configs.commonTasks.currents
+  const resetHours = Object.fromEntries(currents.map(({ id }) => [id, 0]))
   return ({
     tasks: {
       ...state.tasks,
       completed: [],
       workedHoursHistory: workedHoursHistoryArray,
-      commonTasks: {}
+      commonTasks: resetHours
     }
   })
 }, false, 'tasks/deleteAllCompleted')
 
 export const workedHours = get => {
-  const commonTasksCounter = get().tasks.commonTasks.learn + get().tasks.commonTasks.code + get().tasks.commonTasks.apply
+  const commonTasksCounter = sumCommonTaskHours(get().tasks.commonTasks)
   const day = (get().tasks.completed.length * 15 / 60) + commonTasksCounter
   const week = get().tasks.workedHoursHistory.slice(0, 7).reduce((a, b) => a + b, 0)
   const month = get().tasks.workedHoursHistory.reduce((a, b) => a + b, 0)
   return ({ "day": day, "week": week, "month": month })
 }
 
-export const addCommonTaskCompleted = (get, set, task) => set(state => {
-  let commonTasks = { "learn": get().tasks.commonTasks.learn, "code": get().tasks.commonTasks.code, "apply": get().tasks.commonTasks.apply }
-  task === "learn" ? commonTasks.learn += 0.25 : task === "code" ? commonTasks.code += 0.25 : commonTasks.apply += 0.25
+export const addCommonTaskCompleted = (get, set, taskId) => set(state => {
+  const prev = get().tasks.commonTasks[taskId] ?? 0
   return ({
     tasks: {
       ...state.tasks,
-      commonTasks: commonTasks
+      commonTasks: {
+        ...state.tasks.commonTasks,
+        [taskId]: prev + 0.25
+      }
     }
   })
-}, false, `tasks/addCommonTask/add_${task}`)
+}, false, `tasks/addCommonTask/add_${taskId}`)
 
-export const commonTasksCounter = get => get().tasks.commonTasks.learn + get().tasks.commonTasks.code + get().tasks.commonTasks.apply
+export const commonTasksCounter = get => sumCommonTaskHours(get().tasks.commonTasks)
 
 export const resetWorkedHoursHistory = set => set(state => ({
   tasks: {

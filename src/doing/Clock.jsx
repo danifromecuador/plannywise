@@ -1,49 +1,57 @@
-import { useState, useRef } from 'react'
+import { useRef, useState } from 'react'
 import Countdown, { zeroPad } from 'react-countdown'
 import { Store } from '../store/store.js'
+import { selectLocalizedUiText } from '../store/language.js'
 import './Clock.css'
 
 export const Clock = () => {
-  const store = Store()
-  const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
+  const text = Store(selectLocalizedUiText)
   const countdownRef = useRef(null)
-  const audioStart = new Audio('/start.mp3')
-  const audioAlarm = new Audio('/clock_alarm.mp3')
+  const audioStartRef = useRef(new Audio('/start.mp3'))
+  const audioAlarmRef = useRef(new Audio('/clock_alarm.mp3'))
   const [date] = useState(Date.now() + 900000)
   const [textStartBtn, setTextStartBtn] = useState(text.doing.pomodoro.start)
   const [viewStartBtn, setViewStartBtn] = useState("")
   const [viewPauseBtn, setViewPauseBtn] = useState("hide")
   const [viewResetBtn, setViewResetBtn] = useState("hide")
+  const countdownApi = () => countdownRef.current?.getApi()
+
+  const playStartSound = () => {
+    audioStartRef.current.play()
+  }
 
   const rendered = ({ minutes, seconds, completed }) => {
-    completed && (audioAlarm.play(), handleResetClick(false))
+    if (completed) {
+      audioAlarmRef.current.play()
+      handleResetClick(false)
+    }
     return <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
   }
 
   const handleStartClick = () => {
-    countdownRef.current && countdownRef.current.getApi().start()
+    countdownApi()?.start()
     setViewStartBtn("hide")
     setViewPauseBtn("")
     setViewResetBtn("")
-    audioStart.play()
+    playStartSound()
   }
 
   const handlePauseClick = () => {
-    countdownRef.current && countdownRef.current.getApi().pause()
+    countdownApi()?.pause()
     setTextStartBtn(text.doing.pomodoro.continue)
     setViewStartBtn("")
     setViewPauseBtn("hide")
-    audioStart.play()
+    playStartSound()
   }
 
   const handleResetClick = (withSound) => {
-    countdownRef.current && countdownRef.current.getApi().stop()
+    countdownApi()?.stop()
     setTextStartBtn(text.doing.pomodoro.start)
     setViewStartBtn("")
     setViewPauseBtn("hide")
     setViewResetBtn("hide")
     // play a sound when reseting but just when user clicks on RESET btn
-    withSound && audioStart.play()
+    if (withSound) playStartSound()
   }
 
   return (

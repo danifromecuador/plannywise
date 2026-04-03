@@ -2,6 +2,7 @@ export const text = {
   spanish: {
     todo: {
       title: "Por Hacer",
+      sectionTitles: ["Objetivos Diarios", "Objetivos Semanales", "Objetivos Mensuales"],
       completed: "Completado",
       deleteAll: "Borrar los completados",
       placeHolder: "Escribe un objetivo y presiona Enter"
@@ -45,11 +46,10 @@ export const text = {
           },
           commonTasks: {
             message: "tareas comunes: ",
-            inputPlaceHolder: "Escribe una tarea común y presiona Enter"
+            inputPlaceHolder: "Escribe una tarea común y presiona Enter",
+            edit: "Editar",
+            remove: "Quitar",
           },
-          timer: {
-            message: "elegir temporizador: "
-          }
         }
       }
     },
@@ -74,6 +74,7 @@ export const text = {
   english: {
     todo: {
       title: "Todo",
+      sectionTitles: ["Daily Goals", "Weekly Goals", "Monthly Goals"],
       completed: "Completed",
       deleteAll: "Delete All Completed",
       placeHolder: "Type a goal and press Enter"
@@ -117,11 +118,10 @@ export const text = {
           },
           commonTasks: {
             message: "common tasks: ",
-            inputPlaceHolder: "Type a common task and press Enter"
+            inputPlaceHolder: "Type a common task and press Enter",
+            edit: "Edit",
+            remove: "Remove",
           },
-          timer: {
-            message: "set timer: "
-          }
         }
       }
     },
@@ -143,6 +143,12 @@ export const text = {
       }
     }
   }
+}
+
+/** Zustand selector: localized UI copy for the active language (stable object references). */
+export const selectLocalizedUiText = (state) => {
+  const bundles = state.configs.language.text()
+  return state.configs.language.current === 'english' ? bundles.english : bundles.spanish
 }
 
 export const setCurrent = (set, language) => set(state => ({

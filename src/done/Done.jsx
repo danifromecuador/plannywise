@@ -1,21 +1,27 @@
-import { useState, useEffect } from 'react'
-import { Store } from '../store/store'
+import { useState } from 'react'
+import { useShallow } from 'zustand/react/shallow'
+import { Store } from '../store/store.js'
+import { selectLocalizedUiText } from '../store/language.js'
 import './Done.css'
 
 export const Done = () => {
-  const store = Store()
-  const commonTasks = store.configs.commonTasks.currents
-  console.log(commonTasks);
-  
-  const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
+  const { text, tasks, configs } = Store(
+    useShallow((s) => ({
+      text: selectLocalizedUiText(s),
+      tasks: s.tasks,
+      configs: s.configs,
+    })),
+  )
   const [input, setInput] = useState("")
   const [showModal, setShowModal] = useState("hide")
   const [showFooter, setShowFooter] = useState("")
-  const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.tasks.add(input), setInput(""))
-  const addCommonTask = (task) => store.tasks.addCommonTask(task)
-  useEffect(() => localStorage.setItem("Completed Tasks", JSON.stringify(store.tasks.completed)), [store.tasks.completed])
-  useEffect(() => localStorage.setItem("Worked Hours History", JSON.stringify(store.tasks.workedHoursHistory)), [store.tasks.workedHoursHistory])
-  useEffect(() => localStorage.setItem("Common Tasks", JSON.stringify(store.tasks.commonTasks)), [store.tasks.commonTasks])
+  const handleInputEnterKey = (event) => {
+    if (event.key !== "Enter") return
+    if (input.trim() === "") return
+    tasks.add(input)
+    setInput("")
+  }
+  const addCommonTask = (task) => tasks.addCommonTask(task)
 
   return (
     <div className='Done'>
@@ -23,33 +29,40 @@ export const Done = () => {
       <div className="worked-hours sub-container">
         <h2>{text.done.totalWorkedHours.title}</h2>
         <div className="this">
-          <div className="this-month"><span className='counter-stats'>{store.tasks.workedHours().month} h</span><span>{text.done.totalWorkedHours.last30}</span></div>
-          <div className="this-week"><span className='counter-stats'>{store.tasks.workedHours().week} h</span><span>{text.done.totalWorkedHours.last7}</span></div>
-          <div className="this-day"><span className='counter-stats'>{store.tasks.workedHours().day} h</span><span>{text.done.totalWorkedHours.today}</span></div>
+          <div className="this-month"><span className='counter-stats'>{tasks.workedHours().month} h</span><span>{text.done.totalWorkedHours.last30}</span></div>
+          <div className="this-week"><span className='counter-stats'>{tasks.workedHours().week} h</span><span>{text.done.totalWorkedHours.last7}</span></div>
+          <div className="this-day"><span className='counter-stats'>{tasks.workedHours().day} h</span><span>{text.done.totalWorkedHours.today}</span></div>
         </div>
       </div>
       <div className="completed-tasks sub-container">
         <h2>{text.done.todayCompletedTasks.title}</h2>
         <div className="common-tasks this">
-          {
-            commonTasks.map(t=>(
-              t
-            ))
-          }
-          <button className="this-month" onClick={() => addCommonTask("learn")}><span className='counter-stats'>{store.tasks.commonTasks.learn} h</span><span>LEARN</span></button>
-          <button className="this-week" onClick={() => addCommonTask("code")}><span className='counter-stats'>{store.tasks.commonTasks.code} h</span><span>CODE</span></button>
-          <button className="this-day" onClick={() => addCommonTask("apply")}><span className='counter-stats'>{store.tasks.commonTasks.apply} h</span><span>APPLY</span></button>
+          {configs.commonTasks.currents.map((task, i) => {
+            const variant = ['this-month', 'this-week', 'this-day'][i % 3]
+            const hours = tasks.commonTasks[task.id] ?? 0
+            return (
+              <button
+                key={task.id}
+                type="button"
+                className={variant}
+                onClick={() => addCommonTask(task.id)}
+              >
+                <span className="counter-stats">{hours} h</span>
+                <span>{task.label}</span>
+              </button>
+            )
+          })}
         </div>
-        <ul className='ul'>{store.tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}</ul>
+        <ul className='ul'>{tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}</ul>
         <div className={`${showModal} modal`}>
           <p>{text.done.todayCompletedTasks.warning}</p>
           <div className="options">
             <button className='midBtn' onClick={() => (setShowModal("hide"), setShowFooter(""))}>{text.done.todayCompletedTasks.cancel}</button>
-            <button className='midBtn' onClick={() => (store.tasks.deleteCompleted(), setShowModal("hide"), setShowFooter(""))}>{text.done.todayCompletedTasks.confirm}</button>
+            <button className='midBtn' onClick={() => (tasks.deleteCompleted(), setShowModal("hide"), setShowFooter(""))}>{text.done.todayCompletedTasks.confirm}</button>
           </div>
         </div>
         <footer className={showFooter}>
-          <button className={`${store.tasks.completed.length + store.tasks.commonTasksCounter() === 0 ? 'hide' : 'midBtn'}`} onClick={() => (setShowFooter("hide"), setShowModal(""))}>{text.done.todayCompletedTasks.delete}</button>
+          <button className={`${tasks.completed.length + tasks.commonTasksCounter() === 0 ? 'hide' : 'midBtn'}`} onClick={() => (setShowFooter("hide"), setShowModal(""))}>{text.done.todayCompletedTasks.delete}</button>
           <input
             type="text"
             className='input'
