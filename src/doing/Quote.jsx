@@ -7,8 +7,15 @@ export const Quote = () => {
   const language = Store((s) => s.configs.language.current)
   const [quote, setQuote] = useState("One day, in retrospect, the years of struggle will strike you as the most beautiful")
   const [author, setAuthor] = useState("Sigmund Freud")
-  const [fetchNewQuote, setFetchNewQoute] = useState("")
-  const catchNewQuote = () => fetchNewQuote == "yes" ? setFetchNewQoute("") : setFetchNewQoute("yes")
+  const [fetchNewQuote, setFetchNewQuote] = useState("")
+  const catchNewQuote = () => setFetchNewQuote((prev) => (prev === "yes" ? "" : "yes"))
+
+  const translateQuote = async (text) => {
+    const { data } = await axios.get('https://api.mymemory.translated.net/get', {
+      params: { q: text, langpair: 'en|es' },
+    })
+    setQuote(data.responseData.translatedText)
+  }
 
   useEffect(() => {
     const fetchQuote = async () => {
@@ -26,13 +33,6 @@ export const Quote = () => {
     }
     fetchQuote()
   }, [fetchNewQuote, language])
-
-  const translateQuote = async (text) => {
-    const { data } = await axios.get('https://api.mymemory.translated.net/get', {
-      params: { q: text, langpair: 'en|es' },
-    })
-    setQuote(data.responseData.translatedText)
-  }
 
   return (
     <div className="motivational" onClick={catchNewQuote}>

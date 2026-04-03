@@ -69,10 +69,10 @@ export const Footer = () => {
         <button className='midBtn' onClick={settingsBtn}>{text.doing.footer.settings.btnTitle}</button >
       </div >
       <div className={` ${!show1 && "hide"} info-content sub-container`}>
-        <span>{text.doing.footer.info.created}<a href="https://www.linkedin.com/in/danifromec/" target="_blank"> Dani From Ecuador</a></span>
-        <span>{text.doing.footer.info.star}<a href="https://github.com/danifromecuador/plannywise" target='blank'>{text.doing.footer.info.starLink}</a></span>
-        <span>{text.doing.footer.info.issue}<a href="https://github.com/danifromecuador/plannywise/issues/6" target='blank'>{text.doing.footer.info.issueLink}</a></span>
-        <span>{text.doing.footer.info.suggest}<a href="https://github.com/danifromecuador/plannywise/issues" target='blank'>{text.doing.footer.info.suggestLink}</a></span>
+        <span>{text.doing.footer.info.created}<a href="https://www.linkedin.com/in/danifromec/" target="_blank" rel="noopener noreferrer"> Dani From Ecuador</a></span>
+        <span>{text.doing.footer.info.star}<a href="https://github.com/danifromecuador/plannywise" target="_blank" rel="noopener noreferrer">{text.doing.footer.info.starLink}</a></span>
+        <span>{text.doing.footer.info.issue}<a href="https://github.com/danifromecuador/plannywise/issues/6" target="_blank" rel="noopener noreferrer">{text.doing.footer.info.issueLink}</a></span>
+        <span>{text.doing.footer.info.suggest}<a href="https://github.com/danifromecuador/plannywise/issues" target="_blank" rel="noopener noreferrer">{text.doing.footer.info.suggestLink}</a></span>
       </div>
       <div className={`${!show2 && "hide"} settings-content sub-container`}>
         <div>

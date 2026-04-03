@@ -9,6 +9,6 @@ export const App = () => {
       <Todos />
       <Doing />
       <Done />
-    </div >
+    </div>
   )
 }

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useRef, useState } from 'react'
 import Countdown, { zeroPad } from 'react-countdown'
 import { Store } from '../store/store.js'
 import { selectLocalizedUiText } from '../store/language.js'
@@ -7,8 +7,8 @@ import './Clock.css'
 export const Clock = () => {
   const text = Store(selectLocalizedUiText)
   const countdownRef = useRef(null)
-  const audioStart = new Audio('/start.mp3')
-  const audioAlarm = new Audio('/clock_alarm.mp3')
+  const audioStartRef = useRef(new Audio('/start.mp3'))
+  const audioAlarmRef = useRef(new Audio('/clock_alarm.mp3'))
   const [date] = useState(Date.now() + 900000)
   const [textStartBtn, setTextStartBtn] = useState(text.doing.pomodoro.start)
   const [viewStartBtn, setViewStartBtn] = useState("")
@@ -16,7 +16,7 @@ export const Clock = () => {
   const [viewResetBtn, setViewResetBtn] = useState("hide")
 
   const rendered = ({ minutes, seconds, completed }) => {
-    completed && (audioAlarm.play(), handleResetClick(false))
+    completed && (audioAlarmRef.current.play(), handleResetClick(false))
     return <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
   }
 
@@ -25,7 +25,7 @@ export const Clock = () => {
     setViewStartBtn("hide")
     setViewPauseBtn("")
     setViewResetBtn("")
-    audioStart.play()
+    audioStartRef.current.play()
   }
 
   const handlePauseClick = () => {
@@ -33,7 +33,7 @@ export const Clock = () => {
     setTextStartBtn(text.doing.pomodoro.continue)
     setViewStartBtn("")
     setViewPauseBtn("hide")
-    audioStart.play()
+    audioStartRef.current.play()
   }
 
   const handleResetClick = (withSound) => {
@@ -43,7 +43,7 @@ export const Clock = () => {
     setViewPauseBtn("hide")
     setViewResetBtn("hide")
     // play a sound when reseting but just when user clicks on RESET btn
-    withSound && audioStart.play()
+    withSound && audioStartRef.current.play()
   }
 
   return (
