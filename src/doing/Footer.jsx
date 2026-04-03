@@ -24,15 +24,45 @@ export const Footer = () => {
   const [show6, setShow6] = useState(true) // "Button for adding a new common task" (show or hide)
   const [editingId, setEditingId] = useState(null)
   const [editValue, setEditValue] = useState("")
-  const infoBtn = () => (toggleFooterInfo(), setShow3(false), setShow4(true))
-  const settingsBtn = () => (toggleFooterSettings(), setShow3(false), setShow4(true))
-  const resetBtn = () => (setShow3(true), setShow4(false))
-  const cancelBtn = () => (setShow3(false), setShow4(true))
-  const confirmBtn = () => (tasks.deleteCompleted(), tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
-  const addCTBtn = () => (setShow5(true), setShow6(false))
-  const handleCTInputKey = k => {
-    k === "Escape" && (setShow5(false), setShow6(true), setInput(""))
-    k === "Enter" && input !== "" && (configs.commonTasks.add(input), handleCTInputKey("Escape"))
+  const infoBtn = () => {
+    toggleFooterInfo()
+    setShow3(false)
+    setShow4(true)
+  }
+  const settingsBtn = () => {
+    toggleFooterSettings()
+    setShow3(false)
+    setShow4(true)
+  }
+  const resetBtn = () => {
+    setShow3(true)
+    setShow4(false)
+  }
+  const cancelBtn = () => {
+    setShow3(false)
+    setShow4(true)
+  }
+  const confirmBtn = () => {
+    tasks.deleteCompleted()
+    tasks.resetWorkedHoursHistory()
+    setShow3(false)
+    setShow4(true)
+  }
+  const addCTBtn = () => {
+    setShow5(true)
+    setShow6(false)
+  }
+  const handleCTInputKey = (key) => {
+    if (key === "Escape") {
+      setShow5(false)
+      setShow6(true)
+      setInput("")
+      return
+    }
+    if (key === "Enter" && input !== "") {
+      configs.commonTasks.add(input)
+      handleCTInputKey("Escape")
+    }
   }
   const startEdit = (task) => {
     setEditingId(task.id)

@@ -15,7 +15,12 @@ export const Done = () => {
   const [input, setInput] = useState("")
   const [showModal, setShowModal] = useState("hide")
   const [showFooter, setShowFooter] = useState("")
-  const handleInputEnterKey = k => k.key === "Enter" && input.trim() !== "" && (tasks.add(input), setInput(""))
+  const handleInputEnterKey = (event) => {
+    if (event.key !== "Enter") return
+    if (input.trim() === "") return
+    tasks.add(input)
+    setInput("")
+  }
   const addCommonTask = (task) => tasks.addCommonTask(task)
 
   return (

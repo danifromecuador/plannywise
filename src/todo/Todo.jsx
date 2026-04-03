@@ -4,7 +4,12 @@ import './Todo.css'
 
 export const Todo = ({ store, text, title }) => {
   const [input, setInput] = useState("")
-  const handleInputEnterKey = k => k.key === "Enter" && input.trim() !== "" && (store.add(input), setInput(""))
+  const handleInputEnterKey = (event) => {
+    if (event.key !== "Enter") return
+    if (input.trim() === "") return
+    store.add(input)
+    setInput("")
+  }
 
   return (
     <div className='Todo sub-container'>
