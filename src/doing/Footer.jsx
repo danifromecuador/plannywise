@@ -94,10 +94,10 @@ export const Footer = () => {
 
   return (
     <div className="Footer sub-container">
-      <div className='header'>
+      <div className="header">
         <button className='midBtn' onClick={infoBtn}>{text.doing.footer.info.btnTitle}</button>
-        <button className='midBtn' onClick={settingsBtn}>{text.doing.footer.settings.btnTitle}</button >
-      </div >
+        <button className='midBtn' onClick={settingsBtn}>{text.doing.footer.settings.btnTitle}</button>
+      </div>
       <div className={` ${!show1 && "hide"} info-content sub-container`}>
         <span>{text.doing.footer.info.created}<a href="https://www.linkedin.com/in/danifromec/" target="_blank" rel="noopener noreferrer"> Dani From Ecuador</a></span>
         <span>{text.doing.footer.info.star}<a href="https://github.com/danifromecuador/plannywise" target="_blank" rel="noopener noreferrer">{text.doing.footer.info.starLink}</a></span>
@@ -171,12 +171,12 @@ export const Footer = () => {
             className={`input ${!show5 && "hide"}`}
             placeholder={text.doing.footer.settings.commonTasks.inputPlaceHolder}
             value={input}
-            onKeyDown={k => handleCTInputKey(k.key)}
-            onChange={e => setInput(e.target.value)}
+            onKeyDown={(k) => handleCTInputKey(k.key)}
+            onChange={(e) => setInput(e.target.value)}
           />
           <button type="button" className={`${!show6 && "hide"}`} onClick={() => addCTBtn()}>+</button>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
