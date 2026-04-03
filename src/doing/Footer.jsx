@@ -138,15 +138,6 @@ export const Footer = () => {
           />
           <button type="button" className={`${!show6 && "hide"}`} onClick={() => addCTBtn()}>+</button>
         </div>
-        <div>
-          <span>{text.doing.footer.settings.timer.message}</span>
-          <button>5</button>
-          <button>10</button>
-          <button>15</button>
-          <button>20</button>
-          <button>30</button>
-          <button>60</button>
-        </div>
       </div>
     </div >
   )

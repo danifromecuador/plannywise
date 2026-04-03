@@ -49,9 +49,6 @@ export const text = {
             edit: "Editar",
             remove: "Quitar",
           },
-          timer: {
-            message: "elegir temporizador: "
-          }
         }
       }
     },
@@ -123,9 +120,6 @@ export const text = {
             edit: "Edit",
             remove: "Remove",
           },
-          timer: {
-            message: "set timer: "
-          }
         }
       }
     },
