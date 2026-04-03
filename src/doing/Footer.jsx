@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Store } from '../store/store'
 import './Footer.css'
 
 export const Footer = () => {
   const store = Store()
   const [input, setInput] = useState("")
-  const [show1, setShow1] = useState(JSON.parse(localStorage.getItem("infoVisibility")) || false) // INFO (show or hide)
-  const [show2, setShow2] = useState(JSON.parse(localStorage.getItem("settingsVisibility")) || false) // SETTINGS (show or hide)
+  const show1 = store.ui.footerInfoOpen
+  const show2 = store.ui.footerSettingsOpen
   const [show3, setShow3] = useState(false) // "CONFIRM OR CANCEL" RESETING DIALOG (show or hide)
   const [show4, setShow4] = useState(true) // "RESET TOTAL WORKED HOURS" BUTTON (show or hide)
   const [show5, setShow5] = useState(false) // "Input for adding a new common task" (show or hide)
@@ -16,8 +16,8 @@ export const Footer = () => {
   // catch english or spanish json texts, this change when the user clicks on change language buttons
   const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
 
-  const infoBtn = () => (setShow1(!show1), setShow2(false), setShow3(false), setShow4(true))
-  const settingsBtn = () => (setShow2(!show2), setShow1(false), setShow3(false), setShow4(true))
+  const infoBtn = () => (store.toggleFooterInfo(), setShow3(false), setShow4(true))
+  const settingsBtn = () => (store.toggleFooterSettings(), setShow3(false), setShow4(true))
   const resetBtn = () => (setShow3(true), setShow4(false))
   const cancelBtn = () => (setShow3(false), setShow4(true))
   const confirmBtn = () => (store.tasks.deleteCompleted(), store.tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
@@ -53,11 +53,6 @@ export const Footer = () => {
     }
     store.configs.commonTasks.remove(i)
   }
-
-  useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
-  useEffect(() => localStorage.setItem("settingsVisibility", show2), [show2])
-  useEffect(() => localStorage.setItem("currentLanguage", store.configs.language.current), [store.configs.language])
-  useEffect(()=>{localStorage.setItem("commonTasksNames", JSON.stringify(store.configs.commonTasks.currents))},[store.configs.commonTasks.currents])
 
   return (
     <div className="Footer sub-container">

@@ -51,7 +51,7 @@ const DEFAULT_CATALOG = [
   { id: 'apply', label: 'APPLY' },
 ]
 
-/** Migrate localStorage payload to `{ id, label }[]`. */
+/** Normalize persisted or legacy payload to `{ id, label }[]`. */
 export const migrateCommonTasksCatalog = (parsed) => {
   if (!parsed || !Array.isArray(parsed) || parsed.length === 0) return [...DEFAULT_CATALOG]
   if (typeof parsed[0] === 'string') {

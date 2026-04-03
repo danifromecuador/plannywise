@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Store } from '../store/store'
 import './Done.css'
 
@@ -11,9 +11,6 @@ export const Done = () => {
   const [showFooter, setShowFooter] = useState("")
   const handleInputEnterKey = k => k.key === "Enter" && input.trim() != "" && (store.tasks.add(input), setInput(""))
   const addCommonTask = (task) => store.tasks.addCommonTask(task)
-  useEffect(() => localStorage.setItem("Completed Tasks", JSON.stringify(store.tasks.completed)), [store.tasks.completed])
-  useEffect(() => localStorage.setItem("Worked Hours History", JSON.stringify(store.tasks.workedHoursHistory)), [store.tasks.workedHoursHistory])
-  useEffect(() => localStorage.setItem("Common Tasks", JSON.stringify(store.tasks.commonTasks)), [store.tasks.commonTasks])
 
   return (
     <div className='Done'>

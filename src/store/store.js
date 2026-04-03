@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { devtools } from "zustand/middleware"
+import { devtools, persist } from "zustand/middleware"
 import { add, completed, markAsDone, markAsTodo, deleteDones } from "./todo_logic.js"
 import {
   addCompletedTask,
@@ -18,34 +18,13 @@ import {
   migrateCommonTasksHours,
 } from "./common_tasks_logic.js"
 
-function loadInitialCommonTasksState() {
-  let catalog
-  try {
-    catalog = migrateCommonTasksCatalog(
-      JSON.parse(localStorage.getItem("commonTasksNames") || "null"),
-    )
-  } catch {
-    catalog = migrateCommonTasksCatalog(null)
-  }
-  let hours
-  try {
-    hours = migrateCommonTasksHours(
-      JSON.parse(localStorage.getItem("Common Tasks") || "null"),
-      catalog,
-    )
-  } catch {
-    hours = migrateCommonTasksHours({}, catalog)
-  }
-  return { catalog, hours }
-}
-
-const { catalog: initialCommonTasksCatalog, hours: initialCommonTasksHours } =
-  loadInitialCommonTasksState()
+const defaultCatalog = migrateCommonTasksCatalog(null)
+const defaultCommonTaskHours = migrateCommonTasksHours({}, defaultCatalog)
 
 const todoDailySlice = (set, get) => ({
   title: "Daily Goals",
-  todos: JSON.parse(localStorage.getItem("Daily Goals Todos")) || [],
-  dones: JSON.parse(localStorage.getItem("Daily Goals Dones")) || [],
+  todos: [],
+  dones: [],
   completed: () => completed(get, "daily"),
   add: input => add(set, input, "daily"),
   markAsDone: item => markAsDone(set, item, "daily"),
@@ -55,8 +34,8 @@ const todoDailySlice = (set, get) => ({
 
 const todoWeeklySlice = (set, get) => ({
   title: "Weekly Goals",
-  todos: JSON.parse(localStorage.getItem("Weekly Goals Todos")) || [],
-  dones: JSON.parse(localStorage.getItem("Weekly Goals Dones")) || [],
+  todos: [],
+  dones: [],
   completed: () => completed(get, "weekly"),
   add: input => add(set, input, "weekly"),
   markAsDone: item => markAsDone(set, item, "weekly"),
@@ -66,8 +45,8 @@ const todoWeeklySlice = (set, get) => ({
 
 const todoMonthlySlice = (set, get) => ({
   title: "Monthly Goals",
-  todos: JSON.parse(localStorage.getItem("Monthly Goals Todos")) || [],
-  dones: JSON.parse(localStorage.getItem("Monthly Goals Dones")) || [],
+  todos: [],
+  dones: [],
   completed: () => completed(get, "monthly"),
   add: input => add(set, input, "monthly"),
   markAsDone: item => markAsDone(set, item, "monthly"),
@@ -76,9 +55,9 @@ const todoMonthlySlice = (set, get) => ({
 })
 
 const tasksSlice = (set, get) => ({
-  completed: JSON.parse(localStorage.getItem("Completed Tasks")) || [],
-  workedHoursHistory: JSON.parse(localStorage.getItem("Worked Hours History")) || [],
-  commonTasks: initialCommonTasksHours,
+  completed: [],
+  workedHoursHistory: [],
+  commonTasks: defaultCommonTaskHours,
   commonTasksCounter: () => commonTasksCounter(get),
   add: input => addCompletedTask(set, input),
   deleteCompleted: () => deleteAllCompletedTasks(set, get),
@@ -89,22 +68,105 @@ const tasksSlice = (set, get) => ({
 
 const configurationOptionsSlice = (set) => ({
   language: {
-    current: localStorage.getItem("currentLanguage") || "english",
+    current: "english",
     setCurrent: language => setCurrent(set, language),
     text: () => text
   },
   commonTasks: {
-    currents: initialCommonTasksCatalog,
+    currents: defaultCatalog,
     add: input => addCT(set, input),
     remove: index => removeCT(set, index),
     update: (id, input) => updateCT(set, id, input),
   }
 })
 
-export const Store = create(devtools((set, get) => ({
+const buildStore = (set, get) => ({
+  ui: {
+    footerInfoOpen: false,
+    footerSettingsOpen: false,
+  },
+  toggleFooterInfo: () => set((state) => ({
+    ui: {
+      footerInfoOpen: !state.ui.footerInfoOpen,
+      footerSettingsOpen: false,
+    },
+  })),
+  toggleFooterSettings: () => set((state) => ({
+    ui: {
+      footerSettingsOpen: !state.ui.footerSettingsOpen,
+      footerInfoOpen: false,
+    },
+  })),
   daily: todoDailySlice(set, get),
   weekly: todoWeeklySlice(set, get),
   monthly: todoMonthlySlice(set, get),
   tasks: tasksSlice(set, get),
   configs: configurationOptionsSlice(set)
-})))
+})
+
+const mergePersistedState = (persistedState, currentState) => {
+  if (!persistedState || typeof persistedState !== "object") return currentState
+  const p = persistedState
+  return {
+    ...currentState,
+    ui: { ...currentState.ui, ...p.ui },
+    daily: {
+      ...currentState.daily,
+      todos: p.daily?.todos ?? currentState.daily.todos,
+      dones: p.daily?.dones ?? currentState.daily.dones,
+    },
+    weekly: {
+      ...currentState.weekly,
+      todos: p.weekly?.todos ?? currentState.weekly.todos,
+      dones: p.weekly?.dones ?? currentState.weekly.dones,
+    },
+    monthly: {
+      ...currentState.monthly,
+      todos: p.monthly?.todos ?? currentState.monthly.todos,
+      dones: p.monthly?.dones ?? currentState.monthly.dones,
+    },
+    tasks: {
+      ...currentState.tasks,
+      completed: p.tasks?.completed ?? currentState.tasks.completed,
+      workedHoursHistory: p.tasks?.workedHoursHistory ?? currentState.tasks.workedHoursHistory,
+      commonTasks: p.tasks?.commonTasks ?? currentState.tasks.commonTasks,
+    },
+    configs: {
+      ...currentState.configs,
+      language: {
+        ...currentState.configs.language,
+        current: p.configs?.language?.current ?? currentState.configs.language.current,
+      },
+      commonTasks: {
+        ...currentState.configs.commonTasks,
+        currents: p.configs?.commonTasks?.currents ?? currentState.configs.commonTasks.currents,
+      },
+    },
+  }
+}
+
+export const Store = create(
+  devtools(
+    persist(buildStore, {
+      name: "plannywise-storage",
+      partialize: (state) => ({
+        ui: state.ui,
+        daily: { todos: state.daily.todos, dones: state.daily.dones },
+        weekly: { todos: state.weekly.todos, dones: state.weekly.dones },
+        monthly: { todos: state.monthly.todos, dones: state.monthly.dones },
+        tasks: {
+          completed: state.tasks.completed,
+          workedHoursHistory: state.tasks.workedHoursHistory,
+          commonTasks: state.tasks.commonTasks,
+        },
+        configs: {
+          language: { current: state.configs.language.current },
+          commonTasks: { currents: state.configs.commonTasks.currents },
+        },
+      }),
+      merge: (persistedState, currentState) =>
+        mergePersistedState(persistedState, currentState),
+    }),
+    { name: "PlannywiseStore" },
+  ),
+)

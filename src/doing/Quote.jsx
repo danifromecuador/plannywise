@@ -4,7 +4,7 @@ import axios from 'axios'
 import './Quote.css'
 
 export const Quote = () => {
-  const store = Store()
+  const language = Store((s) => s.configs.language.current)
   const [quote, setQuote] = useState("One day, in retrospect, the years of struggle will strike you as the most beautiful")
   const [author, setAuthor] = useState("Sigmund Freud")
   const [fetchNewQuote, setFetchNewQoute] = useState("")
@@ -17,7 +17,7 @@ export const Quote = () => {
         let content = (data.quote ?? '').trim()
         const authorName = (data.author ?? '').trim()
         if (content.length > 200) content = `${content.slice(0, 197)}...`
-        if (store.configs.language.current === "spanish") await translateQuote(content)
+        if (language === "spanish") await translateQuote(content)
         else setQuote(content)
         setAuthor(authorName || 'Unknown')
       } catch (error) {
@@ -25,7 +25,7 @@ export const Quote = () => {
       }
     }
     fetchQuote()
-  }, [fetchNewQuote, store.configs.language.current])
+  }, [fetchNewQuote, language])
 
   const translateQuote = async (text) => {
     const { data } = await axios.get('https://api.mymemory.translated.net/get', {
