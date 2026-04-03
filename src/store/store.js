@@ -21,37 +21,15 @@ import {
 const defaultCatalog = migrateCommonTasksCatalog(null)
 const defaultCommonTaskHours = migrateCommonTasksHours({}, defaultCatalog)
 
-const todoDailySlice = (set, get) => ({
-  title: "Daily Goals",
+const createTodoSlice = (set, get, sliceId, title) => ({
+  title,
   todos: [],
   dones: [],
-  completed: () => completed(get, "daily"),
-  add: input => add(set, input, "daily"),
-  markAsDone: item => markAsDone(set, item, "daily"),
-  markAsTodo: item => markAsTodo(set, item, "daily"),
-  deleteDones: () => deleteDones(set, "daily")
-})
-
-const todoWeeklySlice = (set, get) => ({
-  title: "Weekly Goals",
-  todos: [],
-  dones: [],
-  completed: () => completed(get, "weekly"),
-  add: input => add(set, input, "weekly"),
-  markAsDone: item => markAsDone(set, item, "weekly"),
-  markAsTodo: item => markAsTodo(set, item, "weekly"),
-  deleteDones: () => deleteDones(set, "weekly")
-})
-
-const todoMonthlySlice = (set, get) => ({
-  title: "Monthly Goals",
-  todos: [],
-  dones: [],
-  completed: () => completed(get, "monthly"),
-  add: input => add(set, input, "monthly"),
-  markAsDone: item => markAsDone(set, item, "monthly"),
-  markAsTodo: item => markAsTodo(set, item, "monthly"),
-  deleteDones: () => deleteDones(set, "monthly")
+  completed: () => completed(get, sliceId),
+  add: input => add(set, input, sliceId),
+  markAsDone: item => markAsDone(set, item, sliceId),
+  markAsTodo: item => markAsTodo(set, item, sliceId),
+  deleteDones: () => deleteDones(set, sliceId),
 })
 
 const tasksSlice = (set, get) => ({
@@ -97,9 +75,9 @@ const buildStore = (set, get) => ({
       footerInfoOpen: false,
     },
   })),
-  daily: todoDailySlice(set, get),
-  weekly: todoWeeklySlice(set, get),
-  monthly: todoMonthlySlice(set, get),
+  daily: createTodoSlice(set, get, "daily", "Daily Goals"),
+  weekly: createTodoSlice(set, get, "weekly", "Weekly Goals"),
+  monthly: createTodoSlice(set, get, "monthly", "Monthly Goals"),
   tasks: tasksSlice(set, get),
   configs: configurationOptionsSlice(set)
 })
