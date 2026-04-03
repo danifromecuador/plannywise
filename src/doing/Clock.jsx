@@ -1,11 +1,11 @@
 import { useState, useRef } from 'react'
 import Countdown, { zeroPad } from 'react-countdown'
 import { Store } from '../store/store.js'
+import { selectLocalizedUiText } from '../store/language.js'
 import './Clock.css'
 
 export const Clock = () => {
-  const store = Store()
-  const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
+  const text = Store(selectLocalizedUiText)
   const countdownRef = useRef(null)
   const audioStart = new Audio('/start.mp3')
   const audioAlarm = new Audio('/clock_alarm.mp3')

@@ -1,30 +1,38 @@
 import { useState } from 'react'
-import { Store } from '../store/store'
+import { useShallow } from 'zustand/react/shallow'
+import { Store } from '../store/store.js'
+import { selectLocalizedUiText } from '../store/language.js'
 import './Footer.css'
 
 export const Footer = () => {
-  const store = Store()
+  const { text, ui, tasks, configs, toggleFooterInfo, toggleFooterSettings } = Store(
+    useShallow((s) => ({
+      text: selectLocalizedUiText(s),
+      ui: s.ui,
+      tasks: s.tasks,
+      configs: s.configs,
+      toggleFooterInfo: s.toggleFooterInfo,
+      toggleFooterSettings: s.toggleFooterSettings,
+    })),
+  )
   const [input, setInput] = useState("")
-  const show1 = store.ui.footerInfoOpen
-  const show2 = store.ui.footerSettingsOpen
+  const show1 = ui.footerInfoOpen
+  const show2 = ui.footerSettingsOpen
   const [show3, setShow3] = useState(false) // "CONFIRM OR CANCEL" RESETING DIALOG (show or hide)
   const [show4, setShow4] = useState(true) // "RESET TOTAL WORKED HOURS" BUTTON (show or hide)
   const [show5, setShow5] = useState(false) // "Input for adding a new common task" (show or hide)
   const [show6, setShow6] = useState(true) // "Button for adding a new common task" (show or hide)
   const [editingId, setEditingId] = useState(null)
   const [editValue, setEditValue] = useState("")
-  // catch english or spanish json texts, this change when the user clicks on change language buttons
-  const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
-
-  const infoBtn = () => (store.toggleFooterInfo(), setShow3(false), setShow4(true))
-  const settingsBtn = () => (store.toggleFooterSettings(), setShow3(false), setShow4(true))
+  const infoBtn = () => (toggleFooterInfo(), setShow3(false), setShow4(true))
+  const settingsBtn = () => (toggleFooterSettings(), setShow3(false), setShow4(true))
   const resetBtn = () => (setShow3(true), setShow4(false))
   const cancelBtn = () => (setShow3(false), setShow4(true))
-  const confirmBtn = () => (store.tasks.deleteCompleted(), store.tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
+  const confirmBtn = () => (tasks.deleteCompleted(), tasks.resetWorkedHoursHistory(), setShow3(false), setShow4(true))
   const addCTBtn = () => (setShow5(true), setShow6(false))
   const handleCTInputKey = k => {
     k === "Escape" && (setShow5(false), setShow6(true), setInput(""))
-    k === "Enter" && input !== "" && (store.configs.commonTasks.add(input), handleCTInputKey("Escape"))
+    k === "Enter" && input !== "" && (configs.commonTasks.add(input), handleCTInputKey("Escape"))
   }
   const startEdit = (task) => {
     setEditingId(task.id)
@@ -39,19 +47,19 @@ export const Footer = () => {
     if (e.key === "Enter") {
       const v = e.currentTarget.value.trim()
       if (v !== "") {
-        store.configs.commonTasks.update(taskId, v)
+        configs.commonTasks.update(taskId, v)
         setEditingId(null)
       }
     }
   }
 
   const handleRemoveCTBtn = (i) => {
-    const task = store.configs.commonTasks.currents[i]
+    const task = configs.commonTasks.currents[i]
     if (task && editingId === task.id) {
       setEditingId(null)
       setEditValue("")
     }
-    store.configs.commonTasks.remove(i)
+    configs.commonTasks.remove(i)
   }
 
   return (
@@ -81,8 +89,8 @@ export const Footer = () => {
           </div>
         </div>
         <div>{text.doing.footer.settings.language.message}
-          <button onClick={() => store.configs.language.setCurrent("spanish")}>ESPAÑOL</button>
-          <button onClick={() => store.configs.language.setCurrent("english")}>ENGLISH</button>
+          <button onClick={() => configs.language.setCurrent("spanish")}>ESPAÑOL</button>
+          <button onClick={() => configs.language.setCurrent("english")}>ENGLISH</button>
         </div>
         <div>
           <span>{text.doing.footer.settings.theme.message}</span>
@@ -92,7 +100,7 @@ export const Footer = () => {
         <div className="common-tasks-block">
           <span>{text.doing.footer.settings.commonTasks.message}</span>
           <div className="common-tasks-settings">
-            {store.configs.commonTasks.currents.map((task, i) => (
+            {configs.commonTasks.currents.map((task, i) => (
               <div key={task.id} className="common-task-row">
                 {editingId === task.id ? (
                   <input

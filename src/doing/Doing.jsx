@@ -1,11 +1,11 @@
 import { Store } from '../store/store.js'
+import { selectLocalizedUiText } from '../store/language.js'
 import { Clock } from './Clock.jsx'
 import { Quote } from './Quote.jsx'
 import { Footer } from './Footer.jsx'
 
 export const Doing = () => {
-  const store = Store()
-  const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
+  const text = Store(selectLocalizedUiText)
 
   return (
     <div className='Doing'>
