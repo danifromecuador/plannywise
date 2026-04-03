@@ -16,7 +16,7 @@ export const Quote = () => {
         const { data } = await axios.get('https://dummyjson.com/quotes/random')
         let content = (data.quote ?? '').trim()
         const authorName = (data.author ?? '').trim()
-        if (content.length > 70) content = `${content.slice(0, 67)}...`
+        if (content.length > 200) content = `${content.slice(0, 197)}...`
         if (store.configs.language.current === "spanish") await translateQuote(content)
         else setQuote(content)
         setAuthor(authorName || 'Unknown')
