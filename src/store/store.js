@@ -10,7 +10,7 @@ import {
   resetWorkedHoursHistory
 } from './tasks_logic.js'
 import { text, setCurrent } from "./language.js"
-import { addCT, removeCT } from "./common_tasks_logic.js"
+import { addCT, removeCT, dedupeCommonTaskNames } from "./common_tasks_logic.js"
 
 const todoDailySlice = (set, get) => ({
   title: "Daily Goals",
@@ -64,7 +64,9 @@ const configurationOptionsSlice = (set) => ({
     text: () => text
   },
   commonTasks: {
-    currents: JSON.parse(localStorage.getItem("commonTasksNames")) || ["LEARN", "CODE", "APPLY"],
+    currents: dedupeCommonTaskNames(
+      JSON.parse(localStorage.getItem("commonTasksNames")) || ["LEARN", "CODE", "APPLY"],
+    ),
     add: input => addCT(set, input),
     remove: index => removeCT(set, index)
   }

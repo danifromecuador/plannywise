@@ -4,9 +4,7 @@ import './Done.css'
 
 export const Done = () => {
   const store = Store()
-  const commonTasks = store.configs.commonTasks.currents
-  console.log(commonTasks);
-  
+
   const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
   const [input, setInput] = useState("")
   const [showModal, setShowModal] = useState("hide")
@@ -31,11 +29,6 @@ export const Done = () => {
       <div className="completed-tasks sub-container">
         <h2>{text.done.todayCompletedTasks.title}</h2>
         <div className="common-tasks this">
-          {
-            commonTasks.map(t=>(
-              t
-            ))
-          }
           <button className="this-month" onClick={() => addCommonTask("learn")}><span className='counter-stats'>{store.tasks.commonTasks.learn} h</span><span>LEARN</span></button>
           <button className="this-week" onClick={() => addCommonTask("code")}><span className='counter-stats'>{store.tasks.commonTasks.code} h</span><span>CODE</span></button>
           <button className="this-day" onClick={() => addCommonTask("apply")}><span className='counter-stats'>{store.tasks.commonTasks.apply} h</span><span>APPLY</span></button>
