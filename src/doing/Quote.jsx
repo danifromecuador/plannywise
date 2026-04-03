@@ -7,17 +7,19 @@ export const Quote = () => {
   const language = Store((s) => s.configs.language.current)
   const [quote, setQuote] = useState("One day, in retrospect, the years of struggle will strike you as the most beautiful")
   const [author, setAuthor] = useState("Sigmund Freud")
-  const [fetchNewQuote, setFetchNewQuote] = useState("")
-  const catchNewQuote = () => setFetchNewQuote((prev) => (prev === "yes" ? "" : "yes"))
-
-  const translateQuote = async (text) => {
-    const { data } = await axios.get('https://api.mymemory.translated.net/get', {
-      params: { q: text, langpair: 'en|es' },
-    })
-    setQuote(data.responseData.translatedText)
-  }
+  const [refreshTick, setRefreshTick] = useState(0)
+  const catchNewQuote = () => setRefreshTick((prev) => prev + 1)
 
   useEffect(() => {
+    let isMounted = true
+
+    const translateQuote = async (text) => {
+      const { data } = await axios.get('https://api.mymemory.translated.net/get', {
+        params: { q: text, langpair: 'en|es' },
+      })
+      if (isMounted) setQuote(data.responseData.translatedText)
+    }
+
     const fetchQuote = async () => {
       try {
         const { data } = await axios.get('https://dummyjson.com/quotes/random')
@@ -25,14 +27,17 @@ export const Quote = () => {
         const authorName = (data.author ?? '').trim()
         if (content.length > 200) content = `${content.slice(0, 197)}...`
         if (language === "spanish") await translateQuote(content)
-        else setQuote(content)
-        setAuthor(authorName || 'Unknown')
+        else if (isMounted) setQuote(content)
+        if (isMounted) setAuthor(authorName || 'Unknown')
       } catch (error) {
         console.error("Error fetching the quote: ", error.message)
       }
     }
     fetchQuote()
-  }, [fetchNewQuote, language])
+    return () => {
+      isMounted = false
+    }
+  }, [refreshTick, language])
 
   return (
     <div className="motivational" onClick={catchNewQuote}>

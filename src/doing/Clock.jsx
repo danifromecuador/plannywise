@@ -14,36 +14,44 @@ export const Clock = () => {
   const [viewStartBtn, setViewStartBtn] = useState("")
   const [viewPauseBtn, setViewPauseBtn] = useState("hide")
   const [viewResetBtn, setViewResetBtn] = useState("hide")
+  const countdownApi = () => countdownRef.current?.getApi()
+
+  const playStartSound = () => {
+    audioStartRef.current.play()
+  }
 
   const rendered = ({ minutes, seconds, completed }) => {
-    completed && (audioAlarmRef.current.play(), handleResetClick(false))
+    if (completed) {
+      audioAlarmRef.current.play()
+      handleResetClick(false)
+    }
     return <span>{zeroPad(minutes)}:{zeroPad(seconds)}</span>
   }
 
   const handleStartClick = () => {
-    countdownRef.current && countdownRef.current.getApi().start()
+    countdownApi()?.start()
     setViewStartBtn("hide")
     setViewPauseBtn("")
     setViewResetBtn("")
-    audioStartRef.current.play()
+    playStartSound()
   }
 
   const handlePauseClick = () => {
-    countdownRef.current && countdownRef.current.getApi().pause()
+    countdownApi()?.pause()
     setTextStartBtn(text.doing.pomodoro.continue)
     setViewStartBtn("")
     setViewPauseBtn("hide")
-    audioStartRef.current.play()
+    playStartSound()
   }
 
   const handleResetClick = (withSound) => {
-    countdownRef.current && countdownRef.current.getApi().stop()
+    countdownApi()?.stop()
     setTextStartBtn(text.doing.pomodoro.start)
     setViewStartBtn("")
     setViewPauseBtn("hide")
     setViewResetBtn("hide")
     // play a sound when reseting but just when user clicks on RESET btn
-    withSound && audioStartRef.current.play()
+    if (withSound) playStartSound()
   }
 
   return (
