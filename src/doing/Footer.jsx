@@ -11,6 +11,8 @@ export const Footer = () => {
   const [show4, setShow4] = useState(true) // "RESET TOTAL WORKED HOURS" BUTTON (show or hide)
   const [show5, setShow5] = useState(false) // "Input for adding a new common task" (show or hide)
   const [show6, setShow6] = useState(true) // "Button for adding a new common task" (show or hide)
+  const [editingId, setEditingId] = useState(null)
+  const [editValue, setEditValue] = useState("")
   // catch english or spanish json texts, this change when the user clicks on change language buttons
   const text = store.configs.language.current === "english" ? store.configs.language.text().english : store.configs.language.text().spanish
 
@@ -24,7 +26,33 @@ export const Footer = () => {
     k === "Escape" && (setShow5(false), setShow6(true), setInput(""))
     k === "Enter" && input !== "" && (store.configs.commonTasks.add(input), handleCTInputKey("Escape"))
   }
-  const handleRemoveCTBtn = i => store.configs.commonTasks.remove(i)
+  const startEdit = (task) => {
+    setEditingId(task.id)
+    setEditValue(task.label)
+  }
+
+  const handleEditKey = (e, taskId) => {
+    if (e.key === "Escape") {
+      setEditingId(null)
+      setEditValue("")
+    }
+    if (e.key === "Enter") {
+      const v = e.currentTarget.value.trim()
+      if (v !== "") {
+        store.configs.commonTasks.update(taskId, v)
+        setEditingId(null)
+      }
+    }
+  }
+
+  const handleRemoveCTBtn = (i) => {
+    const task = store.configs.commonTasks.currents[i]
+    if (task && editingId === task.id) {
+      setEditingId(null)
+      setEditValue("")
+    }
+    store.configs.commonTasks.remove(i)
+  }
 
   useEffect(() => localStorage.setItem("infoVisibility", show1), [show1])
   useEffect(() => localStorage.setItem("settingsVisibility", show2), [show2])
@@ -66,16 +94,45 @@ export const Footer = () => {
           <button>{text.doing.footer.settings.theme.dark}</button>
           <button>{text.doing.footer.settings.theme.light}</button>
         </div>
-        <div>
+        <div className="common-tasks-block">
           <span>{text.doing.footer.settings.commonTasks.message}</span>
-          <span>
-            {store.configs.commonTasks.currents.map((e, i) =>
-              <span key={i}>
-                <span>{e}</span>
-                <button onClick={() => handleRemoveCTBtn(i)}>x</button>
-              </span>
-            )}
-          </span>
+          <div className="common-tasks-settings">
+            {store.configs.commonTasks.currents.map((task, i) => (
+              <div key={task.id} className="common-task-row">
+                {editingId === task.id ? (
+                  <input
+                    type="text"
+                    className="input common-task-edit-input"
+                    value={editValue}
+                    onChange={(e) => setEditValue(e.target.value)}
+                    onKeyDown={(e) => handleEditKey(e, task.id)}
+                    autoFocus
+                  />
+                ) : (
+                  <>
+                    <span className="common-task-label">{task.label}</span>
+                    <button
+                      type="button"
+                      className="midBtn common-task-edit-btn"
+                      onClick={() => startEdit(task)}
+                      title={text.doing.footer.settings.commonTasks.edit}
+                    >
+                      {text.doing.footer.settings.commonTasks.edit}
+                    </button>
+                    <button
+                      type="button"
+                      className="midBtn common-task-remove-btn"
+                      onClick={() => handleRemoveCTBtn(i)}
+                      title={text.doing.footer.settings.commonTasks.remove}
+                      aria-label={text.doing.footer.settings.commonTasks.remove}
+                    >
+                      ×
+                    </button>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
           <input
             type="text"
             className={`input ${!show5 && "hide"}`}
@@ -84,7 +141,7 @@ export const Footer = () => {
             onKeyDown={k => handleCTInputKey(k.key)}
             onChange={e => setInput(e.target.value)}
           />
-          <button className={`${!show6 && "hide"}`} onClick={() => addCTBtn()}>+</button>
+          <button type="button" className={`${!show6 && "hide"}`} onClick={() => addCTBtn()}>+</button>
         </div>
         <div>
           <span>{text.doing.footer.settings.timer.message}</span>

@@ -45,7 +45,9 @@ export const text = {
           },
           commonTasks: {
             message: "tareas comunes: ",
-            inputPlaceHolder: "Escribe una tarea común y presiona Enter"
+            inputPlaceHolder: "Escribe una tarea común y presiona Enter",
+            edit: "Editar",
+            remove: "Quitar",
           },
           timer: {
             message: "elegir temporizador: "
@@ -117,7 +119,9 @@ export const text = {
           },
           commonTasks: {
             message: "common tasks: ",
-            inputPlaceHolder: "Type a common task and press Enter"
+            inputPlaceHolder: "Type a common task and press Enter",
+            edit: "Edit",
+            remove: "Remove",
           },
           timer: {
             message: "set timer: "

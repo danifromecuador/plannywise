@@ -10,7 +10,37 @@ import {
   resetWorkedHoursHistory
 } from './tasks_logic.js'
 import { text, setCurrent } from "./language.js"
-import { addCT, removeCT, dedupeCommonTaskNames } from "./common_tasks_logic.js"
+import {
+  addCT,
+  removeCT,
+  updateCT,
+  migrateCommonTasksCatalog,
+  migrateCommonTasksHours,
+} from "./common_tasks_logic.js"
+
+function loadInitialCommonTasksState() {
+  let catalog
+  try {
+    catalog = migrateCommonTasksCatalog(
+      JSON.parse(localStorage.getItem("commonTasksNames") || "null"),
+    )
+  } catch {
+    catalog = migrateCommonTasksCatalog(null)
+  }
+  let hours
+  try {
+    hours = migrateCommonTasksHours(
+      JSON.parse(localStorage.getItem("Common Tasks") || "null"),
+      catalog,
+    )
+  } catch {
+    hours = migrateCommonTasksHours({}, catalog)
+  }
+  return { catalog, hours }
+}
+
+const { catalog: initialCommonTasksCatalog, hours: initialCommonTasksHours } =
+  loadInitialCommonTasksState()
 
 const todoDailySlice = (set, get) => ({
   title: "Daily Goals",
@@ -48,7 +78,7 @@ const todoMonthlySlice = (set, get) => ({
 const tasksSlice = (set, get) => ({
   completed: JSON.parse(localStorage.getItem("Completed Tasks")) || [],
   workedHoursHistory: JSON.parse(localStorage.getItem("Worked Hours History")) || [],
-  commonTasks: JSON.parse(localStorage.getItem("Common Tasks")) || { "learn": 0, "code": 0, "apply": 0 },
+  commonTasks: initialCommonTasksHours,
   commonTasksCounter: () => commonTasksCounter(get),
   add: input => addCompletedTask(set, input),
   deleteCompleted: () => deleteAllCompletedTasks(set, get),
@@ -64,11 +94,10 @@ const configurationOptionsSlice = (set) => ({
     text: () => text
   },
   commonTasks: {
-    currents: dedupeCommonTaskNames(
-      JSON.parse(localStorage.getItem("commonTasksNames")) || ["LEARN", "CODE", "APPLY"],
-    ),
+    currents: initialCommonTasksCatalog,
     add: input => addCT(set, input),
-    remove: index => removeCT(set, index)
+    remove: index => removeCT(set, index),
+    update: (id, input) => updateCT(set, id, input),
   }
 })
 

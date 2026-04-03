@@ -29,9 +29,21 @@ export const Done = () => {
       <div className="completed-tasks sub-container">
         <h2>{text.done.todayCompletedTasks.title}</h2>
         <div className="common-tasks this">
-          <button className="this-month" onClick={() => addCommonTask("learn")}><span className='counter-stats'>{store.tasks.commonTasks.learn} h</span><span>LEARN</span></button>
-          <button className="this-week" onClick={() => addCommonTask("code")}><span className='counter-stats'>{store.tasks.commonTasks.code} h</span><span>CODE</span></button>
-          <button className="this-day" onClick={() => addCommonTask("apply")}><span className='counter-stats'>{store.tasks.commonTasks.apply} h</span><span>APPLY</span></button>
+          {store.configs.commonTasks.currents.map((task, i) => {
+            const variant = ['this-month', 'this-week', 'this-day'][i % 3]
+            const hours = store.tasks.commonTasks[task.id] ?? 0
+            return (
+              <button
+                key={task.id}
+                type="button"
+                className={variant}
+                onClick={() => addCommonTask(task.id)}
+              >
+                <span className="counter-stats">{hours} h</span>
+                <span>{task.label}</span>
+              </button>
+            )
+          })}
         </div>
         <ul className='ul'>{store.tasks.completed.map(item => (<li key={item.id} className='li dones'>{item.content}</li>))}</ul>
         <div className={`${showModal} modal`}>
